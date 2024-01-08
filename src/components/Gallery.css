@@ -1,0 +1,30 @@
+.gallery {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.gallery-left {
+    width: 70%;
+    height: auto;
+}
+
+.gallery-left img {
+    width: 45%;
+    height: auto;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.gallery-right {
+    width: 30%;
+    height: auto;
+}
+
+.gallery-right h2 {
+    font-size: 50px;
+    font-weight: 100;
+    margin-bottom: 10px;
+}
