@@ -2,7 +2,7 @@ import React from "react";
 import './Description.css';
 import Button from "./Button";
 
-const Description = ({className,number,title, text, image, backgroundColor, textColor, fontFamily, widthImage, widthText, fontSizeTitle, fontSizeParagraph, paragraphColor, lineHeightP, button, backgroundButton, textButtonColor ,
+const Description = ({className,number,title, text, image, backgroundColor, textColor, fontFamily, widthImage, widthText, fontSizeTitle, fontSizeParagraph, paragraphColor, lineHeightP, button, backgroundColorButton,textButtonColor,
 fontFamilyButton, swichObjects, style }) => {
     return swichObjects === 'false' ?
     (
@@ -11,8 +11,8 @@ fontFamilyButton, swichObjects, style }) => {
                 <div className="description-text-box" >
                     <h3>{number}</h3>
                     <h2 style={{fontSize: fontSizeTitle}}>{title}</h2>
-                    <p style={{fontSize: fontSizeParagraph, lineHeight: lineHeightP, backgroundColor: paragraphColor }}>{text}</p>
-                    {button === 'true'  ? <Button text="READ MORE" style={{backgroundColor: backgroundButton,  color: textButtonColor,  fontFamily: fontFamilyButton , border: `1px solid ${textButtonColor}`}}/> : null }
+                    <p style={{fontSize: fontSizeParagraph, lineHeight: lineHeightP, backgroundColor: paragraphColor, padding:'0 30px' }}>{text}</p>
+                    {button === 'true'  ? <Button text="READ MORE" style={{backgroundColor: backgroundColorButton,  color: textButtonColor,  fontFamily: fontFamilyButton , border: `1px solid ${textButtonColor}`}}/> : null }
                 </div>
             </div>
             <div className='description-image' style={{width: widthImage}}>
@@ -30,8 +30,8 @@ fontFamilyButton, swichObjects, style }) => {
                 <div className="description-text-box">
                     <h3>{number}</h3>
                     <h2 style={{fontSize: fontSizeTitle}}>{title}</h2>
-                    <p style={{fontSize: fontSizeParagraph, lineHeight: lineHeightP}}>{text}</p>
-                    {button === 'true'  ? <Button text="READ MORE" style={{backgroundColor: backgroundButton,  color: textButtonColor,  fontFamily: fontFamilyButton , border: `1px solid ${textButtonColor}`}}/> : null }
+                    <p style={{fontSize: fontSizeParagraph, lineHeight: lineHeightP, padding:'0 30px'}}>{text}</p>
+                    {button === 'true'  ? <Button text="READ MORE" style={{backgroundColor: backgroundColorButton,  color: textButtonColor,  fontFamily: fontFamilyButton , border: `1px solid ${textButtonColor}`}}/> : null }
                 </div>
             </div>
         </div>

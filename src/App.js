@@ -4,13 +4,14 @@ import HomePage from './pages/Homepage';
 import T1 from './pages/templates/template_1';
 import T2 from './pages/templates/template_2';
 import T3 from './pages/templates/template_3';
+import Description from './components/Description';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/template_1" element={<T1 />} />
+        <Route path="/template_1" element={<T1 textColor="red" ImageD1="../../assets/images/10.jpg"/>} />
         <Route path="/template_2" element={<T2 />} />
         <Route path="/template_3" element={<T3 />} />
       </Routes>

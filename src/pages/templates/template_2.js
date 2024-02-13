@@ -6,9 +6,17 @@ import Description from "../../components/Description";
 import descriptionImage1 from "../../assets/images/18.jpg" ;
 import descriptionImage2 from "../../assets/images/19.jpg" ;
 import descriptionImage3 from "../../assets/images/21.jpg" ;
+import { motion, useScroll} from "framer-motion";
 
 const T2 = () => {
+    const { scrollYProgress } = useScroll();
+
     return (
+        <>
+       <motion.div
+        className="progress-bar"
+        style={{ scaleX: scrollYProgress }}
+      />
         <div className="T2-body">
         <Hero 
         className="template-2-hero"
@@ -81,6 +89,7 @@ const T2 = () => {
         <div className="empty-div"></div>
         <div className="empty-div"></div>
         </div>
+        </>
         
    );
 };
