@@ -32,11 +32,6 @@
     font-weight: 100;
 }
 
-.template-3-description {
-    /* border: 10px solid #cbb49c;
-    border-bottom: none; */
-}
-
 .description-text-box h3 {
     font-size: 200px;
     position: absolute;
@@ -44,23 +39,4 @@
     left: -60px;
     margin: 0;
     opacity: 0.1;
-}
-
-@media screen and (max-width: 768px) {
-    .description {
-        flex-direction: column;
-    }
-
-    .description-image,
-    .description-text {
-        width: 100%;
-    }
-
-    .description-text h2 {
-        font-size: 24px;
-    }
-
-    .description-text p {
-        font-size: 12px;
-    }
 }

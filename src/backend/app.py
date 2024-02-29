@@ -11,7 +11,7 @@ def index():
 
 @app.route('/colors')
 def color():
-    return color_pallete("1.jpg")
+    return color_pallete("4.jpg")
 
 
 if __name__ == '__main__':

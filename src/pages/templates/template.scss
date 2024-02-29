@@ -1,0 +1,33 @@
+.empty-div {
+    height: 50px;
+}
+
+.imagesContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 40vh;
+        height: 40vh;
+        object-fit: cover;
+        padding: 10px;
+    }
+}
+
+.colorsBar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+
+    div {
+        width: 30vh;
+        height: 10vh;
+    }
+}
