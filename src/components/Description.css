@@ -24,14 +24,6 @@
     position: relative;
 }
 
-.description-text h2 {
-    font-weight: 100;
-}
-
-.description-text p {
-    font-weight: 100;
-}
-
 .description-text-box h3 {
     font-size: 200px;
     position: absolute;

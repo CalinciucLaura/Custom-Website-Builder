@@ -4,7 +4,7 @@ import Button from "./Button";
 
 const Gallery = (props) => {
     return (
-        <div className="gallery" style={{backgroundColor: props.backgroundColor, fontFamily: props.fontFamily}}>
+        <div className="gallery" style={{backgroundColor: props.backgroundColor, fontFamily: props.fontFamily, color:props.color}}>
             <div className="gallery-left">
             <img src={props.images[0]} />
             <img src={props.images[1]} />

@@ -4,7 +4,8 @@ import Gallery from "../../components/Gallery"
 import "./template.scss"
 import Description from "../../components/Description";
 import { useEffect, useState } from "react";
-
+import About from "../../components/About";
+import ParallaxImage from "../../components/ParallaxImage";
 
 const T3 = ({ images }) => {
     const [colors, setColors] = useState(null);
@@ -52,8 +53,48 @@ const T3 = ({ images }) => {
                 <img src={images[4]} />
             </div> */}
 
-            <Gallery images={images} backgroundColor="white" fontFamily="Poppins" />
+            <About title="ABOUT" text="Locus Design is an architecture and interior design studio based in London, specialising in the fully integrated design and delivery unique private residences. As a studio we are passionate about the interplay between architecture, interior design and landscape, and the role thy can play in the enjoyment of everyday life in the home." textColor="black" fontFamily='Poppins' style={{ backgroundColor: colors[0] }} />
+            <Gallery images={images} backgroundColor={colors[1]} fontFamily="Poppins" color='white' />
+
+            <Description
+                title="Picking the right Hiking Gear!"
+                text="The nice thing about beginning hiking is that you don’t really need any special gear, you can probably get away with things you already have.                Let’s start with clothing. A typical mistake hiking beginners make is wearing jeans and regular clothes, which will get heavy and chafe wif they get sweaty or wet."
+                image={images[5]}
+                textColor="white"
+                fontFamily='Poppins'
+                backgroundColor={colors[1]}
+                widthImage='50%'
+                widthText='50%'
+                fontSizeTitle='48px'
+                fontSizeParagraph='16px'
+                lineHeightP='32px'
+                button='true'
+                backgroundButton='transparent'
+                textButtonColor='black'
+                fontFamilyButton='Poppins'
+                swichObjects='false'
+                style={{ height: '550px', color: 'white', fontWeight: '800' }} />
+            <ParallaxImage imageUrl={images[0]} />
+            <Description
+                title="Picking the right Hiking Gear!"
+                text="The nice thing about beginning hiking is that you don’t really need any special gear, you can probably get away with things you already have.                Let’s start with clothing. A typical mistake hiking beginners make is wearing jeans and regular clothes, which will get heavy and chafe wif they get sweaty or wet."
+                image={images[5]}
+                textColor="white"
+                fontFamily='Poppins'
+                backgroundColor={colors[0]}
+                widthImage='50%'
+                widthText='50%'
+                fontSizeTitle='48px'
+                fontSizeParagraph='16px'
+                lineHeightP='32px'
+                button='true'
+                backgroundButton='transparent'
+                textButtonColor='black'
+                fontFamilyButton='Poppins'
+                swichObjects='true'
+                style={{ height: '550px', color: 'white', fontWeight: '800' }} />
         </div>
+
     )
 };
 
