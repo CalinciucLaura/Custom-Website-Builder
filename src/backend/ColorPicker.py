@@ -26,6 +26,6 @@ def color_pallete(image_path):
         clr = [f"#{color[0]:02x}{color[1]:02x}{color[2]:02x}"]
         colors += clr
 
-    print(colors[0])
-    print(isLightOrDark(hex_to_rgb(colors[0])))
+    print(colors)
+    # print(isLightOrDark(hex_to_rgb(colors[0])))
     return colors

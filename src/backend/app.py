@@ -15,7 +15,7 @@ def index():
 def color(user_id):
     if not user_id:
         return "Invalid user id"
-    return color_pallete("images/2.jpg")
+    return color_pallete("images/4.jpg")
 
 
 @app.route('/images/<user_id>')
