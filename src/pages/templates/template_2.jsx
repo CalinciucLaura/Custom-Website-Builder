@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Hero from "../../components/Hero";
 import "./template.scss"
 import Description from "../../components/Description";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const T2 = ({ images }) => {
-
-    const [colors, setColors] = useState(null);
+const T2 = () => {
+    const [colors, setColors] = useState(undefined);
+    const [images, setImages] = useState(undefined);
+    const { user_id } = useParams();
 
     useEffect(() => {
-        fetch('/colors')
+        if (user_id === undefined) return;
+        fetch(`http://localhost:5000/colors/${user_id}`)
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {
@@ -18,23 +22,27 @@ const T2 = ({ images }) => {
                     console.log('No colors received from server')
                 }
             })
+
+        fetch(`http://localhost:5000/images/${user_id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    setImages(data)
+                    console.log(data)
+                } else {
+                    console.log('No images received from server')
+                }
+            })
             .catch(error => console.log('Error fetching colors:', error))
-    }, [])
+    }, [user_id])
 
-
-    if (!colors) {
-        console.log('Loading colors...')
-        return null
-    }
-
-    console.log(colors[0])
-
+    if (colors === undefined) return (<>I'm processing on the backend :-)</>);
     return (
         <>
             <div className="T2-body" style={{ backgroundColor: colors[0] }}>
                 <Hero
                     className="template-2-hero"
-                    image={images[1]}
+                    image={images[0]}
                     title="Be Prepared For The Mountains And Beyond!"
                     fontFamily='Tiro Devanagari Sanskrit'
                     fontWeight='100'

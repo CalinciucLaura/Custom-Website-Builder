@@ -3,38 +3,57 @@ import Hero from "../../components/Hero"
 import Gallery from "../../components/Gallery"
 import "./template.scss"
 import Description from "../../components/Description";
-import { useEffect, useState } from "react";
 import About from "../../components/About";
 import ParallaxImage from "../../components/ParallaxImage";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const T3 = ({ images }) => {
+
+const T3 = () => {
     const [colors, setColors] = useState(null);
+    const [images, setImages] = useState(null);
+    const { user_id } = useParams();
 
     useEffect(() => {
-        fetch('/colors')
+        // if(user_id === undefined) return;
+
+        fetch(`/colors/${user_id}`)
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {
                     setColors(data)
                     console.log(data)
+                    console.log(user_id)
                 } else {
                     console.log('No colors received from server')
                 }
             })
+
+        fetch(`/images/${user_id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    setImages(data)
+                    console.log(data)
+                } else {
+                    console.log('No images received from server')
+                }
+            })
             .catch(error => console.log('Error fetching colors:', error))
-    }, [])
+    }, [user_id])
 
 
     if (!colors) {
         console.log('Loading colors...')
-        return null // or return a loading spinner
+        return null
     }
+
     return (
         <div className="T3-body">
             <Hero
                 title={["Enjoy Your ", <br key="br" />, "Dream House"]}
                 fontFamily='Poppins'
-                image={images[1]}
+                image={images[0]}
                 button='true'
                 textButtonColor='black'
                 backgroundColorButton='white'

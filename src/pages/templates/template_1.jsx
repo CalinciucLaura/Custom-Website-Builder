@@ -1,39 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Hero from "../../components/Hero";
 import About from "../../components/About";
 import Description from "../../components/Description";
 import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
-const T1 = ({ images }) => {
+const T1 = () => {
 
     const [colors, setColors] = useState(null);
+    const [images, setImages] = useState(null);
+    const { user_id } = useParams();
 
     useEffect(() => {
-        fetch('/colors')
+        // if(user_id === undefined) return;
+
+        fetch(`/colors/${user_id}`)
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {
                     setColors(data)
                     console.log(data)
+                    console.log(user_id)
                 } else {
                     console.log('No colors received from server')
                 }
             })
+
+        fetch(`/images/${user_id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    setImages(data)
+                    console.log(data)
+                } else {
+                    console.log('No images received from server')
+                }
+            })
             .catch(error => console.log('Error fetching colors:', error))
-    }, [])
+    }, [user_id])
 
 
     if (!colors) {
         console.log('Loading colors...')
-        return null // or return a loading spinner
+        return null
     }
-
     return (
         <div className="T1-body">
-            <Hero image={images[1]} title="Modern Design" fontFamily='Playfair Display' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
+            <Hero image={images[0]} title="Modern Design" fontFamily='Playfair Display' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
             <About title="ABOUT" text="Locus Design is an architecture and interior design studio based in London, specialising in the fully integrated design and delivery unique private residences. As a studio we are passionate about the interplay between architecture, interior design and landscape, and the role thy can play in the enjoyment of everyday life in the home." textColor="white" fontFamily='Playfair Display' style={{ backgroundColor: colors[0] }} />
             <Description
                 title="Services"
@@ -74,7 +91,7 @@ const T1 = ({ images }) => {
                 style={{ textAlign: 'center' }} />
 
             <Quote text="We are passionate about the interplay between architecture, interior design and landscape, and the role they can play in the enjoyment of everyday life in the home." author="John Doe" backgroundColor={colors[2]} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[images[3], images[4], images[5], images[6]]} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
+            <Gallery images={[images[3], images[4], images[5], images[2]]} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
         </div>
     );
 };

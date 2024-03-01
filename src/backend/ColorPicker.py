@@ -5,17 +5,17 @@ import colorsys
 import math
 
 
-def hex_to_rgb(hex_color):
-    return tuple(int(hex_color[i:i+2], 16) for i in (1, 3, 5))
+# def hex_to_rgb(hex_color):
+#     return tuple(int(hex_color[i:i+2], 16) for i in (1, 3, 5))
 
 
-def isLightOrDark(rgbColor):
-    [r, g, b] = rgbColor
-    hsp = math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
-    if (hsp > 127.5):
-        return 'light'
-    else:
-        return 'dark'
+# def isLightOrDark(rgbColor):
+#     [r, g, b] = rgbColor
+#     hsp = math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
+#     if (hsp > 127.5):
+#         return 'light'
+#     else:
+#         return 'dark'
 
 
 def color_pallete(image_path):
