@@ -1,6 +1,8 @@
 from flask import Flask, render_template, current_app, send_file
 from ColorPicker import color_pallete
+from ChatBot import chatBot
 from flask_cors import CORS
+from flask import request, jsonify
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
 CORS(app)
@@ -9,6 +11,16 @@ CORS(app)
 @app.route('/')
 def index():
     return "Hello, World!"
+
+
+@app.route('/prompt', methods=['POST'])
+def chatgpt():
+    data = request.get_json()
+    text = data['text']
+    result = chatBot(text)
+    if result is None:
+        result = "No result from chatBot"
+    return jsonify(result)
 
 
 @app.route('/colors/<user_id>')
