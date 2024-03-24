@@ -13,7 +13,7 @@ const Gallery = (props) => {
             </div>
             <div className="gallery-right">
                 <h2 >Discover our Locations</h2>
-                <p>Our projects are located in some of the most beautiful places in the world. We work with our clients to create homes that are perfectly suited to their location, whether that is a beach house in the Hamptons, a ski chalet in the Alps, or a country house in the Cotswolds.</p>
+                <p>{props.text}</p>
                 <Button text="READ ME" backgroundColor="transparent" textColor="black" fontFamily="Poppins" style={{border:  '1px solid black'}}/>
             </div>
             

@@ -3,10 +3,10 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table, close_connection, insert_into_database
+from database import create_connection, create_table, close_connection, insert_into_database, select_all
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
-CORS(app)
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 
 @app.before_request
@@ -56,6 +56,16 @@ def images(user_id):
         "http://localhost:5000/9.jpg",
         "http://localhost:5000/10.jpg"
     ]
+
+
+@app.route('/prompt/<user_id>')
+def get_text(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    result = select_all(g.cursor, user_id.replace(" ", ""))
+    print(result)
+    return jsonify(result)
 
 
 if __name__ == '__main__':

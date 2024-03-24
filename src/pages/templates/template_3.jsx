@@ -10,36 +10,63 @@ import { useEffect, useState } from "react";
 
 
 const T3 = () => {
-    const [colors, setColors] = useState(null);
-    const [images, setImages] = useState(null);
+    const [colors, setColors] = useState(undefined);
+    const [images, setImages] = useState(undefined);
     const { user_id } = useParams();
+    const [title, setTitle] = useState(undefined);
+    const [about, setAbout] = useState(undefined);
+    const [description1, setDescription1] = useState(undefined);
+    const [description2, setDescription2] = useState(undefined);
+    const [description3, setDescription3] = useState(undefined);
+
 
     useEffect(() => {
-        // if(user_id === undefined) return;
-
-        fetch(`/colors/${user_id}`)
+        if (user_id === undefined) return;
+        fetch(`/colors/${user_id}`, {
+            mode: 'no-cors'
+        })
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {
                     setColors(data)
-                    console.log(data)
-                    console.log(user_id)
                 } else {
                     console.log('No colors received from server')
                 }
             })
 
-        fetch(`/images/${user_id}`)
+        fetch(`/images/${user_id}`, {
+            mode: 'no-cors'
+        })
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {
                     setImages(data)
-                    console.log(data)
                 } else {
                     console.log('No images received from server')
                 }
             })
             .catch(error => console.log('Error fetching colors:', error))
+
+        fetch(`/prompt/${user_id}`, {
+            mode: 'no-cors'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    data.forEach(element => {
+                        setTitle(element[0])
+                        setAbout(element[1])
+                        setDescription1(element[2])
+                        setDescription2(element[3])
+                        setDescription3(element[4])
+
+                    });
+                } else {
+                    console.log('No text received from server')
+                }
+            })
+            .catch(error => console.log('Error fetching text:', error))
+
     }, [user_id])
 
 
@@ -51,7 +78,7 @@ const T3 = () => {
     return (
         <div className="T3-body">
             <Hero
-                title={["Enjoy Your ", <br key="br" />, "Dream House"]}
+                title={title}
                 fontFamily='Poppins'
                 image={images[0]}
                 button='true'
@@ -72,12 +99,12 @@ const T3 = () => {
                 <img src={images[4]} />
             </div> */}
 
-            <About title="ABOUT" text="Locus Design is an architecture and interior design studio based in London, specialising in the fully integrated design and delivery unique private residences. As a studio we are passionate about the interplay between architecture, interior design and landscape, and the role thy can play in the enjoyment of everyday life in the home." textColor="black" fontFamily='Poppins' style={{ backgroundColor: colors[0] }} />
-            <Gallery images={images} backgroundColor={colors[1]} fontFamily="Poppins" color='white' />
+            <About title="ABOUT" text={about} textColor="black" fontFamily='Poppins' style={{ backgroundColor: colors[0] }} />
+            <Gallery images={[images[3], images[4], images[5], images[2]]} text={description1} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
 
             <Description
                 title="Picking the right Hiking Gear!"
-                text="The nice thing about beginning hiking is that you don’t really need any special gear, you can probably get away with things you already have.                Let’s start with clothing. A typical mistake hiking beginners make is wearing jeans and regular clothes, which will get heavy and chafe wif they get sweaty or wet."
+                text={description2}
                 image={images[5]}
                 textColor="white"
                 fontFamily='Poppins'
@@ -96,7 +123,7 @@ const T3 = () => {
             <ParallaxImage imageUrl={images[0]} />
             <Description
                 title="Picking the right Hiking Gear!"
-                text="The nice thing about beginning hiking is that you don’t really need any special gear, you can probably get away with things you already have.                Let’s start with clothing. A typical mistake hiking beginners make is wearing jeans and regular clothes, which will get heavy and chafe wif they get sweaty or wet."
+                text={description3}
                 image={images[5]}
                 textColor="white"
                 fontFamily='Poppins'
