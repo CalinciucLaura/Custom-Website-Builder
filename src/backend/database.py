@@ -9,7 +9,7 @@ def create_connection():
 
 def create_table(cursor):
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS session (id INTEGER PRIMARY KEY AUTOINCREMENT, prompt TEXT)"
+        "CREATE TABLE IF NOT EXISTS website (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, about TEXT)"
     )
 
 
@@ -18,10 +18,11 @@ def close_connection(connection, cursor):
     connection.close()
 
 
-def insert_into_database(cursor, text):
-    cursor.execute(f"INSERT INTO session (prompt) VALUES  (?)", (text,))
+def insert_into_database(cursor, result):
+    cursor.execute(
+        f"INSERT INTO website (title, about) VALUES  (?, ?)", (result[0], result[1]))
 
 
 def fetch_all(cursor):
-    cursor.execute("SELECT * FROM session")
+    cursor.execute("SELECT * FROM website")
     return cursor.fetchall()

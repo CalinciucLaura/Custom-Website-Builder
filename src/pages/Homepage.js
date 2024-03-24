@@ -15,8 +15,10 @@ async function readData(event){
   .then(response => response.json())
   .then(data => {
     console.log(data);
+    let title = document.querySelector('h2');
+    title.innerHTML = data[0];
     let aboutText = document.querySelector('p');
-    aboutText.innerHTML = data;
+    aboutText.innerHTML = data[1];
   })
   .catch(error => console.error('Error:', error));
 
@@ -34,6 +36,7 @@ const HomePage = () => {
         <button > Submit </button>
       </form>
 
+      <h2></h2>
       <p></p>
     </div>
  )

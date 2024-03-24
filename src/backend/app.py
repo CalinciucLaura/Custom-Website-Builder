@@ -22,11 +22,6 @@ def teardown(exception):
         close_connection(*db)
 
 
-@app.route('/')
-def index():
-    return "Hello, World!"
-
-
 @app.route('/prompt', methods=['POST'])
 def chatgpt():
     data = request.get_json()

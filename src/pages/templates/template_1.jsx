@@ -16,7 +16,7 @@ const T1 = () => {
     const { user_id } = useParams();
 
     useEffect(() => {
-        // if(user_id === undefined) return;
+        if (user_id === undefined) return;
 
         fetch(`/colors/${user_id}`)
             .then(res => res.json())

@@ -8,15 +8,28 @@ def chatBot(text):
         api_key="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"
     )
 
-    prompt = "Write a short description about" + text
+    result = []
+    title = "Write a title for a website about " + text
+    about = "Write a short description about " + text
 
-    chat_completion = client.chat.completions.create(
+    title_completion = client.chat.completions.create(
         messages=[
             {"role": "user",
-             "content": prompt
+             "content": title
              },
         ],
         model="gpt-3.5-turbo",
     )
-    print(chat_completion.choices[0].message.content)
-    return chat_completion.choices[0].message.content
+    print(title_completion.choices[0].message.content)
+
+    about_completion = client.chat.completions.create(
+        messages=[
+            {"role": "user",
+             "content": about
+             },
+        ],
+        model="gpt-3.5-turbo",
+    )
+    print(about_completion.choices[0].message.content)
+
+    return [title_completion.choices[0].message.content, about_completion.choices[0].message.content]
