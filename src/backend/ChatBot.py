@@ -2,8 +2,6 @@ from openai import OpenAI
 
 
 def chatBot(text):
-    print(text)
-
     client = OpenAI(
         api_key="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"
     )

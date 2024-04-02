@@ -4,6 +4,7 @@ from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
 from database import create_connection, create_table, close_connection, insert_into_database, select_all
+from ImageGenerator import generate_multiple_images
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
 cors = CORS(app, resources={r"*": {"origins": "*"}})
@@ -26,36 +27,25 @@ def teardown(exception):
 def chatgpt():
     data = request.get_json()
     text = data['text']
-    result = chatBot(text)
-    if result is None:
-        result = "No result from chatBot"
+    result_text = chatBot(text)
+    result_image = generate_multiple_images(text, 6)
+    if result_text is None:
+        result_text = "No result from chatBot"
+    if result_image is None:
+        result_image = "No result from imageGenerator"
 
     g.db, g.cursor = create_connection()
-    insert_into_database(g.cursor, result)
+    insert_into_database(g.cursor, result_text, result_image)
     g.db.commit()
 
-    return jsonify(result)
+    return jsonify(result_text)
 
 
 @app.route('/colors/<user_id>')
 def color(user_id):
     if not user_id:
         return "Invalid user id"
-    return color_pallete("images/4.jpg")
-
-
-@app.route('/images/<user_id>')
-def images(user_id):
-    if not user_id:
-        return "Invalid user id"
-    return [
-        "http://localhost:5000/2.jpg",
-        "http://localhost:5000/4.jpg",
-        "http://localhost:5000/7.jpg",
-        "http://localhost:5000/8.jpg",
-        "http://localhost:5000/9.jpg",
-        "http://localhost:5000/10.jpg"
-    ]
+    return color_pallete("images/cat.png")
 
 
 @app.route('/prompt/<user_id>')

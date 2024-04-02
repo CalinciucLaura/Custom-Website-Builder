@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 const T1 = () => {
 
     const [colors, setColors] = useState(undefined);
-    const [images, setImages] = useState(undefined);
     const { user_id } = useParams();
     const [title, setTitle] = useState(undefined);
     const [about, setAbout] = useState(undefined);
@@ -20,7 +19,12 @@ const T1 = () => {
     const [description2, setDescription2] = useState(undefined);
     const [description3, setDescription3] = useState(undefined);
     const [quote, setQuote] = useState(undefined);
-
+    const [heroImage, setHeroImage] = useState(undefined);
+    const [image1, setImage1] = useState(undefined);
+    const [image2, setImage2] = useState(undefined);
+    const [image3, setImage3] = useState(undefined);
+    const [image4, setImage4] = useState(undefined);
+    const [image5, setImage5] = useState(undefined);
 
     useEffect(() => {
         if (user_id === undefined) return;
@@ -36,18 +40,6 @@ const T1 = () => {
                 }
             })
 
-        fetch(`/images/${user_id}`, {
-            mode: 'no-cors'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    setImages(data)
-                } else {
-                    console.log('No images received from server')
-                }
-            })
-            .catch(error => console.log('Error fetching colors:', error))
 
         fetch(`/prompt/${user_id}`, {
             mode: 'no-cors'
@@ -62,6 +54,13 @@ const T1 = () => {
                         setDescription2(element[3])
                         setDescription3(element[4])
                         setQuote(element[5])
+                        setHeroImage(element[6])
+                        setImage1(element[7])
+                        setImage2(element[8])
+                        setImage3(element[9])
+                        setImage4(element[10])
+                        setImage5(element[11])
+
                     });
                 } else {
                     console.log('No text received from server')
@@ -78,14 +77,14 @@ const T1 = () => {
     }
     return (
         <div className="T1-body">
-            <Hero image={images[0]}
+            <Hero image={heroImage}
                 title={title} fontFamily='Playfair Display' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
             <About title="ABOUT" text={about} textColor="white" fontFamily='Playfair Display' style={{ backgroundColor: colors[0] }} />
             <Description
                 title="Services"
                 text={description1}
                 backgroundColor={colors[1]}
-                image={images[1]}
+                image={image1}
                 textColor="black"
                 fontFamily='Playfair Display'
                 fontSizeTitle='40px'
@@ -103,7 +102,7 @@ const T1 = () => {
             <Description
                 title="Projects"
                 text={description2}
-                image={images[2]}
+                image={image2}
                 backgroundColor={colors[1]}
                 textColor="black"
                 fontFamily='Playfair Display'
@@ -120,7 +119,7 @@ const T1 = () => {
                 style={{ textAlign: 'center' }} />
 
             <Quote text={quote} backgroundColor={colors[2]} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[images[3], images[4], images[5], images[2]]} text={description3} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
+            <Gallery images={[image3, image4, image5, image2]} text={description3} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
         </div>
     );
 }
