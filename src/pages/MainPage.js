@@ -1,9 +1,11 @@
 import React from "react"
 import './MainPage.scss';
 import { Link } from 'react-router-dom';
+import { FaMagic } from "react-icons/fa";
 
 const MainPage = (props) => {
   return (
+    <div className="main-body">
     <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
       <div className="main__content">
@@ -28,7 +30,10 @@ const MainPage = (props) => {
             <p>Build a website for your store</p>
         </div>
     </div>
-    <h1>Generate with <span>AI</span> ..</h1>
+    <Link to="/generator" style={{textDecoration: 'none'}}>
+    <button className="main__button"><FaMagic /> AI Website</button>
+    </Link>
+    </div>
     </div>
   )
 };

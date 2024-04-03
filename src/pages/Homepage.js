@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Homepage.scss';
 import { Link } from 'react-router-dom';
+import { FaMagic } from "react-icons/fa";
 
 async function readData(event){
   event.preventDefault();
@@ -46,10 +47,14 @@ const HomePage = () => {
         <p> Build, edit and publish a beautiful website <br/> without any design or code experience.</p>
         
       <form onSubmit={readData}>  
-          <input type="text" id="text" />
-        <button >Generate</button>
-      </form>
-      {/* <Link to="/admin">Go to Admin</Link> */}
+      <div className='inputBox'>
+          <input type="text" id="searchQueryInput" placeholder="Search"/>
+          <Link to="" style={{textDecoration: 'none'}}>
+         <button id="searchQuerySubmit" type="submit"><FaMagic /> Generate</button>
+    </Link>
+    </div>
+      </form>      
+  
       </div>
     </div>
  )

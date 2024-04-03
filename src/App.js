@@ -6,8 +6,8 @@ import T2 from './pages/templates/template_2';
 import T3 from './pages/templates/template_3';
 import { useEffect, useState } from 'react';
 import MainPage from './pages/MainPage';
-import Portfolio from './pages/Portfolio';
-import PortfolioPage2 from './pages/PortfolioPage2';
+import Portfolio from './pages/portfolio/Portfolio';
+import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
 
 function App() {
   return (
@@ -20,7 +20,6 @@ function App() {
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/portfolio/about'} element={<PortfolioPage2 />} />
-     
       </Routes>
     </Router>
   );
