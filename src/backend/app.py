@@ -3,17 +3,19 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table, close_connection, insert_into_database, select_all
+from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio
 from ImageGenerator import generate_multiple_images
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
-
 @app.before_request
 def before_request():
     g.db, g.cursor = create_connection()
     create_table(g.cursor)
+    create_table_portfolio(g.cursor)
+    create_table_experience(g.cursor)
+    create_table_education(g.cursor)
 
 
 @app.teardown_appcontext
@@ -33,13 +35,10 @@ def chatgpt():
         result_text = "No result from chatBot"
     if result_image is None:
         result_image = "No result from imageGenerator"
-
     g.db, g.cursor = create_connection()
     insert_into_database(g.cursor, result_text, result_image)
     g.db.commit()
-
     return jsonify(result_text)
-
 
 @app.route('/colors/<user_id>')
 def color(user_id):

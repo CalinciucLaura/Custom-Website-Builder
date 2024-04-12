@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import MainPage from './pages/MainPage';
 import Portfolio from './pages/portfolio/Portfolio';
 import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
+import PortfolioPage3 from './pages/portfolio/PortfolioPage3';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path={`/template_3/:user_id`} element={<T3 /> }/>
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={'/portfolio'} element={<Portfolio />} />
-        <Route path={'/portfolio/about'} element={<PortfolioPage2 />} />
+        <Route path={'/portfolio/experience_education'} element={<PortfolioPage2 />} />
+        <Route path={'/portfolio/skills'} element={<PortfolioPage3 />} />
       </Routes>
     </Router>
   );
