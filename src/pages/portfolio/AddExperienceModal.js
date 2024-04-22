@@ -17,10 +17,10 @@ const AddExperienceModal = (props) => {
 
   const toggle = () => {
     setModal(!modal);
-    if (modal === true){
+    if (modal === true) {
       setShowCard(true);
       const _cards = [...cards];
-      _cards.push({startingDate, endingDate, company, city, role});
+      _cards.push({ startingDate, endingDate, company, city, role });
       setCards(_cards);
       props.onAddExperience(_cards[_cards.length - 1]);
     }
@@ -29,83 +29,72 @@ const AddExperienceModal = (props) => {
   return (
     <div>
       <Button color="danger" onClick={toggle}>
-      <FiPlus /> Add Experience
+        <FiPlus /> Add Experience
       </Button>
       <Modal isOpen={modal} toggle={toggle} >
         <ModalHeader toggle={toggle}>Add Experience</ModalHeader>
         <ModalBody>
-        <Form >  
-  <Row>
-  <Col md={6}>
-  <FormGroup>
-    <Label for="startingDate">
-      Starting Date
-    </Label>
-    <Input 
-      id="startingDate"
-      value={startingDate}
-      name="date"
-      placeholder="date placeholder"
-      onChange={e => setStartingDate(e.target.value)}
-      type="date"
-      required
-    />
-  </FormGroup>
-  </Col>
-  <Col md={6}>
-  <FormGroup>
-    <Label for="endingDate">
-      Ending Date
-    </Label>
-    <Input 
-      id="endingDate"
-      value={endingDate}
-      onChange={e => setEndingDate(e.target.value)}
-      name="date"
-      placeholder="date placeholder"
-      type="date"
-    />
-  </FormGroup>
-  </Col >
-  </Row>
-  <FormGroup>
-    <Label for="companyName">
-      Company Name
-    </Label>
-    <Input
-      id="companyName"
-      value={company}
-      onChange={e => setCompany(e.target.value)}
-      name="name"
-      placeholder="Company Name"
-      required
-    />
-  </FormGroup>
-      <FormGroup>
-        <Label for="exampleCity">
-          City
-        </Label>
-        <Input
-          id="exampleCity"
-          name="city"
-          value={city}
-          onChange={e => setCity(e.target.value)} 
-        />
-      </FormGroup>
-  <FormGroup>
-    <Label for="role">
-      Role / Position
-    </Label>
-    <Input
-      type="role" required
-      name="text"
-      id="role"
-      value={role}
-      onChange={e => setRole(e.target.value)}
-      
-    />
-  </FormGroup>
-</Form>
+          <Form >
+            <Row>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="startingDate">
+                    Starting Date
+                  </Label>
+                  <Input
+                    id="startingDate"
+                    value={startingDate}
+                    name="date"
+                    placeholder="date placeholder"
+                    onChange={e => setStartingDate(e.target.value)}
+                    type="date"
+                    required
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="endingDate">
+                    Ending Date
+                  </Label>
+                  <Input
+                    id="endingDate"
+                    value={endingDate}
+                    onChange={e => setEndingDate(e.target.value)}
+                    name="date"
+                    placeholder="date placeholder"
+                    type="date"
+                  />
+                </FormGroup>
+              </Col >
+            </Row>
+            <FormGroup>
+              <Label for="companyName">
+                Company Name
+              </Label>
+              <Input
+                id="companyName"
+                value={company}
+                onChange={e => setCompany(e.target.value)}
+                name="name"
+                placeholder="Company Name"
+                required
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="role">
+                Position
+              </Label>
+              <Input
+                type="role" required
+                name="text"
+                id="role"
+                value={role}
+                onChange={e => setRole(e.target.value)}
+
+              />
+            </FormGroup>
+          </Form>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>
@@ -117,7 +106,7 @@ const AddExperienceModal = (props) => {
         </ModalFooter>
       </Modal>
     </div>
-    
+
   );
 }
 

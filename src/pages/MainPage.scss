@@ -1,12 +1,15 @@
 .main-body {
     background-color: white;
     padding: 20px;
+    display: block;
+    margin: auto;
 }
 
 .main {
     font-family: 'Poppins', sans-serif;
-    width: 90%;
-    height: 95vh;
+    display: block;
+    width: 70%;
+    height: 70vh;
     margin: auto;
     border-radius: 20px;
     padding: 80px;
