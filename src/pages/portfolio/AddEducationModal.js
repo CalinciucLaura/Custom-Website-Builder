@@ -1,57 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 
-const AddEducationModal = (props) => {
-  const [modal, setModal] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const [cards, setCards] = useState([]);
+const AddEducationModal = ({onAddEducation, toggle, isOpen, editCard, editCardIndex, editExisting}) => {
   const [startingDate, setStartingDate] = useState("");
   const [endingDate, setEndingDate] = useState("");
   const [institution, setInstitution] = useState("");
-  const [field, setField] = useState("");
-  const [degree, setDegree] = useState("");
+  const [specialization, setSpecialization] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch(`/education`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    
-      body: JSON.stringify({
-        startingDate,
-        endingDate,
-        institution,
-        field,
-        degree
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-  };
-
-  const toggle = () => {
-    setModal(!modal);
-    if (modal === true) {
-      setShowCard(true);
-      const _cards = [...cards];
-      _cards.push({
-        startingDate, endingDate, institution, field, degree
-      });
-      setCards(_cards);
-      props.onAddEducation(_cards[_cards.length - 1]);
+  useEffect(()=>{
+    console.log(editCard);
+    if(editCard){
+      setStartingDate(editCard.startingDate);
+      setEndingDate(editCard.endingDate);
+      setInstitution(editCard.institution);
+      setSpecialization(editCard.specialization);
     }
-  }
+  }, [editCard]);
 
+  const save = () => {
+    if(editCardIndex!=null) {
+      editExisting(editCardIndex, { startingDate, endingDate, institution, specialization });
+    } else {
+      onAddEducation({ startingDate, endingDate, institution, specialization });
+    }
+    toggle();
+    setStartingDate("");
+    setEndingDate("");
+    setInstitution("");
+    setSpecialization("");
+  }
+  
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
-        <FiPlus /> Add Education
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} >
+      <Modal isOpen={isOpen} toggle={toggle} >
         <ModalHeader toggle={toggle}> Add Education</ModalHeader>
         <ModalBody>
           <Form >
@@ -109,15 +92,14 @@ const AddEducationModal = (props) => {
                 id="specialization"
                 name="specialization"
                 placeholder="Specialization"
-                value={field}
-                onChange={e => setField(e.target.value)}
+                value={specialization}
+                onChange={e => setSpecialization(e.target.value)}
               />
             </FormGroup>
-
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" onClick={save}>
             Save
           </Button>{' '}
           <Button color="secondary" onClick={toggle}>

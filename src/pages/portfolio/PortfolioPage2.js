@@ -8,6 +8,7 @@ import AddEducationModal from "./AddEducationModal";
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
+import { FaTrashCan } from "react-icons/fa6";
 
 const PortfolioPage2 = (props) => {
   const [showCardEducation, setShowCardEducation] = useState(false);
@@ -37,6 +38,7 @@ const PortfolioPage2 = (props) => {
   const [experienceEditCardIndex, setExperienceEditCardIndex] = useState(null);
   const [educationEditCardIndex, setEducationEditCardIndex] = useState(null);
 
+
   const handleAddExperience = (newCard) => {
     setShowCardExperience(true);
     setCardsExperience(prevCards => [...prevCards, newCard]);
@@ -47,22 +49,6 @@ const PortfolioPage2 = (props) => {
     setCardsEducation(prevCards => [...prevCards, newCard]);
   }
 
-  const renderCardEducation = (card, index) => {
-    return (
-      <div className="card" style={{ width: "18rem" }} key={index}>
-        <div className="card-header">
-          <h5 className="card-title">{card.role}</h5>
-        </div>
-        <div className="card-body">
-          <p className="card-text" style={{ fontSize: "12px", fontWeight: 700, color: 'green' }}>Start: {card.startingDate}</p>
-          <p className="card-text" style={{ fontSize: "12px", fontWeight: 700, color: 'green' }}>End: {card.endingDate}</p>
-          <p className="card-text" style={{ fontWeight: 700 }}>{card.company}</p>
-          <p className="card-text" style={{ fontSize: '15px' }}>{card.city}</p>
-          <a href="#" className="btn btn-primary" style={{ float: 'right' }}><TbEdit /> Edit</a>
-        </div>
-      </div>
-    )
-  }
   return (
     <div className="portfolio-body">
       <Link to="/portfolio">
@@ -98,6 +84,11 @@ const PortfolioPage2 = (props) => {
                 <p className="card-text" style={{ fontSize: "12px", fontWeight: 700, color: 'green' }}>End: {card.endingDate}</p>
                 <p className="card-text" style={{ fontWeight: 700 }}>{card.company}</p>
                 <p className="card-text" style={{ fontSize: '15px' }}>{card.city}</p>
+                <button onClick={()=>{
+                  let newCards = [...cardsExperience];
+                  newCards.splice(index, 1);
+                  setCardsExperience(newCards);                  
+                }} className="btn btn-danger" style={{float:'right', marginLeft:'5px'}}><FaTrashCan /></button>
                 <button onClick={()=>{                  
                   setExperienceEditCard(card);
                   setExperienceEditCardIndex(index);
@@ -107,10 +98,45 @@ const PortfolioPage2 = (props) => {
             </div>
           )}
         </div>
-        <AddEducationModal onAddEducation={handleAddEducation} />
-        <div className="cards">
-          {cardsEducation.map(renderCardEducation)}
-        </div>
+
+        <Button color="danger" onClick={toggleAddEducation}>
+          <FiPlus /> Add Education
+        </Button>
+        <AddEducationModal 
+          onAddEducation={handleAddEducation}
+          toggle={toggleAddEducation}
+          isOpen = {showAddEducation}
+          editCard = {educationEditCard}
+          editCardIndex = {educationEditCardIndex}
+          editExisting={(index, card) => {
+            let newCards = [...cardsEducation];
+            newCards[index] = card;
+            setCardsEducation(newCards);
+          }}
+        />
+        {cardsEducation.map((card, index) => 
+            <div className="card" style={{ width: "18rem" }} key={index}>
+              <div className="card-header">
+                <h5 className="card-title">{card.role}</h5>
+              </div>
+              <div className="card-body">
+                <p className="card-text" style={{ fontSize: "12px", fontWeight: 700, color: 'green' }}>Start: {card.startingDate}</p>
+                <p className="card-text" style={{ fontSize: "12px", fontWeight: 700, color: 'green' }}>End: {card.endingDate}</p>
+                <p className="card-text" style={{ fontWeight: 700 }}>{card.institution}</p>
+                <p className="card-text" style={{ fontSize: '15px' }}>{card.specialization}</p>
+                <button onClick={()=>{
+                  let newCards = [...cardsExperience];
+                  newCards.splice(index, 1);
+                  setCardsEducation(newCards);                  
+                }} className="btn btn-danger" style={{float:'right', marginLeft:'5px'}}><FaTrashCan /></button>
+                <button onClick={()=>{                  
+                  setEducationEditCard(card);
+                  setEducationEditCardIndex(index);
+                  toggleAddEducation(false);
+                }} className="btn btn-primary" style={{ float: 'right' }}><TbEdit /> Edit</button>
+              </div>
+            </div>
+          )}
         <Link to="/portfolio/skills">
           <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
             Next
