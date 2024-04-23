@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 
 
 const T1 = () => {
-
     const [colors, setColors] = useState(undefined);
     const { user_id } = useParams();
     const [title, setTitle] = useState(undefined);

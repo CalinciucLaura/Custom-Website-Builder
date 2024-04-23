@@ -1,0 +1,110 @@
+@import "../../App.scss";
+
+.skills {
+    margin: auto;
+    box-sizing: border-box;
+    max-width: 770px;
+    width: 70%;
+
+    @include mobile {
+        width: 100%;
+        height: auto;
+    }
+
+    h3 {
+        border: 1px solid #565656;
+        font-size: 12px;
+        font-weight: 300;
+        border-radius: 30px;
+        padding: 9px 20px;
+        align-items: center;
+        display: inline-flex;
+        color: white;
+        translate: 0px -20px;
+    }
+
+    h1 {
+        font-size: 50px;
+        letter-spacing: -0.2px;
+        line-height: 50px;
+        margin: 0;
+        margin-bottom: 40px;
+        font-weight: 300;
+        color: white;
+
+        span {
+            color: #ff99cc;
+        }
+
+        @include mobile {
+            font-size: 38px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+
+        }
+    }
+
+    .elements {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;
+        margin: 0;
+        color: white;
+        float: left;
+
+        @include mobile {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .element {
+            border: 2px solid #565656;
+            width: 20%;
+            height: auto;
+            padding: 20px 5px;
+            margin: 20px 8px;
+            border-radius: 85px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @include mobile {
+                margin: 10px 5px;
+            }
+
+
+            p {
+                font-size: 15px;
+                margin: 0;
+
+                @include mobile {
+                    font-size: 12px;
+                }
+            }
+
+            #icon {
+                font-size: 40px;
+                margin: 0;
+
+                @include mobile {
+                    font-size: 25px;
+                }
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+
+                @include mobile {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+        }
+
+    }
+
+
+}

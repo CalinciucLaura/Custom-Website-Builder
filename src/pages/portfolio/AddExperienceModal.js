@@ -1,37 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
-import { FiPlus } from "react-icons/fi";
 
-const AddExperienceModal = (props) => {
-
-  const [modal, setModal] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const [cards, setCards] = useState([]);
-
+const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCardIndex, editExisting}) => {
   const [startingDate, setStartingDate] = useState("");
   const [endingDate, setEndingDate] = useState("");
   const [company, setCompany] = useState("");
   const [city, setCity] = useState("");
   const [role, setRole] = useState("");
 
-  const toggle = () => {
-    setModal(!modal);
-    if (modal === true) {
-      setShowCard(true);
-      const _cards = [...cards];
-      _cards.push({ startingDate, endingDate, company, city, role });
-      setCards(_cards);
-      props.onAddExperience(_cards[_cards.length - 1]);
+  useEffect(()=>{
+    console.log(editCard);
+    if(editCard){
+      setStartingDate(editCard.startingDate);
+      setEndingDate(editCard.endingDate);
+      setCompany(editCard.company);
+      setCity(editCard.city);
+      setRole(editCard.role);
     }
+  }, [editCard]);
+
+  const save = () => {     
+    if(editCardIndex!=null) {
+      editExisting(editCardIndex, { startingDate, endingDate, company, city, role });
+    } else {
+      onAddExperience({ startingDate, endingDate, company, city, role });
+    }    
+    toggle();
+    setStartingDate("");
+    setEndingDate("");
+    setCompany("");
+    setCity("");
+    setRole("");    
   }
 
   return (
-    <div>
-      <Button color="danger" onClick={toggle}>
-        <FiPlus /> Add Experience
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} >
+    <div>      
+      <Modal isOpen={isOpen} toggle={toggle} >
         <ModalHeader toggle={toggle}>Add Experience</ModalHeader>
         <ModalBody>
           <Form >
@@ -97,7 +102,7 @@ const AddExperienceModal = (props) => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" onClick={save}>
             Save
           </Button>{' '}
           <Button color="secondary" onClick={toggle}>

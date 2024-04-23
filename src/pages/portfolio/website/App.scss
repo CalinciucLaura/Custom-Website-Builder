@@ -1,0 +1,120 @@
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    color: #999999;
+    background: #1f1f1f;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+
+section {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.app {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .sidebar {
+        width: 20%;
+    }
+
+    .content {
+        width: 60%;
+    }
+
+}
+
+@mixin mobile {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    body {
+        line-height: normal;
+        overflow-y: none;
+        overflow-x: none;
+
+    }
+
+    section {
+        height: auto;
+        transform: none;
+        margin: 20px;
+        min-height: initial;
+    }
+
+    .app {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: left;
+
+        .content {
+            width: 90%;
+            margin: 0 10px;
+        }
+
+        .sidebar {
+            width: 90%;
+            margin: auto;
+            margin-top: 10px;
+
+        }
+
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        @content;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    body {
+        line-height: normal;
+        overflow-y: none;
+        overflow-x: none;
+        overflow: hidden;
+    }
+
+    section {
+        height: auto;
+        transform: none;
+        margin: 20px;
+        min-height: initial;
+    }
+
+    .app {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: left;
+
+        .content {
+            width: 90%;
+            margin: 0 10px;
+        }
+
+        .sidebar {
+            width: 90%;
+            margin: auto;
+            margin-top: 10px;
+
+        }
+
+    }
+
+}

@@ -1,0 +1,138 @@
+@import "../../app.scss";
+
+.contact {
+
+    margin: auto;
+    box-sizing: border-box;
+    max-width: 770px;
+    width: 70%;
+    height: auto;
+
+    @include mobile {
+        width: 100%;
+        padding: 10px;
+
+    }
+
+    h1 {
+        font-size: 50px;
+        letter-spacing: -0.2px;
+        line-height: 50px;
+        margin: 0;
+        margin-bottom: 40px;
+        font-weight: 300;
+        color: white;
+
+
+
+        span {
+            color: #ff99cc;
+        }
+    }
+
+    .textContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        gap: 10px;
+
+        // @include mobile {
+        //     gap: 20px;
+        //     text-align: center;
+        //     align-items: center;
+        //     margin-top: 70px;
+        // }
+
+
+
+        // @include mobile {
+        //     font-size: 36px;
+        // }
+
+        h2 {
+            font-size: 25px;
+            font-weight: 300;
+            color: white;
+            margin: 10px 0;
+        }
+    }
+
+    span {
+        font-weight: 300;
+    }
+}
+
+.formContainer {
+    flex: 1;
+    position: relative;
+
+    // @include mobile {
+    //     padding: 50px;
+    //     width: 100%;
+    // }
+
+
+    .phoneSvg {
+        stroke: #ff99cc;
+        position: absolute;
+        margin: auto;
+        z-index: -1;
+        right: -10px;
+
+        @include mobile {
+            padding-top: 40px;
+            width: 100%;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            color: white;
+            font-size: 12px;
+            margin-top: 40px;
+
+            span {
+                color: red;
+                margin-left: 5px;
+            }
+        }
+
+        input,
+        textarea {
+            padding: 10px 0;
+            background-color: transparent;
+            border: 0;
+            font-size: 18px;
+            outline: none;
+            color: white;
+            font-family: inherit;
+
+            // @include mobile {
+            //     padding: 10px;
+            // }
+        }
+
+        button {
+            padding: 20px;
+            border: none;
+            background-color: #ff99cc;
+            cursor: pointer;
+            font-family: inherit;
+            border-radius: 30px;
+            color: black;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: 500;
+            margin-top: 10px;
+            width: 30%;
+
+            @include mobile {
+                width: 100%;
+            }
+
+        }
+    }
+}

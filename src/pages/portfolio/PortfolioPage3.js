@@ -44,7 +44,7 @@ const PortfolioPage3 = () => {
                 <div className="cards">
                     {showCardSkills === true ? <>{cardsSkills.map(renderCard)}</> : null}
                 </div>
-                <Link to="">
+                <Link to="/portfolio/color">
                     <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
                         Next
                     </Button>

@@ -9,6 +9,7 @@ import MainPage from './pages/MainPage';
 import Portfolio from './pages/portfolio/Portfolio';
 import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
 import PortfolioPage3 from './pages/portfolio/PortfolioPage3';
+import ColorSelector from './pages/ColorSelector';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education'} element={<PortfolioPage2 />} />
         <Route path={'/portfolio/skills'} element={<PortfolioPage3 />} />
+        <Route path={'/portfolio/color'} element={<ColorSelector />} />
       </Routes>
     </Router>
   );

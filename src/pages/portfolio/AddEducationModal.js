@@ -4,7 +4,6 @@ import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 
 const AddEducationModal = (props) => {
-
   const [modal, setModal] = useState(false);
   const [showCard, setShowCard] = useState(false);
   const [cards, setCards] = useState([]);
@@ -13,6 +12,26 @@ const AddEducationModal = (props) => {
   const [institution, setInstitution] = useState("");
   const [field, setField] = useState("");
   const [degree, setDegree] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch(`/education`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    
+      body: JSON.stringify({
+        startingDate,
+        endingDate,
+        institution,
+        field,
+        degree
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
 
   const toggle = () => {
     setModal(!modal);
