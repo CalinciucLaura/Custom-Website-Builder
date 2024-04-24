@@ -80,5 +80,16 @@ def portfolio():
     return jsonify({'message': 'Data received and inserted into database'}), 200
 
 
+@app.route('/portfolio/<user_id>')
+def get_portfolio_data(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
+    result = g.cursor.fetchone()
+    print(result)
+    return jsonify(result)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

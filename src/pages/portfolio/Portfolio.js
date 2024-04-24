@@ -173,8 +173,8 @@ const Portfolio = (props) => {
                 name="photo"
                 type="file"
                 value={photo}
-                onChange={e => setPhoto(e.target.value)}
                 accept="image/*"
+                onChange={e => setPhoto(e.target.value)}
               />
             </Col>
           </FormGroup>

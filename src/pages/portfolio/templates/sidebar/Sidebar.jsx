@@ -6,16 +6,14 @@ import { FaLinkedin } from "react-icons/fa";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 
-const Sidebar = (props) => {
+const Sidebar = ({ firstName, lastName, address, phone, image }) => {
     return (
         <div className="profile">
             <div className="header">
-                <h1>Laura Calinciuc</h1>
-                <h5>Frontend Developer</h5>
+                <h1>{firstName} {lastName}</h1>
             </div>
-            <div className="image-container"><img alt="Laura" /></div>
-
-            <h3>Iasi Romania <br /> Computer Science Student 3th Year</h3>
+            <div className="image-container"><img src="" /></div>
+            <h3>{address} <br /> <br />{phone}</h3>
 
             <div className="social">
                 <a href="https://github.com/CalinciucLaura?tab=repositories" >

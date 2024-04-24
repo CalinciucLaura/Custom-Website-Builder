@@ -25,7 +25,7 @@ function App() {
         <Route path={'/portfolio/experience_education'} element={<PortfolioPage2 />} />
         <Route path={'/portfolio/skills'} element={<PortfolioPage3 />} />
         <Route path={'/portfolio/color'} element={<ColorSelector />} />
-        <Route path={'/portfolio/template'} element={<Template />} />
+        <Route path={`/portfolio/template/:user_id`} element={<Template />} />
       </Routes>
     </Router>
   );
