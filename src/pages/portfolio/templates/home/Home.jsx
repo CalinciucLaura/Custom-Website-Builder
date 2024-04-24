@@ -1,7 +1,6 @@
 import React from "react"
 import "./home.scss"
 import { motion } from "framer-motion";
-import scrollImage from "./scroll.png";
 import { GoHome } from 'react-icons/go';
 import { FaDownload } from "react-icons/fa";
 
@@ -40,7 +39,7 @@ const Home = () => {
             </p>
             <a href="cv.pdf" download="LauraResume">
                 <button><FaDownload style={{ marginRight: '15px', fontSize: '16px' }} />Download Resume</button></a>
-            <motion.img variants={textVariants} animate="scrollButton" src={scrollImage} alt="" />
+            <motion.img variants={textVariants} animate="scrollButton" alt="" />
 
         </div>
 

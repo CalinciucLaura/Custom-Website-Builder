@@ -26,7 +26,6 @@ const Resume = () => {
                     <p>Freelance</p>
                 </div>
 
-
                 <div className="item">
                     <h4>2017 - 2021</h4>
                     <h2>Computer Science High School </h2>

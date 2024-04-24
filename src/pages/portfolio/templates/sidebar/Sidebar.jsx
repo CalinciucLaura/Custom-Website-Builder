@@ -1,6 +1,5 @@
 import React from "react"
 import "./sidebar.scss"
-import profileImage from "../../images/laura2.jpeg"
 import { TfiEmail } from "react-icons/tfi";
 import { DiGithubBadge } from "react-icons/di";
 import { FaLinkedin } from "react-icons/fa";
@@ -14,7 +13,7 @@ const Sidebar = (props) => {
                 <h1>Laura Calinciuc</h1>
                 <h5>Frontend Developer</h5>
             </div>
-            <div className="image-container"><img src={profileImage} alt="Laura" /></div>
+            <div className="image-container"><img alt="Laura" /></div>
 
             <h3>Iasi Romania <br /> Computer Science Student 3th Year</h3>
 

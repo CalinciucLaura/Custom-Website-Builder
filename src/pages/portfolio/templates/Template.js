@@ -1,17 +1,16 @@
 import React from 'react';
-import './App.scss';
-import Sidebar from './components/sidebar/Sidebar';
-import Navbar from './components/navbar/Navbar';
-import Home from './components/home/Home';
-import About from './components/about/About';
+import './template.scss';
+import Sidebar from './sidebar/Sidebar';
+import Navbar from './navbar/Navbar';
+import Home from './home/Home';
+import About from './about/About';
 import { useInView } from "react-intersection-observer";
-import Resume from './components/resume/Resume';
-import Skills from './components/skills/Skills';
-import Contact from './components/contact/Contact';
-import Testimonial from './components/testimonial/Testimonial';
-import Portfolio from './components/portfolio/Portfolio';
+import Resume from './resume/Resume';
+import Skills from './skills/Skills';
+import Contact from './contact/Contact';
+import PortfolioTemplate from './portfolio/PortfolioTemplate';
 
-function App() {
+function Template() {
   const [refHome, inViewHome] = useInView({
     triggerOnce: false,
   });
@@ -61,7 +60,7 @@ function App() {
           <Skills />
         </section>
         <section id="portfolio" ref={refPortfolio} >
-          <Portfolio />
+          <PortfolioTemplate />
         </section>
         {/* <section id="testimonial" ref={refTestimonial} >
           <Testimonial />
@@ -87,4 +86,4 @@ function App() {
   );
 }
 
-export default App;
+export default Template;

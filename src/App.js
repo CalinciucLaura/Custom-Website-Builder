@@ -10,6 +10,7 @@ import Portfolio from './pages/portfolio/Portfolio';
 import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
 import PortfolioPage3 from './pages/portfolio/PortfolioPage3';
 import ColorSelector from './pages/ColorSelector';
+import Template from './pages/portfolio/templates/Template';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path={'/portfolio/experience_education'} element={<PortfolioPage2 />} />
         <Route path={'/portfolio/skills'} element={<PortfolioPage3 />} />
         <Route path={'/portfolio/color'} element={<ColorSelector />} />
+        <Route path={'/portfolio/template'} element={<Template />} />
       </Routes>
     </Router>
   );
