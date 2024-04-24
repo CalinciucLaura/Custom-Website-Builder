@@ -43,6 +43,22 @@ const Portfolio = (props) => {
     navigate('/portfolio/experience_education');
   };
 
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  function handleFileChange(event) {
+    const file = event.target.files[0];
+    toBase64(file).then((base64) => {
+      setPhoto(base64);
+    });
+  }
+
   return (
     <div className="portfolio-body">
       <Link to="/">
@@ -172,9 +188,8 @@ const Portfolio = (props) => {
                 id="photo"
                 name="photo"
                 type="file"
-                value={photo}
                 accept="image/*"
-                onChange={e => setPhoto(e.target.value)}
+                onChange={handleFileChange}
               />
             </Col>
           </FormGroup>

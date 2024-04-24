@@ -84,7 +84,7 @@ const Template = () => {
           <Home firstName={firstName} lastName={lastName}/>
         </section> 
         <section id="about" ref={refAbout} >
-          <About />
+          <About description={description}/>
         </section>
         <section id="resume" ref={refResume} >
           <Resume />
@@ -99,7 +99,7 @@ const Template = () => {
           <PortfolioTemplate />
         </section>
         <section id="contact" ref={refContact} >
-          <Contact />
+          <Contact email={email} phone={phone}/>
         </section>
       </div>   
 
@@ -108,7 +108,6 @@ const Template = () => {
           isHome={inViewHome && !inViewAbout}
           isAbout={inViewAbout && !inViewResume} 
           isResume={inViewResume && !inViewServices} 
-          // isServices={inViewServices && !inViewSkills} 
           isSkills={inViewSkills && !inViewPortfolio} 
           isPortfolio={inViewPortfolio } 
           isContact={inViewContact}

@@ -90,27 +90,6 @@ const Navbar = ({ isHome, isAbout, isResume, isServices, isSkills, isPortfolio, 
                     </a>
                     <Tooltip content={"Resume"} isVisible={tooltipState['resume']} />
                 </motion.li>
-                {/* <motion.li whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                    <a className="scroll-to"
-                        href="#services"
-                        data-tooltip-id="my-tooltip"
-                        data-tooltip-content="Services"
-                        data-tooltip-place="left"
-                        onMouseEnter={() => setTooltipState({ ...tooltipState, 'services': true })}
-                        onMouseLeave={() => setTooltipState({ ...tooltipState, 'services': false })}>
-                        <Link
-                            activeClass="active"
-                            to="services"
-                            spy={true}
-                            smooth={true}
-                            offset={-70}
-                            duration={500}>
-                            <LiaStreamSolid style={{ color: isServices ? '#ff99cc' : '#999999' }} />
-                        </Link>
-                    </a>
-                    <Tooltip content={"Services"} isVisible={tooltipState['services']} />
-                </motion.li> */}
                 <motion.li whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                     <a className="scroll-to"
@@ -154,27 +133,6 @@ const Navbar = ({ isHome, isAbout, isResume, isServices, isSkills, isPortfolio, 
                     </a>
                     <Tooltip content={"Portfolio"} isVisible={tooltipState['portfolio']} />
                 </motion.li>
-                {/* <motion.li whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                    <a className="scroll-to"
-                        href="#testimonial"
-                        data-tooltip-id="my-tooltip"
-                        data-tooltip-content="Testimonial"
-                        data-tooltip-place="left"
-                        onMouseEnter={() => setTooltipState({ ...tooltipState, 'testimonial': true })}
-                        onMouseLeave={() => setTooltipState({ ...tooltipState, 'testimonial': false })}>
-                        <Link
-                            activeClass="active"
-                            to="testimonial"
-                            spy={true}
-                            smooth={true}
-                            offset={-70}
-                            duration={500}>
-                            <LiaCommentSolid style={{ color: isTestimonial ? '#ff99cc' : '#999999' }} />
-                        </Link>
-                    </a>
-                    <Tooltip content={"Testimonial"} isVisible={tooltipState['testimonial']} />
-                </motion.li> */}
                 <motion.li whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                     <a className="scroll-to"

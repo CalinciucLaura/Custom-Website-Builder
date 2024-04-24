@@ -12,7 +12,9 @@ const Sidebar = ({ firstName, lastName, address, phone, image }) => {
             <div className="header">
                 <h1>{firstName} {lastName}</h1>
             </div>
-            <div className="image-container"><img src="" /></div>
+            <br />
+            <div className="image-container"><img src={image} /></div>
+            <br />
             <h3>{address} <br /> <br />{phone}</h3>
 
             <div className="social">

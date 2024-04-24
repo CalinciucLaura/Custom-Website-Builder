@@ -87,7 +87,6 @@ def get_portfolio_data(user_id):
     g.db, g.cursor = create_connection()
     g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
     result = g.cursor.fetchone()
-    print(result)
     return jsonify(result)
 
 

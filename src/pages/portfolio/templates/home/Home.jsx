@@ -34,7 +34,7 @@ const Home = ({ firstName, lastName }) => {
     return (
         <div className="home">
             <h3> <GoHome style={{ marginRight: '10px' }} />INTRODUCE</h3>
-            <h1>Hi! <br /> I'm <span>{firstName} {lastName}</span></h1>
+            <h1>Hi! <br /> I'm <span>{firstName} {lastName}</span> role here</h1>
             <a href="cv.pdf" download="Resume">
                 <button><FaDownload style={{ marginRight: '5px', fontSize: '15px' }} />Download Resume</button></a>
             <motion.img variants={textVariants} animate="scrollButton" alt="" />

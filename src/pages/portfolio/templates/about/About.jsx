@@ -58,7 +58,7 @@ const parentVariants = {
 
 
 
-const About = () => {
+const About = ({ description }) => {
     const [ref, inView] = useInView({
         triggerOnce: false,
     });
@@ -69,8 +69,8 @@ const About = () => {
                 <GoPerson style={{ marginRight: '10px' }} />
                 ABOUT
             </motion.h4>
-            <motion.h2 variants={textVariants}> Every great design begin with an even <span>better story</span></motion.h2>
-            <motion.p variants={textVariants}>I can describe myself as a very friendly person, quick learner, and I enjoy showcasing my abilities. I am dedicated to studying and believe that learning never stops. I have a particular passion for frontend, but I am open to working in backend as well.</motion.p>
+            <motion.h2 variants={textVariants}>Few words <span>About me</span></motion.h2>
+            <motion.p variants={textVariants}>{description}</motion.p>
         </motion.div>
     )
 };
