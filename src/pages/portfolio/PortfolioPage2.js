@@ -170,7 +170,7 @@ const PortfolioPage2 = (props) => {
               </div>
             </div>
           )}
-        <Link to="/portfolio/skills">
+        <Link to="/portfolio/skills/">
           <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
             Next
           </Button>

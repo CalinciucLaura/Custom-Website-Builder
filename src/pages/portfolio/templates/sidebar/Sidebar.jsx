@@ -18,10 +18,10 @@ const Sidebar = ({ firstName, lastName, address, phone, image }) => {
             <h3>{address} <br /> <br />{phone}</h3>
 
             <div className="social">
-                <a href="https://github.com/CalinciucLaura?tab=repositories" >
+                <a href="" >
                     <DiGithubBadge style={{ fontSize: '20px', border: '2px solid #575757', padding: '15px', borderRadius: '50%' }} />
                 </a>
-                <a href="https://www.linkedin.com/in/laura-calinciuc/" >
+                <a href="" >
                     <FaLinkedin style={{ fontSize: '20px', border: '2px solid #575757', padding: '15px', borderRadius: '50%' }} />
                 </a>
             </div>

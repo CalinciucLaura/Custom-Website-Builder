@@ -70,12 +70,14 @@ def portfolio():
     address = data['address']
     description = data['description']
     photo = data['photo']
+    github = data['github']
+    linkedin = data['linkedin']
 
     g.db, g.cursor = create_connection()
     g.cursor.execute("""
-        INSERT INTO portfolio_record (first_name, last_name, email, phone, address, description, image)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (firstName, lastName, email, phone, address, description, photo))
+        INSERT INTO portfolio_record (first_name, last_name, email, phone, address, description, image, github, linkedin)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (firstName, lastName, email, phone, address, description, photo, github, linkedin))
     g.db.commit()
     g.cursor.execute(
         "SELECT id FROM portfolio_record WHERE email = ?", (email,))

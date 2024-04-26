@@ -13,6 +13,8 @@ const Portfolio = (props) => {
   const [address, setAddress] = useState('');
   const [description, setDescription] = useState('');
   const [photo, setPhoto] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [github, setGithub] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -35,7 +37,9 @@ const Portfolio = (props) => {
         phone,
         address,
         description,
-        photo
+        photo,
+        linkedin, 
+        github
       }),
     });
     const user_id = await response.json();
@@ -192,6 +196,41 @@ const Portfolio = (props) => {
               />
             </Col>
           </FormGroup>
+          <FormGroup row>
+            <Label
+              for="exampleText"
+              sm={2}
+            >
+              LinkedIn
+            </Label>
+            <Col sm={10}>
+              <Input
+                id="linkedin"
+                name="text"
+                type="text"
+                value={linkedin}
+                onChange={e => setLinkedin(e.target.value)}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label
+              for="exampleText"
+              sm={2}
+            >
+              Github
+            </Label>
+            <Col sm={10}>
+              <Input
+                id="github"
+                name="text"
+                type="text"
+                value={github}
+                onChange={e => setGithub(e.target.value)}
+              />
+            </Col>
+          </FormGroup>
+
           <FormGroup
             check
             row
