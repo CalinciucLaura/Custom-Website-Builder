@@ -3,15 +3,6 @@ import "./resume.scss"
 import { LiaStreamSolid } from "react-icons/lia";
 
 const Resume = ({ experience, education }) => {
-    useEffect(() => {
-        console.log("Education", education);
-    }, [education]);
-
-    useEffect(() => {
-        console.log("Experience", experience);
-    }, [experience]);
-
-
     return (
         <div className="resume">
             <h3><LiaStreamSolid style={{ marginRight: '10px' }} />RESUME</h3>

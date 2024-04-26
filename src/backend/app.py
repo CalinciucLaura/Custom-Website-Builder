@@ -3,7 +3,7 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education
+from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education, create_table_skills
 from ImageGenerator import generate_multiple_images
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
@@ -17,6 +17,7 @@ def before_request():
     create_table_portfolio(g.cursor)
     create_table_experience(g.cursor)
     create_table_education(g.cursor)
+    create_table_skills(g.cursor)
 
 
 @app.teardown_appcontext
@@ -137,6 +138,28 @@ def get_portfolio_data(user_id):
     g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
     info = g.cursor.fetchone()
     return jsonify(info)
+
+
+@app.route('/skills/<user_id>', methods=['POST'])
+def skills(user_id):
+    data = request.get_json()
+    skill = data['skill']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "INSERT INTO skills_record (id_user, skill) VALUES (?, ?)", (user_id, skill))
+    g.db.commit()
+    return jsonify("Skills added")
+
+
+@app.route('/skills/<user_id>')
+def get_skills(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT skill FROM skills_record WHERE id_user = ?", (user_id,))
+    skills = g.cursor.fetchall()
+    return jsonify(skills)
 
 
 if __name__ == '__main__':

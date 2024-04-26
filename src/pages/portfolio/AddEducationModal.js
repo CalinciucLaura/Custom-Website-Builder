@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
-import { FiPlus } from "react-icons/fi";
 
 const AddEducationModal = ({onAddEducation, toggle, isOpen, editCard, editCardIndex, editExisting}) => {
   const [startingDate, setStartingDate] = useState("");
@@ -10,7 +9,6 @@ const AddEducationModal = ({onAddEducation, toggle, isOpen, editCard, editCardIn
   const [specialization, setSpecialization] = useState("");
 
   useEffect(()=>{
-    console.log(editCard);
     if(editCard){
       setStartingDate(editCard.startingDate);
       setEndingDate(editCard.endingDate);

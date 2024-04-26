@@ -1,18 +1,15 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './template.scss';
 import Sidebar from './sidebar/Sidebar';
 import Home from './home/Home';
 import About from './about/About';
-import { useInView } from "react-intersection-observer";
 import Resume from './resume/Resume';
 import Skills from './skills/Skills';
 import Contact from './contact/Contact';
 import PortfolioTemplate from './portfolio/PortfolioTemplate';
 
 const Template = () => {
-
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -22,6 +19,7 @@ const Template = () => {
   const [image, setImage] = useState(undefined);
   const [experience, setExperience] = useState([]);
   const [education, setEducation] = useState([]);
+  const [skills, setSkills] = useState([]); 
   const { user_id } = useParams();
 
   useEffect(() => {
@@ -31,7 +29,6 @@ const Template = () => {
       })
           .then(res => res.json())
           .then(data => {
-              console.log(data)
               if (data && data.length > 0) {
                   setFirstName(data[1])
                   setLastName(data[2])
@@ -51,16 +48,25 @@ const Template = () => {
           .then(res => res.json())
           .then(data => {              
               if (data) {
-                  console.log(data)
                   setEducation(data.education)
                   setExperience(data.experience)
               } else {
                   console.log('No info received from server')
               }
           })  
-          console.log('Education', education)
-  }, [user_id])
 
+      fetch(`/skills/${user_id}`, {
+          mode: 'no-cors'
+      })
+          .then(res => res.json())
+          .then(data => {
+              if (data) {
+                  setSkills(data)
+              } else {
+                  console.log('No info received from server')
+              }
+          })
+  }, [user_id])
 
   return (
     <div className="app">
@@ -87,7 +93,7 @@ const Template = () => {
           Services
         </section> */}
         <section id="skills">
-          <Skills />
+          <Skills skills={skills} />
         </section>
         <section id="portfolio">
           <PortfolioTemplate />

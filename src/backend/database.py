@@ -68,3 +68,16 @@ def create_table_education(cursor):
         )
         """
     )
+
+
+def create_table_skills(cursor):
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS skills_record (
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            id_user INTEGER, 
+            skill TEXT,
+            FOREIGN KEY(id_user) REFERENCES users(id)
+        )
+        """
+    )

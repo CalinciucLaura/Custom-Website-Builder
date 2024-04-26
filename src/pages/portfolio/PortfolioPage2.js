@@ -1,15 +1,13 @@
-import React from "react"
+import React, { useEffect, useState } from 'react';
 import "./portfolioPage2.scss";
-import { useState } from "react";
 import AddExperienceModal from "./AddExperienceModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
 import AddEducationModal from "./AddEducationModal";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
-import { useParams } from "react-router-dom";
 
 const PortfolioPage2 = (props) => {
   const { user_id } = useParams();
@@ -65,7 +63,6 @@ const PortfolioPage2 = (props) => {
     }
 
     const data = await response.json();
-    console.log(data); 
   };  
 
   const submitEducation = async (educationData) => {
@@ -82,7 +79,6 @@ const PortfolioPage2 = (props) => {
     }
 
     const data = await response.json();
-    console.log(data); 
   };
 
   return (

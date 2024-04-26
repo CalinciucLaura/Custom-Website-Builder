@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
-import { FiPlus } from "react-icons/fi";
+import { Form, FormGroup, Label, Input} from 'reactstrap';
 
-const AddSkillModal= (props) => {
-  const [modal, setModal] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const [cards, setCards] = useState([]);
+const AddSkillModal= ({onAddSkill, toggle, isOpen, editCard, editCardIndex, editExisting}) => {
   const [skill, setSkill] = useState("");
-  
-  const toggle = () => {
-    setModal(!modal);
-    if (modal === true) {
-      setShowCard(true);
-      const _cards = [...cards];
-      _cards.push({
-        skill
-      });
-      setCards(_cards);
-      props.onAddSkills(_cards[_cards.length - 1]);
+
+  useEffect(()=>{
+    if(editCard){
+      setSkill(editCard.skill);
     }
+  }, [editCard]);
+
+  const save = () => {
+    if(editCardIndex!=null) {
+      editExisting(editCardIndex, { skill });
+    } else {
+      onAddSkill({ skill });
+    }
+    toggle();
+    setSkill("");
   }
 
   return (
-    <div className='portfolio-body'>
-      <Button color="danger" onClick={toggle}>
-        <FiPlus /> Add Skill
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} >
+    <div>
+      <Modal isOpen={isOpen} toggle={toggle} >
         <ModalHeader toggle={toggle}> Add Skill</ModalHeader>
         <ModalBody>
           <Form >
@@ -47,7 +43,7 @@ const AddSkillModal= (props) => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" onClick={save}>
             Save
           </Button>{' '}
           <Button color="secondary" onClick={toggle}>

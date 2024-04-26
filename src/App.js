@@ -22,7 +22,7 @@ function App() {
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/:user_id'} element={<PortfolioPage2 />} />
-        <Route path={'/portfolio/skills'} element={<PortfolioPage3 />} />
+        <Route path={'/portfolio/skills/:user_id'} element={<PortfolioPage3 />} />
         <Route path={'/portfolio/color'} element={<ColorSelector />} />
         <Route path={`/portfolio/template/:user_id`} element={<Template />} />
       </Routes>

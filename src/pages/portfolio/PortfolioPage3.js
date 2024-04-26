@@ -1,35 +1,49 @@
-import React from "react"
-import "./portfolioPage2.scss";
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './portfolioPage2.scss'
 import AddSkillModal from './AddSkillModal';
+import { FiPlus } from "react-icons/fi";
+import { FaTrashCan } from "react-icons/fa6";
 
 const PortfolioPage3 = () => {
+    const { user_id } = useParams();
     const [showCardSkills, setShowCardSkills] = useState(false);
     const [cardsSkills, setCardsSkills] = useState([]);
+    const [showAddSkill, setShowAddSkill] = useState(false);
+    const [skillEditCard, setSkillEditCard] = useState(null);
+    const [skillEditCardIndex, setSkillEditCardIndex] = useState(null);
+    
+    const toggleAddSkill = (force = true) => {
+        if(force) {
+            setSkillEditCard(null);
+        setSkillEditCardIndex(null);
+        }
+        setShowAddSkill(!showAddSkill);
+    }
 
     const handleAddSkills = (newCard) => {
         setShowCardSkills(true);
         setCardsSkills(prevCards => [...prevCards, newCard]);
+        submitSkills(newCard);
     }
 
-    const renderCard = (card, index) => {
-        return (
-            <div className="card" style={{ width: "18rem" }} key={index}>
-                <div className="card-header">
-                    <h5 className="card-title">{card.role}</h5>
-                </div>
-                <div className="card-body">
-                    <p className="card-text" style={{ fontWeight: 700 }}>{card.skill}</p>
-                    <a href="#" className="btn btn-primary" style={{ float: 'right' }}><TbEdit /> Edit</a>
-                </div>
-            </div>
-        )
-    }
+    const submitSkills = async (skillsData) => {
+        const response = await fetch(`/skills/${user_id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(skillsData),
+        });
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+      }; 
 
     return (
         <div className="portfolio-body">
@@ -40,9 +54,43 @@ const PortfolioPage3 = () => {
             </Link>
             <div className="portfolioPage2">
                 <h1>Skills</h1>
-                <AddSkillModal onAddSkills={handleAddSkills} />
+                <Button color="danger" onClick={toggleAddSkill}>
+                <FiPlus /> Add Skill
+                </Button>
+                <br/>
+                <AddSkillModal
+                    onAddSkill={handleAddSkills}
+                    toggle={toggleAddSkill}
+                    isOpen={showAddSkill}
+                    editCard={skillEditCard}
+                    editCardIndex={skillEditCardIndex}
+                    editExisting={(index, card) => {
+                        let newCards = [...cardsSkills];
+                        newCards[index] = card;
+                        setCardsSkills(newCards);
+                    }}  
+                />
                 <div className="cards">
-                    {showCardSkills === true ? <>{cardsSkills.map(renderCard)}</> : null}
+                    {cardsSkills.map((card, index) => 
+                     <div className="card" style={{ width: "18rem" }} key={index}>
+                     <div className="card-header">
+                         <h5 className="card-title">{card.role}</h5>
+                     </div>
+                     <div className="card-body">
+                         <p className="card-text" style={{ fontWeight: 700 }}>{card.skill}</p>
+                         <button onClick={()=>{
+                  let newCards = [...cardsSkills];
+                  newCards.splice(index, 1);
+                  setCardsSkills(newCards);                  
+                }} className="btn btn-danger" style={{float:'right', marginLeft:'5px'}}><FaTrashCan /></button>
+                <button onClick={()=>{                  
+                  setSkillEditCard(card);
+                  setSkillEditCardIndex(index);
+                  toggleAddSkill(false);
+                }} className="btn btn-primary" style={{ float: 'right' }}><TbEdit /> Edit</button>
+                     </div>
+                 </div>
+                )}           
                 </div>
                 <Link to="/portfolio/color">
                     <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
