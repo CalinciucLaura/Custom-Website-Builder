@@ -75,9 +75,58 @@ def portfolio():
         INSERT INTO portfolio_record (first_name, last_name, email, phone, address, description, image)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     """, (firstName, lastName, email, phone, address, description, photo))
-
     g.db.commit()
-    return jsonify({'message': 'Data received and inserted into database'}), 200
+    g.cursor.execute(
+        "SELECT id FROM portfolio_record WHERE email = ?", (email,))
+    user_id = g.cursor.fetchone()[0]
+    print(user_id)
+    return jsonify(user_id)
+
+
+@app.route('/experience/<user_id>', methods=['POST'])
+def experience(user_id):
+    data = request.get_json()
+    startingDate = data['startingDate']
+    endingDate = data['endingDate']
+    company = data['company']
+    role = data['role']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("""
+        INSERT INTO experience_record (id_user, starting_date, ending_date, company, role)
+        VALUES (?, ?, ?, ?, ?)
+    """, (user_id, startingDate, endingDate, company, role))
+    g.db.commit()
+    return jsonify("Experience added")
+
+
+@app.route('/education/<user_id>', methods=['POST'])
+def education(user_id):
+    data = request.get_json()
+    startingDate = data['startingDate']
+    endingDate = data['endingDate']
+    institution = data['institution']
+    specialization = data['specialization']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("""
+        INSERT INTO education_record (id_user, starting_date, ending_date, institution, specialization)
+        VALUES (?, ?, ?, ?, ?)
+    """, (user_id, startingDate, endingDate, institution, specialization))
+    g.db.commit()
+    return jsonify("Education added")
+
+
+@app.route('/experience_education/<user_id>')
+def get_education_experience(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT * FROM education_record WHERE id_user = ?", (user_id,))
+    education = g.cursor.fetchall()
+    g.cursor.execute(
+        "SELECT * FROM experience_record WHERE id_user = ?", (user_id,))
+    experience = g.cursor.fetchall()
+    return jsonify({"education": education, "experience": experience})
 
 
 @app.route('/portfolio/<user_id>')
@@ -86,8 +135,8 @@ def get_portfolio_data(user_id):
         return "Invalid user id"
     g.db, g.cursor = create_connection()
     g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
-    result = g.cursor.fetchone()
-    return jsonify(result)
+    info = g.cursor.fetchone()
+    return jsonify(info)
 
 
 if __name__ == '__main__':

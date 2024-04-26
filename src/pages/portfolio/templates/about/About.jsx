@@ -5,32 +5,6 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const textVariants = {
-    // initial: {
-    //     y: 0,
-    //     opacity: 0,
-    // },
-
-    // animate: {
-    //     y: 0,
-    //     opacity: 1,
-    //     transition: {
-    //         type: 'spring',
-    //         stiffness: 100,
-    //         damping: 15,
-    //         mass: 1,
-    //         restSpeed: 0.01,
-    //         restDelta: 0.01,
-    //     },
-    // },
-
-    // scrollText: {
-    //     opacity: 1,
-    //     y: -100,
-    //     transition: {
-    //         duration: 2
-    //     },
-    // },
-
     hidden: { opacity: 0, y: 100 },
     up: { opacity: 1, y: -50, transition: { duration: 0.5 } },
     show: {

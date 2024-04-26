@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './template.scss';
 import Sidebar from './sidebar/Sidebar';
-import Navbar from './navbar/Navbar';
 import Home from './home/Home';
 import About from './about/About';
 import { useInView } from "react-intersection-observer";
@@ -14,28 +13,6 @@ import PortfolioTemplate from './portfolio/PortfolioTemplate';
 
 const Template = () => {
 
-  const [refHome, inViewHome] = useInView({
-    triggerOnce: false,
-  });
-  const [refAbout, inViewAbout] = useInView({
-    triggerOnce: false,
-  });
-  const [refResume, inViewResume] = useInView({
-    triggerOnce: false,
-  });
-  const [refServices, inViewServices] = useInView({
-    triggerOnce: false,
-  });
-  const [refSkills, inViewSkills] = useInView({
-    triggerOnce: false,
-  });
-  const [refPortfolio, inViewPortfolio] = useInView({
-    triggerOnce: false,
-  });
-  const [refContact, inViewContact] = useInView({
-    triggerOnce: false,
-  });
-
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -43,6 +20,8 @@ const Template = () => {
   const [address, setAddress] = useState(undefined);
   const [description, setDescription] = useState(undefined);
   const [image, setImage] = useState(undefined);
+  const [experience, setExperience] = useState([]);
+  const [education, setEducation] = useState([]);
   const { user_id } = useParams();
 
   useEffect(() => {
@@ -65,6 +44,21 @@ const Template = () => {
                   console.log('No info received from server')
               }
           })
+
+      fetch(`/experience_education/${user_id}`, {
+          mode: 'no-cors'
+      })
+          .then(res => res.json())
+          .then(data => {              
+              if (data) {
+                  console.log(data)
+                  setEducation(data.education)
+                  setExperience(data.experience)
+              } else {
+                  console.log('No info received from server')
+              }
+          })  
+          console.log('Education', education)
   }, [user_id])
 
 
@@ -80,39 +74,28 @@ const Template = () => {
         /> 
       </div>
       <div className='content'>
-        <section id="home" ref={refHome} >
+        <section id="home">
           <Home firstName={firstName} lastName={lastName}/>
         </section> 
-        <section id="about" ref={refAbout} >
+        <section id="about" >
           <About description={description}/>
         </section>
-        <section id="resume" ref={refResume} >
-          <Resume />
+        <section id="resume" >
+          <Resume experience={experience} education={education}/>
         </section>
         {/* <section id="services" ref={refServices}  >
           Services
         </section> */}
-        <section id="skills" ref={refSkills} >
+        <section id="skills">
           <Skills />
         </section>
-        <section id="portfolio" ref={refPortfolio} >
+        <section id="portfolio">
           <PortfolioTemplate />
         </section>
-        <section id="contact" ref={refContact} >
+        <section id="contact">
           <Contact email={email} phone={phone}/>
         </section>
       </div>   
-
-      <div className="navbar">
-        <Navbar 
-          isHome={inViewHome && !inViewAbout}
-          isAbout={inViewAbout && !inViewResume} 
-          isResume={inViewResume && !inViewServices} 
-          isSkills={inViewSkills && !inViewPortfolio} 
-          isPortfolio={inViewPortfolio } 
-          isContact={inViewContact}
-        /> 
-      </div>
     </div>
   );
 };

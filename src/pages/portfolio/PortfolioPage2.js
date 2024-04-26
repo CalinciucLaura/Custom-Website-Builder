@@ -9,13 +9,14 @@ import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
 
 const PortfolioPage2 = (props) => {
+  const { user_id } = useParams();
   const [showCardEducation, setShowCardEducation] = useState(false);
   const [showCardExperience, setShowCardExperience] = useState(false);
   const [cardsEducation, setCardsEducation] = useState([]);
   const [cardsExperience, setCardsExperience] = useState([]);
-
   const [showAddExperience, setShowAddExperience] = useState(false);
   const [showAddEducation, setShowAddEducation] = useState(false);  
   const toggleAddExperience = (force = true) => {
@@ -38,16 +39,51 @@ const PortfolioPage2 = (props) => {
   const [experienceEditCardIndex, setExperienceEditCardIndex] = useState(null);
   const [educationEditCardIndex, setEducationEditCardIndex] = useState(null);
 
-
   const handleAddExperience = (newCard) => {
     setShowCardExperience(true);
     setCardsExperience(prevCards => [...prevCards, newCard]);
+    submitExperience(newCard);
   }
 
   const handleAddEducation = (newCard) => {
     setShowCardEducation(true);
     setCardsEducation(prevCards => [...prevCards, newCard]);
+    submitEducation(newCard);
   }
+
+  const submitExperience = async (experienceData) => {
+    const response = await fetch(`/experience/${user_id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(experienceData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data); 
+  };  
+
+  const submitEducation = async (educationData) => {
+    const response = await fetch(`/education/${user_id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(educationData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data); 
+  };
 
   return (
     <div className="portfolio-body">
@@ -61,6 +97,7 @@ const PortfolioPage2 = (props) => {
         <Button color="danger" onClick={toggleAddExperience}>
           <FiPlus /> Add Experience
         </Button>
+        <br/>
         <AddExperienceModal 
           onAddExperience={handleAddExperience} 
           toggle={toggleAddExperience}

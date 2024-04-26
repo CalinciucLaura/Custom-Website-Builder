@@ -73,24 +73,19 @@
             outline: none;
             color: white;
             font-family: inherit;
-
-            // @include mobile {
-            //     padding: 10px;
-            // }
         }
 
         button {
-            padding: 20px;
+            padding: 12px;
             border: none;
             background-color: #ff99cc;
             cursor: pointer;
             font-family: inherit;
             border-radius: 30px;
             color: black;
-            font-size: 18px;
+            font-size: 13px;
             letter-spacing: 1px;
             font-weight: 500;
-            margin-top: 10px;
             width: 30%;
 
             @include mobile {

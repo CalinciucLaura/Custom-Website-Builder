@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import "../MainPage.scss";
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, FormGroup, Label, Input, FormText, Col, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Button } from 'reactstrap';
 import "./Portfolio.scss";
 
 const Portfolio = (props) => {
@@ -16,7 +16,7 @@ const Portfolio = (props) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    if(!firstName || !lastName || !email || !phone || !address || !description || !photo) {
+    if(!firstName || !lastName || !email || !phone || !address || !description) {
       alert('Please fill all the fields');
       return;
     }
@@ -38,9 +38,8 @@ const Portfolio = (props) => {
         photo
       }),
     });
-    const data = await response.json();
-    console.log(data);
-    navigate('/portfolio/experience_education');
+    const user_id = await response.json();
+    navigate(`/portfolio/experience_education/${user_id}`);
   };
 
   function toBase64(file) {
