@@ -81,3 +81,18 @@ def create_table_skills(cursor):
         )
         """
     )
+
+
+def create_table_projects(cursor):
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS projects_record (
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            id_user INTEGER, 
+            title TEXT, 
+            description TEXT, 
+            link TEXT,
+            FOREIGN KEY(id_user) REFERENCES users(id)
+        )
+        """
+    )

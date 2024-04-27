@@ -3,7 +3,7 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education, create_table_skills
+from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects
 from ImageGenerator import generate_multiple_images
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
@@ -18,6 +18,7 @@ def before_request():
     create_table_experience(g.cursor)
     create_table_education(g.cursor)
     create_table_skills(g.cursor)
+    create_table_projects(g.cursor)
 
 
 @app.teardown_appcontext
@@ -87,6 +88,16 @@ def portfolio():
     return jsonify(user_id)
 
 
+@app.route('/portfolio/<user_id>')
+def get_portfolio_data(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
+    info = g.cursor.fetchone()
+    return jsonify(info)
+
+
 @app.route('/portfolio/color/<user_id>', methods=['POST'])
 def colorPortfolio(user_id):
     data = request.get_json()
@@ -144,16 +155,6 @@ def get_education_experience(user_id):
     return jsonify({"education": education, "experience": experience})
 
 
-@app.route('/portfolio/<user_id>')
-def get_portfolio_data(user_id):
-    if not user_id:
-        return "Invalid user id"
-    g.db, g.cursor = create_connection()
-    g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
-    info = g.cursor.fetchone()
-    return jsonify(info)
-
-
 @app.route('/skills/<user_id>', methods=['POST'])
 def skills(user_id):
     data = request.get_json()
@@ -174,6 +175,19 @@ def get_skills(user_id):
         "SELECT skill FROM skills_record WHERE id_user = ?", (user_id,))
     skills = g.cursor.fetchall()
     return jsonify(skills)
+
+
+@app.route('/projects/<user_id>', methods=['POST'])
+def projects(user_id):
+    data = request.get_json()
+    title = data['title']
+    description = data['description']
+    link = data['link']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "INSERT INTO projects_record (id_user, title, description, link) VALUES (?, ?, ?, ?)", (user_id, title, description, link))
+    g.db.commit()
+    return jsonify("Projects added")
 
 
 if __name__ == '__main__':

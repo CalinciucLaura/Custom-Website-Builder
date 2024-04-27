@@ -25,6 +25,7 @@ const Template = () => {
   const [github, setGithub] = useState(undefined);
   const [role, setRole] = useState(undefined);
   const [color, setColor] = useState(undefined);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
       if (user_id === undefined) return;
@@ -74,6 +75,17 @@ const Template = () => {
                   console.log('No info received from server')
               }
           })
+      // fetch (`/projects/${user_id}`, {
+      //   mode: 'no-cors'
+      // })
+      // .then(res => res.json())
+      // .then(data => {
+      //   if (data) {
+      //     setProjects(data)
+      //   } else {
+      //     console.log('No info received from server')
+      //   }
+      // })
   }, [user_id])
 
   return (
@@ -109,7 +121,7 @@ const Template = () => {
           <Skills skills={skills} color={color}/>
         </section>
         <section id="portfolio">
-          <PortfolioTemplate color={color}/>
+          <PortfolioTemplate color={color} projects={projects}/>
         </section>
         <section id="contact">
           <Contact email={email} phone={phone} color={color}/>
