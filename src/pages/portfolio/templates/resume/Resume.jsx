@@ -2,11 +2,11 @@ import React, { useEffect } from "react"
 import "./resume.scss"
 import { LiaStreamSolid } from "react-icons/lia";
 
-const Resume = ({ experience, education }) => {
+const Resume = ({ experience, education, color }) => {
     return (
         <div className="resume">
             <h3><LiaStreamSolid style={{ marginRight: '10px' }} />RESUME</h3>
-            <h1>Education & <span>Experience</span></h1>
+            <h1>Education & <span style={{ color: color }}>Experience</span></h1>
             <h5>Education</h5>
             <br />
             <div className="content">

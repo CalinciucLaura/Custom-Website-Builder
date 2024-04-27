@@ -1,16 +1,8 @@
-@import "../template.scss";
-
 .about {
-
     margin: auto;
     box-sizing: border-box;
-    max-width: 770px;
-    width: 70%;
-
-    @include mobile {
-        width: 100%;
-        height: auto;
-    }
+    max-width: 700px;
+    width: 100%;
 
     h4 {
         border: 1px solid #565656;
@@ -21,10 +13,6 @@
         align-items: center;
         display: inline-flex;
         color: white;
-
-        @include mobile {
-            margin-bottom: 15px;
-        }
     }
 
     h2 {
@@ -34,24 +22,10 @@
         margin-bottom: 43px;
         font-weight: 300;
         color: white;
-
-        @include mobile {
-            font-size: 38px;
-            line-height: 1.4;
-
-        }
-
-        span {
-            color: #ff99cc;
-        }
     }
 
     p {
         line-height: 30px;
         font-size: 16px;
-
-        @include mobile {
-            line-height: 1.7;
-        }
     }
 }

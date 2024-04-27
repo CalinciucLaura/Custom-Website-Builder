@@ -8,7 +8,7 @@ import MainPage from './pages/MainPage';
 import Portfolio from './pages/portfolio/Portfolio';
 import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
 import PortfolioPage3 from './pages/portfolio/PortfolioPage3';
-import ColorSelector from './pages/ColorSelector';
+import ColorSelector from './pages/portfolio/ColorSelector';
 import Template from './pages/portfolio/templates/Template';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/:user_id'} element={<PortfolioPage2 />} />
         <Route path={'/portfolio/skills/:user_id'} element={<PortfolioPage3 />} />
-        <Route path={'/portfolio/color'} element={<ColorSelector />} />
+        <Route path={'/portfolio/color/:user_id'} element={<ColorSelector />} />
         <Route path={`/portfolio/template/:user_id`} element={<Template />} />
       </Routes>
     </Router>

@@ -72,18 +72,30 @@ def portfolio():
     photo = data['photo']
     github = data['github']
     linkedin = data['linkedin']
+    role = data['role']
 
     g.db, g.cursor = create_connection()
     g.cursor.execute("""
-        INSERT INTO portfolio_record (first_name, last_name, email, phone, address, description, image, github, linkedin)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (firstName, lastName, email, phone, address, description, photo, github, linkedin))
+        INSERT INTO portfolio_record (first_name, last_name, email, phone, address, description, image, github, linkedin, role)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (firstName, lastName, email, phone, address, description, photo, github, linkedin, role))
     g.db.commit()
     g.cursor.execute(
         "SELECT id FROM portfolio_record WHERE email = ?", (email,))
     user_id = g.cursor.fetchone()[0]
     print(user_id)
     return jsonify(user_id)
+
+
+@app.route('/portfolio/color/<user_id>', methods=['POST'])
+def colorPortfolio(user_id):
+    data = request.get_json()
+    color = data['color']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE portfolio_record SET color = ? WHERE id = ?", (color, user_id))
+    g.db.commit()
+    return jsonify("Color added")
 
 
 @app.route('/experience/<user_id>', methods=['POST'])

@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import "./contact.scss";
 import emailjs from '@emailjs/browser';
 
-const Contact = ({ email, phone }) => {
+const Contact = ({ email, phone, color }) => {
     const formRef = useRef();
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -29,7 +29,7 @@ const Contact = ({ email, phone }) => {
 
     return (
         <div className="contact">
-            <h1>Let’s Work <span>Together</span></h1>
+            <h1>Let’s Work <span style={{ color: color }}>Together</span></h1>
             <div className="textContainer">
                 <div className="item">
                     <h2>{email}</h2>
@@ -44,7 +44,7 @@ const Contact = ({ email, phone }) => {
                     <input type="email" required placeholder="Your email address" name="email" />
                     <label>MESSAGE<span>*</span></label>
                     <textarea rows={2} required placeholder="Write your message here ..." name="message" />
-                    <button>SEND MESSAGE</button>
+                    <button style={{ backgroundColor: color }}>SEND MESSAGE</button>
                     {error && "Error"}
                     {success && "Success"}
                 </form>

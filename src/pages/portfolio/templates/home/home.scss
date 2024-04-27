@@ -1,14 +1,6 @@
-@import "../template.scss";
-
 .home {
+    padding-top: 100px;
     margin: auto;
-    box-sizing: border-box;
-    max-width: 770px;
-    width: 70%;
-
-    @include mobile {
-        width: 100%;
-    }
 
     h3 {
         border: 1px solid #565656;
@@ -19,11 +11,6 @@
         align-items: center;
         display: inline-flex;
         color: white;
-
-        @include mobile {
-            margin-bottom: 20px;
-        }
-
     }
 
     h1 {
@@ -33,43 +20,17 @@
         margin-bottom: 43px;
         font-weight: 300;
         color: white;
-
-        @include mobile {
-            font-size: 35px;
-            line-height: 1.3;
-            margin-top: 10px;
-            margin-bottom: 0;
-        }
-
-
-        span {
-            color: #ff99cc;
-        }
-    }
-
-
-
-    p {
-        @include mobile {
-            line-height: 1.7;
-
-        }
     }
 
     img {
         width: 50px;
         display: block;
         margin: auto;
-
-        @include mobile {
-            display: none;
-        }
     }
 
     button {
         padding: 20px;
         border: none;
-        background-color: #ff99cc;
         cursor: pointer;
         font-family: inherit;
         border-radius: 30px;
@@ -79,15 +40,5 @@
         font-weight: 500;
         margin-top: 10px;
         width: 40%;
-
-        @include mobile {
-            width: 100%;
-        }
-
     }
-
-
-
-
-
 }

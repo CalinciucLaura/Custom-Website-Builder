@@ -1,17 +1,8 @@
-@import "../template.scss";
-
 .resume {
     margin: auto;
     box-sizing: border-box;
-    max-width: 770px;
-    width: 70%;
-
-    @include mobile {
-
-        width: 100%;
-        height: auto;
-        margin-top: 50px;
-    }
+    max-width: 700px;
+    width: 100%;
 
     h3 {
         border: 1px solid #565656;
@@ -23,11 +14,6 @@
         display: inline-flex;
         color: white;
         translate: 0px -20px;
-
-        @include mobile {
-            margin-bottom: 15px;
-            translate: 0 0;
-        }
     }
 
     h1 {
@@ -38,40 +24,20 @@
         margin-bottom: 40px;
         font-weight: 300;
         color: white;
-
-        @include mobile {
-            font-size: 38px;
-            line-height: 1.4;
-            margin-top: 40px;
-        }
-
-        span {
-            color: #ff99cc;
-        }
     }
 
     .content {
         border-left: 1px solid #565656;
-        width: 100%;
-        height: auto;
 
-        @include mobile {
-            border-left: none;
-        }
     }
 
     .item {
-        transform: translate(50px, 0);
+        transform: translate(20px, 0);
         line-height: normal;
-        margin-bottom: 40px;
-
-        @include mobile {
-            transform: translate(0, 0);
-        }
+        margin-bottom: 20px;
 
         h4 {
             margin: 10px 0 5px 0;
-            color: #ff99cc;
             font-size: 15px;
         }
 
@@ -85,7 +51,6 @@
             font-weight: 300;
             color: white;
             margin: 10px 0;
-
         }
 
     }

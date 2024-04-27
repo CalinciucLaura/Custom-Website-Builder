@@ -2,11 +2,11 @@ import React, { useEffect } from "react"
 import '../resume/resume.scss'
 import { LiaShapesSolid } from "react-icons/lia";
 
-const Skills = ({ skills }) => {
+const Skills = ({ skills, color }) => {
     return (
         <div className="resume">
             <h3><LiaShapesSolid style={{ marginRight: '10px' }} />MY SKILLS</h3>
-            <h1>My <span>Skills</span></h1>
+            <h1>My <span style={{ color: color }}>Skills</span></h1>
             <div className="content">
                 {skills.map((item, index) => {
                     return (

@@ -21,6 +21,10 @@ const Template = () => {
   const [education, setEducation] = useState([]);
   const [skills, setSkills] = useState([]); 
   const { user_id } = useParams();
+  const [linkedin, setLinkedin] = useState(undefined);
+  const [github, setGithub] = useState(undefined);
+  const [role, setRole] = useState(undefined);
+  const [color, setColor] = useState(undefined);
 
   useEffect(() => {
       if (user_id === undefined) return;
@@ -37,6 +41,10 @@ const Template = () => {
                   setAddress(data[5])
                   setDescription(data[6])
                   setImage(data[7])
+                  setGithub(data[8])
+                  setLinkedin(data[9])
+                  setRole(data[10])
+                  setColor(data[11])
               } else {
                   console.log('No info received from server')
               }
@@ -77,29 +85,34 @@ const Template = () => {
           address={address} 
           phone={phone} 
           image={image}
+          linkedin={linkedin}
+          github={github}
+          email={email}
+          role={role}
+          color={color}
         /> 
       </div>
       <div className='content'>
         <section id="home">
-          <Home firstName={firstName} lastName={lastName}/>
+          <Home firstName={firstName} lastName={lastName} role={role} color={color}/>
         </section> 
         <section id="about" >
-          <About description={description}/>
+          <About description={description} color={color}/>
         </section>
         <section id="resume" >
-          <Resume experience={experience} education={education}/>
+          <Resume experience={experience} education={education} color={color}/>
         </section>
         {/* <section id="services" ref={refServices}  >
           Services
         </section> */}
         <section id="skills">
-          <Skills skills={skills} />
+          <Skills skills={skills} color={color}/>
         </section>
         <section id="portfolio">
-          <PortfolioTemplate />
+          <PortfolioTemplate color={color}/>
         </section>
         <section id="contact">
-          <Contact email={email} phone={phone}/>
+          <Contact email={email} phone={phone} color={color}/>
         </section>
       </div>   
     </div>

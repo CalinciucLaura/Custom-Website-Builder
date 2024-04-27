@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Input, Col, Button } from 'reactstrap';
 import "./Portfolio.scss";
 
-const Portfolio = (props) => {
+const Portfolio = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,10 +15,11 @@ const Portfolio = (props) => {
   const [photo, setPhoto] = useState('');
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
+  const [role, setRole] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    if(!firstName || !lastName || !email || !phone || !address || !description) {
+    if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
       alert('Please fill all the fields');
       return;
     }
@@ -39,7 +40,8 @@ const Portfolio = (props) => {
         description,
         photo,
         linkedin, 
-        github
+        github, 
+        role
       }),
     });
     const user_id = await response.json();
@@ -77,7 +79,7 @@ const Portfolio = (props) => {
               for="name"
               sm={2}
             >
-              First Name
+              First Name <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
@@ -95,7 +97,7 @@ const Portfolio = (props) => {
               for="lastName"
               sm={2}
             >
-              Last Name
+              Last Name <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
@@ -113,7 +115,7 @@ const Portfolio = (props) => {
               for="exampleEmail"
               sm={2}
             >
-              Email
+              Email <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
@@ -131,7 +133,7 @@ const Portfolio = (props) => {
               for="phone"
               sm={2}
             >
-              Phone
+              Phone <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
@@ -149,13 +151,13 @@ const Portfolio = (props) => {
               for="address"
               sm={2}
             >
-              Address
+              Country <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
                 id="address"
                 name="address"
-                placeholder="Address"
+                placeholder="Country"
                 type="text"
                 value={address}
                 onChange={e => setAddress(e.target.value)}
@@ -167,7 +169,7 @@ const Portfolio = (props) => {
               for="exampleText"
               sm={2}
             >
-              Short Description about yourself
+              Short Description about yourself <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
@@ -184,7 +186,7 @@ const Portfolio = (props) => {
               for="exampleFile"
               sm={2}
             >
-              Upload a profile photo
+              Upload a profile photo <span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
@@ -230,7 +232,23 @@ const Portfolio = (props) => {
               />
             </Col>
           </FormGroup>
-
+          <FormGroup row>
+            <Label
+              for="exampleText"
+              sm={2}
+            >
+              What is your role? <span style={{color:'red'}}>*</span>
+            </Label>
+            <Col sm={10}>
+              <Input
+                id="role"
+                name="text"
+                type="text"
+                value={role}
+                onChange={e => setRole(e.target.value)}
+              />
+            </Col>
+          </FormGroup>
           <FormGroup
             check
             row

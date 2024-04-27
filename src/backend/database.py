@@ -34,7 +34,7 @@ def select_all(cursor, id):
 
 def create_table_portfolio(cursor):
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS portfolio_record (id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT, last_name TEXT, email TEXT, phone TEXT, address TEXT, description TEXT, image TEXT, github TEXT, linkedin TEXT)"
+        "CREATE TABLE IF NOT EXISTS portfolio_record (id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT, last_name TEXT, email TEXT, phone TEXT, address TEXT, description TEXT, image TEXT, github TEXT, linkedin TEXT, role TEXT, color TEXT)"
     )
 
 

@@ -32,7 +32,7 @@ const parentVariants = {
 
 
 
-const About = ({ description }) => {
+const About = ({ description, color }) => {
     const [ref, inView] = useInView({
         triggerOnce: false,
     });
@@ -43,7 +43,7 @@ const About = ({ description }) => {
                 <GoPerson style={{ marginRight: '10px' }} />
                 ABOUT
             </motion.h4>
-            <motion.h2 variants={textVariants}>Few words <span>About me</span></motion.h2>
+            <motion.h2 variants={textVariants}>Few words <span style={{ color: color }}>About me</span></motion.h2>
             <motion.p variants={textVariants}>{description}</motion.p>
         </motion.div>
     )

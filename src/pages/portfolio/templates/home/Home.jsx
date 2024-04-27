@@ -30,13 +30,13 @@ const textVariants = {
 };
 
 
-const Home = ({ firstName, lastName }) => {
+const Home = ({ firstName, lastName, role, color }) => {
     return (
         <div className="home">
             <h3> <GoHome style={{ marginRight: '10px' }} />INTRODUCE</h3>
-            <h1>Hi! <br /> I'm <span>{firstName} {lastName}</span> role here</h1>
+            <h1>Hi! <br /> I'm <span style={{ color: color }}>{firstName} {lastName}</span> <br />{role}</h1>
             <a href="cv.pdf" download="Resume">
-                <button><FaDownload style={{ marginRight: '5px', fontSize: '15px' }} />Download Resume</button></a>
+                <button style={{ backgroundColor: color }}><FaDownload style={{ marginRight: '5px', fontSize: '15px' }} />Download Resume</button></a>
             <motion.img variants={textVariants} animate="scrollButton" alt="" />
         </div>
     )

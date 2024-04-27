@@ -6,7 +6,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 
-const Sidebar = ({ firstName, lastName, address, phone, image }) => {
+const Sidebar = ({ firstName, lastName, address, phone, image, linkedin, github, email, color }) => {
     return (
         <div className="profile">
             <div className="header">
@@ -15,14 +15,14 @@ const Sidebar = ({ firstName, lastName, address, phone, image }) => {
             <br />
             <div className="image-container"><img src={image} /></div>
             <br />
-            <h3>{address} <br /> <br />{phone}</h3>
+            <h3>{address} <br /> <br />{phone} <br /><br /> {email}</h3>
 
             <div className="social">
-                <a href="" >
-                    <DiGithubBadge style={{ fontSize: '20px', border: '2px solid #575757', padding: '15px', borderRadius: '50%' }} />
+                <a href={github}>
+                    <DiGithubBadge className="icon" />
                 </a>
-                <a href="" >
-                    <FaLinkedin style={{ fontSize: '20px', border: '2px solid #575757', padding: '15px', borderRadius: '50%' }} />
+                <a href={linkedin} >
+                    <FaLinkedin className="icon" />
                 </a>
             </div>
 
@@ -38,7 +38,7 @@ const Sidebar = ({ firstName, lastName, address, phone, image }) => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                    <button>
+                    <button style={{ backgroundColor: color }}>
                         <TfiEmail style={{ marginRight: '15px', fontSize: '16px' }} />HIRE ME!
                     </button>
                 </motion.div>

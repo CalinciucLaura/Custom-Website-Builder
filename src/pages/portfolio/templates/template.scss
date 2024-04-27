@@ -5,113 +5,28 @@ body {
     color: #999999;
     line-height: 1.7;
     overflow-x: hidden;
-}
-
-section {
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
+    height: 100%;
+    background: #1f1f1f;
 }
 
 .app {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background: #1f1f1f;
-
     .sidebar {
-        width: 40%;
+        width: 30%;
+        position: fixed; // Make the sidebar fixed
+        height: 100vh;
+        margin-top: 5%;
     }
 
     .content {
-        width: 60%;
-    }
-
-}
-
-@mixin mobile {
-    @media (max-width: 480px) {
-        @content;
-    }
-}
-
-
-@media (max-width: 480px) {
-
-    body {
-        line-height: normal;
-        overflow-y: none;
-        overflow-x: none;
-
-    }
-
-    section {
+        width: 70%;
+        margin-left: 30%;
         height: auto;
-        transform: none;
-        margin: 20px;
-        min-height: initial;
-    }
+        padding: 0;
 
-    .app {
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: left;
-
-        .content {
-            width: 90%;
-            margin: 0 10px;
+        section {
+            height: 70vh;
+            display: flex;
+            align-items: center;
         }
-
-        .sidebar {
-            width: 90%;
-            margin: auto;
-            margin-top: 10px;
-
-        }
-
     }
-}
-
-@mixin tablet {
-    @media (min-width: 768px) and (max-width: 1024px) {
-        @content;
-    }
-}
-
-
-@media (min-width: 768px) and (max-width: 1024px) {
-
-    body {
-        line-height: normal;
-        overflow-y: none;
-        overflow-x: none;
-        overflow: hidden;
-    }
-
-    section {
-        height: auto;
-        transform: none;
-        margin: 20px;
-        min-height: initial;
-    }
-
-    .app {
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: left;
-
-        .content {
-            width: 90%;
-            margin: 0 10px;
-        }
-
-        .sidebar {
-            width: 90%;
-            margin: auto;
-            margin-top: 10px;
-
-        }
-
-    }
-
 }
