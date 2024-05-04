@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './Portfolio.scss';
+import ThreeDotsWave from '../loadingBar/ThreeDotsWave';
 
 const ColorSelector = () => {
   const colors = ['#1abc9c', '#f39c12', '#f368e0', '#ff3f34', '#3498db', '#9b59b6', '#1e272e'];
   const { user_id } = useParams();
   const [selectedColor, setSelectedColor] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleColorSelector = (color, index) => {
@@ -14,6 +16,7 @@ const ColorSelector = () => {
   }
 
   const submitColor = async (color) => {
+    setLoading(true);
     const response = await fetch(`/portfolio/color/${user_id}`, {
       method: 'POST',
       headers: {
@@ -24,11 +27,17 @@ const ColorSelector = () => {
       }),
     });
     const data = await response.json();
-    navigate(`/portfolio/template/${user_id}`);
+    setTimeout(() => {
+      setLoading(false);
+      navigate(`/portfolio/template/${user_id}`);
+    }, 5000);
+
   }
 
   return (
     <div className="portfolio-body">
+      {loading ? (<ThreeDotsWave /> ): ( 
+        <>        
         <Button onClick={() => navigate(-1)}>
           Back
         </Button>
@@ -50,6 +59,9 @@ const ColorSelector = () => {
             Next
           </Button>
       </div>
+        </>
+      )}
+
     </div>
   )
 };
