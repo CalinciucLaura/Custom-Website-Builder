@@ -190,5 +190,16 @@ def projects(user_id):
     return jsonify("Projects added")
 
 
+@app.route('/projects/<user_id>')
+def get_projects(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT * FROM projects_record WHERE id_user = ?", (user_id,))
+    projects = g.cursor.fetchall()
+    return jsonify(projects)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

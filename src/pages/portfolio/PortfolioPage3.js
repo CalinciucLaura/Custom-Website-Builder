@@ -7,6 +7,7 @@ import './portfolioPage2.scss'
 import AddSkillModal from './AddSkillModal';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
+import {  useNavigate } from 'react-router-dom';
 
 const PortfolioPage3 = () => {
     const { user_id } = useParams();
@@ -15,7 +16,8 @@ const PortfolioPage3 = () => {
     const [showAddSkill, setShowAddSkill] = useState(false);
     const [skillEditCard, setSkillEditCard] = useState(null);
     const [skillEditCardIndex, setSkillEditCardIndex] = useState(null);
-    
+    const navigate = useNavigate();
+
     const toggleAddSkill = (force = true) => {
         if(force) {
             setSkillEditCard(null);
@@ -47,11 +49,9 @@ const PortfolioPage3 = () => {
 
     return (
         <div className="portfolio-body">
-            <Link to="/portfolio/experience_education">
-                <Button>
+                <Button onClick={() => navigate(-1)}>
                     Back
                 </Button>
-            </Link>
             <div className="portfolioPage2">
                 <h1>Skills</h1>
                 <Button color="danger" onClick={toggleAddSkill}>
@@ -92,11 +92,10 @@ const PortfolioPage3 = () => {
                  </div>
                 )}           
                 </div>
-                <Link to="/portfolio/color">
-                    <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
+                    <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} 
+                    onClick={() => navigate(`/portfolio/projects/${user_id}`)}>
                         Next
                     </Button>
-                </Link>
             </div>
         </div>
     )

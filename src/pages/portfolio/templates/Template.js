@@ -75,17 +75,17 @@ const Template = () => {
                   console.log('No info received from server')
               }
           })
-      // fetch (`/projects/${user_id}`, {
-      //   mode: 'no-cors'
-      // })
-      // .then(res => res.json())
-      // .then(data => {
-      //   if (data) {
-      //     setProjects(data)
-      //   } else {
-      //     console.log('No info received from server')
-      //   }
-      // })
+      fetch (`/projects/${user_id}`, {
+        mode: 'no-cors'
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+          setProjects(data)
+        } else {
+          console.log('No info received from server')
+        }
+      })
   }, [user_id])
 
   return (

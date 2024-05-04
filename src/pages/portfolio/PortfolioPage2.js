@@ -4,12 +4,13 @@ import AddExperienceModal from "./AddExperienceModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
 import AddEducationModal from "./AddEducationModal";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 
-const PortfolioPage2 = (props) => {
+const PortfolioPage2 = () => {
   const { user_id } = useParams();
   const [showCardEducation, setShowCardEducation] = useState(false);
   const [showCardExperience, setShowCardExperience] = useState(false);
@@ -17,6 +18,7 @@ const PortfolioPage2 = (props) => {
   const [cardsExperience, setCardsExperience] = useState([]);
   const [showAddExperience, setShowAddExperience] = useState(false);
   const [showAddEducation, setShowAddEducation] = useState(false);  
+  const navigate = useNavigate();
   const toggleAddExperience = (force = true) => {
     if(force) {
       setExperienceEditCard(null);
@@ -83,11 +85,9 @@ const PortfolioPage2 = (props) => {
 
   return (
     <div className="portfolio-body">
-      <Link to="/portfolio">
-        <Button>
+        <Button onClick={() => navigate(-1)}>
           Back
         </Button>
-      </Link>
       <div className="portfolioPage2">
         <h1>Experience <span> & Education</span></h1>
         <Button color="danger" onClick={toggleAddExperience}>
@@ -170,11 +170,9 @@ const PortfolioPage2 = (props) => {
               </div>
             </div>
           )}
-        <Link to="/portfolio/skills/">
-          <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
+          <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} onClick={()=>     navigate(`/portfolio/skills/${user_id}`)}>
             Next
           </Button>
-        </Link>
       </div>
     </div>
   )

@@ -2,12 +2,16 @@ import React from "react"
 import './MainPage.scss';
 import { Link } from 'react-router-dom';
 import { FaMagic } from "react-icons/fa";
+import Navbar from './navbar/Navbar';
+import Section from './sections/Section';
 
 const MainPage = (props) => {
   return (
     <div className="main-body">
+      <Navbar/>
     <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
+      <br/>
       <div className="main__content">
         <div className="main__content__item">
           <h2>Business</h2>
@@ -30,10 +34,20 @@ const MainPage = (props) => {
             <p>Build a website for your store</p>
         </div>
     </div>
+    <br/>
     <Link to="/generator" style={{textDecoration: 'none'}}>
     <button className="main__button"><FaMagic /> AI Website</button>
     </Link>
     </div>
+    <Section  title = "How to Create My Website?"  text={
+    <>
+      Our website builder is designed to be user-friendly, flexible, and powerful.
+      <br/>
+      You don't need any coding skills to use our website builder. 
+      <br/>
+      Simply choose a template, customize it to your liking, and publish your website. It's that easy!
+    </>
+    }/>
     </div>
   )
 };

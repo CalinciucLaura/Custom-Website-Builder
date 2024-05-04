@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
-import { Link,useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './portfolioPage2.scss'
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 import AddProject from './AddProject';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PortfolioPage4 = () => {
     const { user_id } = useParams();
@@ -15,6 +16,7 @@ const PortfolioPage4 = () => {
     const [showAddProject, setShowAddProject] = useState(false);
     const [projectEditCard, setProjectEditCard] = useState(null);
     const [projectEditCardIndex, setProjectEditCardIndex] = useState(null);
+    const navigate = useNavigate();
     
     const toggleAddProject = (force = true) => {
         if(force) {
@@ -47,11 +49,9 @@ const PortfolioPage4 = () => {
 
     return (
         <div className="portfolio-body">
-            <Link to="">
-                <Button>
+                <Button onClick={() => navigate(-1)}>
                     Back
                 </Button>
-            </Link>
             <div className="portfolioPage2">
                 <h1>Personal Projects</h1>
                 <Button color="danger" onClick={toggleAddProject}>
@@ -93,11 +93,10 @@ const PortfolioPage4 = () => {
                  </div>
                 )}           
                 </div>
-                <Link to="/portfolio/color">
-                    <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }}>
-                        Next
-                    </Button>
-                </Link>
+                <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} onClick={()=>navigate(`/portfolio/color/${user_id}`)}>
+            Next
+          </Button>
+
             </div>
         </div>
     )
