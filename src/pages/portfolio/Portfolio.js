@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import "../MainPage.scss";
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, FormGroup, Label, Input, Col, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Button, Nav } from 'reactstrap';
 import "./Portfolio.scss";
+import Navbar from "../navbar/Navbar";
 
 const Portfolio = () => {
   const [firstName, setFirstName] = useState('');
@@ -65,14 +66,12 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="portfolio-body">
-      <Link to="/">
-        <Button>
-          Back
-        </Button>
-      </Link>
-      <div className="portfolio">
-        <h1>Complete your <span>Resume</span></h1>
+    <div className="portfolio-body" style={{backgroundColor:'#1f1f1f'}}>
+      <Navbar/>
+      <div className="portfolio" >
+        <h1>1. Complete your <span>Resume</span></h1>
+        <br/>
+        <br/>
         <Form onSubmit={handleSubmit}>
           <FormGroup row>
             <Label

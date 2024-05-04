@@ -92,8 +92,7 @@ const PortfolioPage3 = () => {
                  </div>
                 )}           
                 </div>
-                    <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} 
-                    onClick={() => navigate(`/portfolio/projects/${user_id}`)}>
+                    <Button onClick={() => navigate(`/portfolio/projects/${user_id}`)}>
                         Next
                     </Button>
             </div>

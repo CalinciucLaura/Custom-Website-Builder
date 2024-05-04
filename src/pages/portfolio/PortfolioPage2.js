@@ -89,7 +89,9 @@ const PortfolioPage2 = () => {
           Back
         </Button>
       <div className="portfolioPage2">
-        <h1>Experience <span> & Education</span></h1>
+        <h1>2. Experience <span> & Education</span></h1>
+        <br/>
+        <br/>
         <Button color="danger" onClick={toggleAddExperience}>
           <FiPlus /> Add Experience
         </Button>
@@ -170,7 +172,7 @@ const PortfolioPage2 = () => {
               </div>
             </div>
           )}
-          <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} onClick={()=>     navigate(`/portfolio/skills/${user_id}`)}>
+          <Button onClick={()=>     navigate(`/portfolio/skills/${user_id}`)}>
             Next
           </Button>
       </div>

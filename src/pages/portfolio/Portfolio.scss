@@ -1,37 +1,27 @@
 .portfolio-body {
-    background-color: white;
-    padding: 20px;
-}
+    .portfolio {
+        font-family: 'Inter', sans-serif;
+        padding: 80px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        width: 90%;
+        margin: auto;
 
-.portfolio {
-    font-family: 'Poppins', sans-serif;
-    width: 70%;
-    height: auto;
-    margin: auto;
-    border-radius: 20px;
-    padding: 80px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-size: cover;
-    background-color: #f1f1f1cc;
+        h1 {
+            font-size: 70px;
+            color: #f7f6f6ee;
+            font-weight: 500;
 
-    h1 {
-        font-size: 60px;
-        text-align: left;
-        padding: 0;
-        margin: 0;
-        margin-bottom: 80px;
-        font-weight: 600;
-        color: black;
-
-        span {
-            color: #3dace7;
+            span {
+                color: #cee73d;
+            }
         }
-    }
 
-    Button {
-        background-color: #3dace7;
-        border: white;
-        float: right;
+        Button {
+            background-color: #cee73d;
+            color: black;
+            font-weight: 500;
+            float: right;
+        }
     }
 }

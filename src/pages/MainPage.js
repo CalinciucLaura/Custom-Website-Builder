@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import { FaMagic } from "react-icons/fa";
 import Navbar from './navbar/Navbar';
 import Section from './sections/Section';
+import { VscAccount } from "react-icons/vsc";
 
 const MainPage = (props) => {
   return (
     <div className="main-body">
+      <div className="top">
       <Navbar/>
+      <VscAccount style={{fontSize:'35px', margin:'5px', color:'#cee73d'}}/>
+      </div>
     <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
       <br/>
