@@ -24,6 +24,7 @@ const ColorSelector = () => {
       }),
     });
     const data = await response.json();
+    navigate(`/portfolio/template/${user_id}`);
   }
 
   return (
@@ -32,7 +33,9 @@ const ColorSelector = () => {
           Back
         </Button>
       <div className="portfolioPage2">
-        <h1>Pick a color for your Website</h1>
+        <h1>Pick a color for your <span>Website</span></h1>
+        <br/>
+        <br/>
         <div className="color-selector">
           {colors.map((color, index) => (
             <div 
@@ -43,7 +46,7 @@ const ColorSelector = () => {
             ></div>
           ))}
         </div>
-          <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} onClick={submitColor}>
+          <Button className="next-btn" onClick={submitColor}>
             Next
           </Button>
       </div>

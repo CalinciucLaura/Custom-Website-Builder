@@ -172,7 +172,7 @@ const PortfolioPage2 = () => {
               </div>
             </div>
           )}
-          <Button onClick={()=>     navigate(`/portfolio/skills/${user_id}`)}>
+          <Button className='next-btn' onClick={()=>navigate(`/portfolio/skills/${user_id}`)}>
             Next
           </Button>
       </div>

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Input, Col, Button, Nav } from 'reactstrap';
 import "./Portfolio.scss";
 import Navbar from "../navbar/Navbar";
+import AlertModal from "../modals/AlertModal";
 
 const Portfolio = () => {
   const [firstName, setFirstName] = useState('');
@@ -17,11 +18,12 @@ const Portfolio = () => {
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
   const [role, setRole] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
-      alert('Please fill all the fields');
+      setShowAlert(true); 
       return;
     }
 
@@ -64,6 +66,10 @@ const Portfolio = () => {
       setPhoto(base64);
     });
   }
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
 
   return (
     <div className="portfolio-body" style={{backgroundColor:'#1f1f1f'}}>
@@ -265,6 +271,7 @@ const Portfolio = () => {
           </FormGroup>
         </Form>
       </div>
+      {showAlert && <AlertModal onClose={handleCloseAlert} />}
     </div>
     )
 };

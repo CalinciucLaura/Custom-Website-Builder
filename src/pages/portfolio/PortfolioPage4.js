@@ -53,7 +53,9 @@ const PortfolioPage4 = () => {
                     Back
                 </Button>
             <div className="portfolioPage2">
-                <h1>Personal Projects</h1>
+                <h1>Personal <span>Projects</span></h1>
+                <br/>
+                <br/>
                 <Button color="danger" onClick={toggleAddProject}>
                 <FiPlus /> Add Project
                 </Button>
@@ -93,7 +95,7 @@ const PortfolioPage4 = () => {
                  </div>
                 )}           
                 </div>
-                <Button style={{ backgroundColor: '#3dace7', border: 'white', float: 'right' }} onClick={()=>navigate(`/portfolio/color/${user_id}`)}>
+                <Button className='next-btn' onClick={()=>navigate(`/portfolio/color/${user_id}`)}>
             Next
           </Button>
 
