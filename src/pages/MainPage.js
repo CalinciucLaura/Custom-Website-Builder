@@ -52,6 +52,26 @@ const MainPage = (props) => {
       Simply choose a template, customize it to your liking, and publish your website. It's that easy!
     </>
     }/>
+    <br/>
+    <Section  title = "About Us"  text={
+    <>
+      Our website builder is designed to be user-friendly, flexible, and powerful.
+      <br/>
+      You don't need any coding skills to use our website builder. 
+      <br/>
+      Simply choose a template, customize it to your liking, and publish your website. It's that easy!
+    </>
+    }/>
+     <br/>
+    <Section  title = "About Us"  text={
+    <>
+      Our website builder is designed to be user-friendly, flexible, and powerful.
+      <br/>
+      You don't need any coding skills to use our website builder. 
+      <br/>
+      Simply choose a template, customize it to your liking, and publish your website. It's that easy!
+    </>
+    }/>
     </div>
   )
 };

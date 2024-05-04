@@ -1,16 +1,20 @@
+import { Link } from 'react-router-dom';
+
 const Links = () => {
     const items = [
-        "Homepage",
-        "Services",
-        "Portfolio",
-        "Contact",
-        "About"
+        { name: "Homepage", path: "/" },
+        { name: "Portfolio", path: "/portfolio" },
+        { name: "Business", path: "/business" },
+        { name: "Blog", path: "/blog" },
+        { name: "E-commerce", path: "/ecommerce" },
+        { name: "About Us", path: "/aboutus" },
+        { name: "AI Generator", path: "/generator" }
     ]
 
     return (
         <div className="links">
             {items.map(item => (
-                <a href={`#${item}`} key={item}>{item}</a>
+                <Link to={item.path} key={item.name}>{item.name}</Link>
             ))}
         </div>
     )
