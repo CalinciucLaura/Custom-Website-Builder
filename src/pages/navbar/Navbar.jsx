@@ -16,7 +16,8 @@ const Navbar = ({ editBtn, publishBtn }) => {
             <div className="right-side">
                 {editBtn == true ? <EditBtn /> : null}
                 {publishBtn == true ? <PublishBtn /> : null}
-                <button style={{ backgroundColor: 'transparent', borderRadius: '50%', border: '2px solid #cee73d' }}><FaRegUser style={{ fontSize: '20px', margin: '5px', color: '#cee73d' }} onClick={() => navigate(`/profile/`)} /></button>
+                <a style={{ backgroundColor: 'transparent' }}>
+                    <FaRegUser style={{ fontSize: '20px', margin: '5px', color: '#cee73d', cursor: 'pointer' }} onClick={() => navigate(`/profile/`)} /></a>
             </div>
         </div>
     )

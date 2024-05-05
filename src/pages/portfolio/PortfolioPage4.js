@@ -9,6 +9,9 @@ import { FaTrashCan } from "react-icons/fa6";
 import AddProject from './AddProject';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const PortfolioPage4 = () => {
     const { user_id } = useParams();
@@ -49,7 +52,7 @@ const PortfolioPage4 = () => {
       }
 
     return (
-        <div className="portfolio-body">
+        <div className="portfolio-body" data-aos="fade-left">
             <Navbar />
             <div className="portfolioPage2">
             <Button onClick={() => navigate(-1)}>

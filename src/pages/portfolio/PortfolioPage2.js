@@ -10,6 +10,9 @@ import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 import Navbar from '../navbar/Navbar';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const PortfolioPage2 = () => {
   const { user_id } = useParams();
@@ -86,8 +89,8 @@ const PortfolioPage2 = () => {
 
   return (
     <div className="portfolio-body">
-      <div className="portfolioPage2">
-        <Navbar/>
+         <Navbar/>
+      <div className="portfolioPage2" data-aos = "fade-left">
       <Button onClick={() => navigate(-1)}>
           Back
         </Button>
