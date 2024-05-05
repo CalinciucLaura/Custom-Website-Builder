@@ -11,6 +11,7 @@ import PortfolioPage3 from './pages/portfolio/PortfolioPage3';
 import PortfolioPage4 from './pages/portfolio/PortfolioPage4';
 import ColorSelector from './pages/portfolio/ColorSelector';
 import Template from './pages/portfolio/templates/Template';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path={'/portfolio/projects/:user_id'} element={<PortfolioPage4 />} />
         <Route path={'/portfolio/color/:user_id'} element={<ColorSelector />} />
         <Route path={`/portfolio/template/:user_id`} element={<Template />} />
+        <Route path={'/profile'} element={<Profile />} />
       </Routes>
     </Router>
   );

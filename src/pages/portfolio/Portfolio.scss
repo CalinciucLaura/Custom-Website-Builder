@@ -23,5 +23,25 @@
             font-weight: 500;
             float: right;
         }
+
+        Label {
+            margin: 8px 0;
+        }
+
+        Input,
+        textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 1px solid rgb(122, 122, 122);
+            box-sizing: border-box;
+            background-color: transparent;
+            border-radius: 10px;
+
+            &::placeholder {
+                color: rgb(122, 122, 122);
+            }
+        }
     }
 }

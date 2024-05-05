@@ -191,7 +191,7 @@ const Portfolio = () => {
               for="exampleFile"
               sm={2}
             >
-              Upload a profile photo <span style={{color:'red'}}>*</span>
+              Upload a profile photo<span style={{color:'red'}}>*</span>
             </Label>
             <Col sm={10}>
               <Input
