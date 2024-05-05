@@ -7,11 +7,11 @@
         font-family: 'Inter', sans-serif;
         width: 90%;
         margin: auto;
-        padding: 80px;
 
         h1 {
             font-size: 70px;
             font-weight: 500;
+            margin-top: 20px;
 
             span {
                 color: #cee73d;
@@ -44,6 +44,7 @@
             color: black;
             font-weight: 500;
             float: right;
+            border: 2px solid black;
         }
     }
 

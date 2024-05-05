@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "../MainPage.scss";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Input, Col, Button, Nav } from 'reactstrap';
 import "./Portfolio.scss";
@@ -73,7 +73,7 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio-body" style={{backgroundColor:'#1f1f1f'}}>
-      <Navbar/>
+      <Navbar />
       <div className="portfolio" >
         <h1>1. Complete your <span>Resume</span></h1>
         <br/>

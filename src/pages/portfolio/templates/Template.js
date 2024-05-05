@@ -8,6 +8,7 @@ import Resume from './resume/Resume';
 import Skills from './skills/Skills';
 import Contact from './contact/Contact';
 import PortfolioTemplate from './portfolio/PortfolioTemplate';
+import Navbar from '../../navbar/Navbar';
 
 const Template = () => {
   const [firstName, setFirstName] = useState(undefined);
@@ -89,6 +90,8 @@ const Template = () => {
   }, [user_id])
 
   return (
+    <>
+    <Navbar editBtn={true} publishBtn={true}/>
     <div className="app">
       <div className="sidebar">
         <Sidebar 
@@ -128,6 +131,7 @@ const Template = () => {
         </section>
       </div>   
     </div>
+    </>
   );
 };
 

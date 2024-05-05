@@ -2,22 +2,18 @@ import React, { useState } from "react"
 import './MainPage.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaMagic } from "react-icons/fa";
-import Navbar from './navbar/Navbar';
 import Section from './sections/Section';
 import { VscAccount } from "react-icons/vsc";
 import AccountModal from "./modals/AccountModal";
 import { motion } from "framer-motion";
+import Navbar from "./navbar/Navbar";
 
 const MainPage = (props) => {
   const navigate = useNavigate();
 
   return (
     <div className="main-body">
-      <div className="top">
-      <Navbar/>
-      <button style={{backgroundColor:'transparent', borderRadius:'50%', padding: '5px'}}><VscAccount style={{fontSize:'35px', margin:'5px', color:'#cee73d'}} onClick={()=> navigate(`/profile/`)}/></button>
-  
-      </div>
+      <Navbar />
     <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
       <br/>

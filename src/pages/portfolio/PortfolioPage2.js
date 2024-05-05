@@ -4,11 +4,12 @@ import AddExperienceModal from "./AddExperienceModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
 import AddEducationModal from "./AddEducationModal";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
+import Navbar from '../navbar/Navbar';
 
 const PortfolioPage2 = () => {
   const { user_id } = useParams();
@@ -85,14 +86,15 @@ const PortfolioPage2 = () => {
 
   return (
     <div className="portfolio-body">
-        <Button onClick={() => navigate(-1)}>
+      <div className="portfolioPage2">
+        <Navbar/>
+      <Button onClick={() => navigate(-1)}>
           Back
         </Button>
-      <div className="portfolioPage2">
         <h1>2. Experience <span> & Education</span></h1>
         <br/>
         <br/>
-        <Button color="danger" onClick={toggleAddExperience}>
+        <Button color="warning" onClick={toggleAddExperience}>
           <FiPlus /> Add Experience
         </Button>
         <br/>
@@ -134,7 +136,7 @@ const PortfolioPage2 = () => {
           )}
         </div>
 
-        <Button color="danger" onClick={toggleAddEducation}>
+        <Button color="success" onClick={toggleAddEducation}>
           <FiPlus /> Add Education
         </Button>
         <AddEducationModal 

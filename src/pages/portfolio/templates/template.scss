@@ -12,9 +12,8 @@ body {
 .app {
     .sidebar {
         width: 30%;
-        position: fixed; // Make the sidebar fixed
-        height: 100vh;
-        margin-top: 5%;
+        position: fixed;
+        height: auto;
     }
 
     .content {

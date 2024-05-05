@@ -8,6 +8,7 @@ import AddSkillModal from './AddSkillModal';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 import {  useNavigate } from 'react-router-dom';
+import Navbar from '../navbar/Navbar';
 
 const PortfolioPage3 = () => {
     const { user_id } = useParams();
@@ -49,17 +50,18 @@ const PortfolioPage3 = () => {
 
     return (
         <div className="portfolio-body">
+            <Navbar />
+               
+            <div className="portfolioPage2">
                 <Button onClick={() => navigate(-1)}>
                     Back
                 </Button>
-            <div className="portfolioPage2">
                 <h1>Skills</h1>
                 <br/>
                 <br/>
-                <Button color="danger" onClick={toggleAddSkill}>
+                <Button color="warning" onClick={toggleAddSkill}>
                 <FiPlus /> Add Skill
-                </Button>
-                <br/>
+                </Button>              
                 <AddSkillModal
                     onAddSkill={handleAddSkills}
                     toggle={toggleAddSkill}

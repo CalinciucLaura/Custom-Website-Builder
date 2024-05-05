@@ -52,3 +52,22 @@
         cursor: pointer;
     }
 }
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+
+    .right-side {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.buttons {
+    background-color: transparent;
+    border-radius: 12px;
+    color: #999999;
+    height: 50px;
+    border: 2px solid #999999;
+}

@@ -18,12 +18,16 @@ const Sidebar = ({ firstName, lastName, address, phone, image, linkedin, github,
             <h3>{address} <br /> <br />{phone} <br /><br /> {email}</h3>
 
             <div className="social">
-                <a href={github}>
-                    <DiGithubBadge className="icon" />
-                </a>
-                <a href={linkedin} >
-                    <FaLinkedin className="icon" />
-                </a>
+                {github &&
+                    (<a href={github}>
+                        <DiGithubBadge className="icon" />
+                    </a>
+                    )}
+                {linkedin &&
+                    (<a href={linkedin}>
+                        <FaLinkedin className="icon" />
+                    </a>
+                    )}
             </div>
 
             <Link

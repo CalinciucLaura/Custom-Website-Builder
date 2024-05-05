@@ -8,6 +8,7 @@ import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 import AddProject from './AddProject';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../navbar/Navbar';
 
 const PortfolioPage4 = () => {
     const { user_id } = useParams();
@@ -49,14 +50,14 @@ const PortfolioPage4 = () => {
 
     return (
         <div className="portfolio-body">
-                <Button onClick={() => navigate(-1)}>
+            <Navbar />
+            <div className="portfolioPage2">
+            <Button onClick={() => navigate(-1)}>
                     Back
                 </Button>
-            <div className="portfolioPage2">
                 <h1>Personal <span>Projects</span></h1>
                 <br/>
-                <br/>
-                <Button color="danger" onClick={toggleAddProject}>
+                <Button color="warning" onClick={toggleAddProject}>
                 <FiPlus /> Add Project
                 </Button>
                 <br/>

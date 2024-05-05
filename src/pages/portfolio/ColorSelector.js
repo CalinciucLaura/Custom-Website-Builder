@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './Portfolio.scss';
 import ThreeDotsWave from '../loadingBar/ThreeDotsWave';
+import Navbar from '../navbar/Navbar';
 
 const ColorSelector = () => {
   const colors = ['#1abc9c', '#f39c12', '#f368e0', '#ff3f34', '#3498db', '#9b59b6', '#1e272e'];
@@ -36,15 +37,16 @@ const ColorSelector = () => {
 
   return (
     <div className="portfolio-body">
+      <Navbar />
       {loading ? (<ThreeDotsWave /> ): ( 
         <>        
+        <div className="portfolioPage2">
         <Button onClick={() => navigate(-1)}>
           Back
         </Button>
-      <div className="portfolioPage2">
         <h1>Pick a color for your <span>Website</span></h1>
         <br/>
-        <br/>
+      
         <div className="color-selector">
           {colors.map((color, index) => (
             <div 
