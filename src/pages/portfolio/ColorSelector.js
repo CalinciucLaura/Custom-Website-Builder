@@ -6,6 +6,7 @@ import ThreeDotsWave from '../Bars/ThreeDotsWave';
 import Navbar from '../navbar/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 AOS.init();
 const ColorSelector = () => {
   const colors = ['#1abc9c', '#f39c12', '#f368e0', '#ff3f34', '#3498db', '#9b59b6', '#1e272e'];
@@ -43,9 +44,15 @@ const ColorSelector = () => {
       {loading ? (<ThreeDotsWave /> ): ( 
         <>        
         <div className="portfolioPage2" data-aos = "fade-left">
-        <Button onClick={() => navigate(-1)}>
+          <>
+          <Button  onClick={() => navigate(-1)}>
           Back
         </Button>
+        <Button className="next-btn" onClick={submitColor}>
+            Next
+          </Button>
+          </>
+        
         <h1>Pick a color for your <span>Website</span></h1>
         <br/>
       
@@ -59,9 +66,7 @@ const ColorSelector = () => {
             ></div>
           ))}
         </div>
-          <Button className="next-btn" onClick={submitColor}>
-            Next
-          </Button>
+             
       </div>
         </>
       )}

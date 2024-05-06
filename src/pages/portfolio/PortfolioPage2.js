@@ -10,6 +10,7 @@ import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
 import { FaTrashCan } from "react-icons/fa6";
 import Navbar from '../navbar/Navbar';
+import BackNext from '../buttons/BackNext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
@@ -90,10 +91,11 @@ const PortfolioPage2 = () => {
   return (
     <div className="portfolio-body">
          <Navbar/>
+      <BackNext path={`/portfolio/skills/${user_id}`} />
       <div className="portfolioPage2" data-aos = "fade-left">
-      <Button onClick={() => navigate(-1)}>
+      {/* <Button onClick={() => navigate(-1)}>
           Back
-        </Button>
+        </Button> */}
         <h1>2. Experience <span> & Education</span></h1>
         <br/>
         <br/>
@@ -177,9 +179,9 @@ const PortfolioPage2 = () => {
               </div>
             </div>
           )}
-          <Button className='next-btn' onClick={()=>navigate(`/portfolio/skills/${user_id}`)}>
+          {/* <Button className='next-btn' onClick={()=>navigate(`/portfolio/skills/${user_id}`)}>
             Next
-          </Button>
+          </Button> */}
       </div>
     </div>
   )

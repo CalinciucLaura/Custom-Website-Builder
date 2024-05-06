@@ -3,6 +3,7 @@
     box-sizing: border-box;
     max-width: 700px;
     width: 100%;
+    margin-bottom: 100px;
 
     h3 {
         border: 1px solid #565656;
@@ -28,12 +29,13 @@
 
     .content {
         border-left: 1px solid #565656;
+        margin: 0;
     }
 
     .item {
         transform: translate(20px, 0);
         line-height: normal;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
 
         h4 {
             margin: 10px 0 5px 0;

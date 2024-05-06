@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import BackNext from '../buttons/BackNext';
 AOS.init();
 
 const PortfolioPage4 = () => {
@@ -54,10 +55,8 @@ const PortfolioPage4 = () => {
     return (
         <div className="portfolio-body" data-aos="fade-left">
             <Navbar />
+            <BackNext path={`/portfolio/color/${user_id}`} />
             <div className="portfolioPage2">
-            <Button onClick={() => navigate(-1)}>
-                    Back
-                </Button>
                 <h1>Personal <span>Projects</span></h1>
                 <br/>
                 <Button color="warning" onClick={toggleAddProject}>
@@ -99,10 +98,7 @@ const PortfolioPage4 = () => {
                  </div>
                 )}           
                 </div>
-                <Button className='next-btn' onClick={()=>navigate(`/portfolio/color/${user_id}`)}>
-            Next
-          </Button>
-
+               
             </div>
         </div>
     )

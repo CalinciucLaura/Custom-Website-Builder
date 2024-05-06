@@ -1,0 +1,17 @@
+.back-next {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+
+    button {
+        background-color: #cee73d;
+        color: black;
+        font-weight: 500;
+        border: 1px solid black;
+        padding: 5px;
+        width: 150px;
+        margin: 10px;
+        border-radius: 15px;
+
+    }
+}

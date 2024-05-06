@@ -36,7 +36,7 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
 
   return (
     <div>      
-      <Modal isOpen={isOpen} toggle={toggle} >
+      <Modal isOpen={isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle}>Add Experience</ModalHeader>
         <ModalBody>
           <Form >
@@ -53,7 +53,7 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
                     placeholder="date placeholder"
                     onChange={e => setStartingDate(e.target.value)}
                     type="date"
-                    required
+                    
                   />
                 </FormGroup>
               </Col>
@@ -83,7 +83,7 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
                 onChange={e => setCompany(e.target.value)}
                 name="name"
                 placeholder="Company Name"
-                required
+                style={{color:'black'}}
               />
             </FormGroup>
             <FormGroup>
@@ -96,7 +96,7 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
                 id="role"
                 value={role}
                 onChange={e => setRole(e.target.value)}
-
+                style={{color:'black'}}
               />
             </FormGroup>
           </Form>
