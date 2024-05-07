@@ -165,7 +165,33 @@ const handleProjectChange = (index, field, event) => {
     newProjects[index][field] = event.target.value;
     setProjects(newProjects);
 }
+const handleSave =  async() => {
+    const response = await  fetch(`/portfolio/${user_id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            address: address,
+            description: description,
+            image: image,
+            linkedin: linkedin,
+            github: github,
+            role: role,
+            color: color
+        })
+    })
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
+    const data = await response.json();
+    console.log(data);
+}
   return (
     <div className="website"> 
     <Navbar />  
@@ -177,7 +203,7 @@ const handleProjectChange = (index, field, event) => {
      }
         /> 
         <br/>
-        <div className="row">
+        <div className="row web">
             <div className="col-md-9 template" >
               <Template 
                 firstName={firstName} 
@@ -320,7 +346,7 @@ const handleProjectChange = (index, field, event) => {
                         </>
                     )}
                 )}
-                    <button className="btn btn-primary">Save</button>
+                    <button className="btn btn-primary" onClick={handleSave}>Save</button>
                 </div>
         </div>  
     </div>

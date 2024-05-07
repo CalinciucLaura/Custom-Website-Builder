@@ -98,6 +98,27 @@ def get_portfolio_data(user_id):
     return jsonify(info)
 
 
+@app.route('/portfolio/<user_id>', methods=['POST'])
+def updatePortfolio(user_id):
+    data = request.get_json()
+    firstName = data['firstName']
+    lastName = data['lastName']
+    email = data['email']
+    phone = data['phone']
+    address = data['address']
+    description = data['description']
+    image = data['image']
+    github = data['github']
+    linkedin = data['linkedin']
+    role = data['role']
+    color = data['color']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE portfolio_record SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, description = ?, image = ?, github = ?, linkedin = ?, role = ?, color = ? WHERE id = ?", (firstName, lastName, email, phone, address, description, image, github, linkedin, role, color, user_id))
+    g.db.commit()
+    return jsonify("Portfolio updated")
+
+
 @app.route('/portfolio/color/<user_id>', methods=['POST'])
 def colorPortfolio(user_id):
     data = request.get_json()

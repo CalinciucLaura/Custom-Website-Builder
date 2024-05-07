@@ -1,11 +1,11 @@
-.row {
+.web {
     margin: 20px;
     margin-top: 50px;
-    border: 2px solid hsl(0, 0%, 60%);
+    border: 1px solid #575757;
     border-radius: 20px;
 
     .edit-box {
-        border-left: 3px solid #999999;
+        border-left: 3px solid #575757;
 
         h3 {
             margin: 30px 0;
@@ -26,11 +26,11 @@
         textarea {
             background-color: transparent;
             color: white;
-            border: 1px solid #999999;
+            border: 1px solid #575757;
         }
 
         .item {
-            border: 1px solid #99999995;
+            border: 1px solid #575757;
             padding: 10px;
             border-radius: 15px;
         }
