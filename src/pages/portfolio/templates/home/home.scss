@@ -1,10 +1,12 @@
+@import "../template.scss";
+
 .home {
     padding-top: 100px;
     margin: auto;
     box-sizing: border-box;
     max-width: 700px;
     width: 100%;
-
+    height: auto;
 
     h3 {
         border: 1px solid #565656;

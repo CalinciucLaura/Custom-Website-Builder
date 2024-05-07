@@ -10,7 +10,7 @@ import Contact from './contact/Contact';
 import PortfolioTemplate from './portfolio/PortfolioTemplate';
 import Navbar from '../../navbar/Navbar';
 
-const Template = () => {
+export const TemplateGenerator = () => {
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -90,8 +90,45 @@ const Template = () => {
   }, [user_id])
 
   return (
+    <Template 
+      firstName={firstName} 
+      lastName={lastName} 
+      email={email} 
+      phone={phone} 
+      address={address} 
+      description={description} 
+      image={image} 
+      experience={experience} 
+      education={education} 
+      skills={skills} 
+      linkedin={linkedin} 
+      github={github} 
+      role={role} 
+      color={color}
+      projects={projects}
+    />
+  );
+}
+
+const Template = ({
+  firstName,
+  lastName,
+  email,
+  phone,
+  address,
+  description,
+  image, 
+  experience,
+  education, 
+  skills, 
+  linkedin,
+  github,
+  role, 
+  color,
+  projects,
+}) => {
+  return (
     <>
-    <Navbar editBtn={true} publishBtn={true}/>
     <div className="app">
       <div className="sidebar">
         <Sidebar 

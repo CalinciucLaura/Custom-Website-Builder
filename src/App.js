@@ -10,8 +10,9 @@ import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
 import PortfolioPage3 from './pages/portfolio/PortfolioPage3';
 import PortfolioPage4 from './pages/portfolio/PortfolioPage4';
 import ColorSelector from './pages/portfolio/ColorSelector';
-import Template from './pages/portfolio/templates/Template';
+import { TemplateGenerator } from './pages/portfolio/templates/Template';
 import Profile from './pages/Profile';
+import Website from './pages/portfolio/templates/Website';
 
 function App() {
   return (
@@ -27,8 +28,10 @@ function App() {
         <Route path={'/portfolio/skills/:user_id'} element={<PortfolioPage3 />} />
         <Route path={'/portfolio/projects/:user_id'} element={<PortfolioPage4 />} />
         <Route path={'/portfolio/color/:user_id'} element={<ColorSelector />} />
-        <Route path={`/portfolio/template/:user_id`} element={<Template />} />
+        <Route path={`/portfolio/template/:user_id/preview`} element={<Website />} />
         <Route path={'/profile'} element={<Profile />} />
+        <Route path={`/portfolio/template/:user_id`} element={<TemplateGenerator />} />
+      
       </Routes>
     </Router>
   );

@@ -14,7 +14,7 @@ const PortfolioTemplate = ({ color, projects }) => {
                         <div className="item" key={index}>
                             <h4>{item[2]}</h4>
                             <h2>{item[3]}</h2>
-                            <p>{item[4]}</p>
+                            <a href={item[4]}>Link here</a>
                         </div>
                     )
                 }

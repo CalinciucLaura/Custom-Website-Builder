@@ -1,0 +1,44 @@
+.row {
+    margin: 20px;
+    margin-top: 50px;
+    border: 2px solid hsl(0, 0%, 60%);
+    border-radius: 20px;
+
+    .edit-box {
+        border-left: 3px solid #999999;
+
+        h3 {
+            margin: 30px 0;
+            color: #cee73d;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        img {
+            width: 50%;
+            display: block;
+            margin: auto;
+        }
+
+        input,
+        textarea {
+            background-color: transparent;
+            color: white;
+            border: 1px solid #999999;
+        }
+
+        .item {
+            border: 1px solid #99999995;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        p {
+
+            font-size: larger;
+            color: white;
+        }
+    }
+}

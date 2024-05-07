@@ -66,6 +66,7 @@ const AddProject = ({onAddProject, toggle, isOpen, editCard, editCardIndex, edit
                 value={link}
                 onChange={e => setLink(e.target.value)}
                 name="link"
+                type="url"
                 placeholder="Source code link"
               />
             </FormGroup>

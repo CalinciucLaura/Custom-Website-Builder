@@ -93,9 +93,6 @@ const PortfolioPage2 = () => {
          <Navbar/>
       <BackNext path={`/portfolio/skills/${user_id}`} />
       <div className="portfolioPage2" data-aos = "fade-left">
-      {/* <Button onClick={() => navigate(-1)}>
-          Back
-        </Button> */}
         <h1>2. Experience <span> & Education</span></h1>
         <br/>
         <br/>
@@ -178,10 +175,7 @@ const PortfolioPage2 = () => {
                 }} className="btn btn-primary" style={{ float: 'right' }}><TbEdit /> Edit</button>
               </div>
             </div>
-          )}
-          {/* <Button className='next-btn' onClick={()=>navigate(`/portfolio/skills/${user_id}`)}>
-            Next
-          </Button> */}
+          )}        
       </div>
     </div>
   )

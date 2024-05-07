@@ -1,3 +1,5 @@
+@import "../template.scss";
+
 .profile {
     border-right: 1px solid #575757;
     color: white;
@@ -57,7 +59,6 @@
             width: 50%;
             height: 50px;
             border-radius: 30px;
-            background-color: #ff99cc;
             border: none;
             color: black;
             letter-spacing: 1px;

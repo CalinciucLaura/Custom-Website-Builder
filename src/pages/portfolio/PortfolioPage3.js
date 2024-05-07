@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
-import { Link,useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import './portfolioPage2.scss'
 import AddSkillModal from './AddSkillModal';
@@ -21,8 +21,7 @@ const PortfolioPage3 = () => {
     const [showAddSkill, setShowAddSkill] = useState(false);
     const [skillEditCard, setSkillEditCard] = useState(null);
     const [skillEditCardIndex, setSkillEditCardIndex] = useState(null);
-    const navigate = useNavigate();
-
+    
     const toggleAddSkill = (force = true) => {
         if(force) {
             setSkillEditCard(null);
@@ -97,9 +96,6 @@ const PortfolioPage3 = () => {
                  </div>
                 )}           
                 </div>
-                    {/* <Button className='next-btn' onClick={() => navigate(`/portfolio/projects/${user_id}`)}>
-                        Next
-                    </Button> */}
             </div>
         </div>
     )
