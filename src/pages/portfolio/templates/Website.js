@@ -182,7 +182,7 @@ const handleSave =  async() => {
             linkedin: linkedin,
             github: github,
             role: role,
-            color: color
+            color: color,
         })
     })
     if (!response.ok) {
@@ -191,7 +191,77 @@ const handleSave =  async() => {
 
     const data = await response.json();
     console.log(data);
+
+    const educationResponse = await fetch(`/portfolio/${user_id}/education`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            education: education,
+        })
+    })
+
+    if (!educationResponse.ok) {
+        throw new Error(`HTTP error! status: ${educationResponse.status}`);
+    }
+
+    const educationData = await educationResponse.json();
+    console.log(educationData);
+
+    const experienceResponse = await fetch(`/portfolio/${user_id}/experience`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            experience: experience,
+        })
+    })
+
+    if (!experienceResponse.ok) {
+        throw new Error(`HTTP error! status: ${experienceResponse.status}`);
+    }
+
+    const experienceData = await experienceResponse.json();
+    console.log(experienceData);
+
+    const skillsResponse = await fetch(`/portfolio/${user_id}/skills`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            skills: skills,
+        })
+    })
+
+    if (!skillsResponse.ok) {
+        throw new Error(`HTTP error! status: ${skillsResponse.status}`);
+    }
+
+    const skillsData = await skillsResponse.json();
+    console.log(skillsData);
+
+    const projectsResponse = await fetch(`/portfolio/${user_id}/projects`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            projects: projects,
+        })
+    })
+
+    if (!projectsResponse.ok) {
+        throw new Error(`HTTP error! status: ${projectsResponse.status}`);
+    }
+
+    const projectsData = await projectsResponse.json();
+    console.log(projectsData);
 }
+
+
   return (
     <div className="website"> 
     <Navbar />  
@@ -269,9 +339,9 @@ const handleSave =  async() => {
                             <label>End Date:</label>
                             <input className="form-control" type="date" value={item[3]} onChange={(event) => handleExperienceChange(index,3, event)}/>
                             <label>Company</label>
-                            <input className="form-control" type="text" value={item[4]} onChange={(event) => handleExperienceChange(index,3, event)}/>
+                            <input className="form-control" type="text" value={item[4]} onChange={(event) => handleExperienceChange(index,4, event)}/>
                             <label>Position</label>
-                            <input className="form-control" type="text" value={item[5]} onChange={(event) => handleExperienceChange(index,4, event)}/>
+                            <input className="form-control" type="text" value={item[5]} onChange={(event) => handleExperienceChange(index,5, event)}/>
                         </div>
                         <br/>
                         </>
