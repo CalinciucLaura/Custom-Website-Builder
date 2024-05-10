@@ -33,8 +33,8 @@ const HomePage = () => {
       <form onSubmit={readData}>  
       <div className='inputBox'>
           <input type="text" id="searchQueryInput" placeholder="Search"/>
-         <button id="searchQuerySubmit" type="submit"><FaMagic /> Generate</button>
     </div>
+    <button id="searchQuerySubmit" type="submit"><FaMagic /> Generate</button>
       </form>      
       </div>
     </div>
