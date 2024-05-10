@@ -6,6 +6,7 @@ import ThreeDotsWave from '../Bars/ThreeDotsWave';
 import Navbar from '../navbar/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import AlertModal from "../modals/AlertModal";
 
 AOS.init();
 const ColorSelector = () => {
@@ -14,12 +15,17 @@ const ColorSelector = () => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [showAlertModal, setShowAlertModal] = useState(false);
 
   const handleColorSelector = (color, index) => {
     setSelectedColor(index);
   }
 
   const submitColor = async (color) => {
+    if(selectedColor === null) {
+      setShowAlertModal(true);
+      return;
+    }
     setLoading(true);
     const response = await fetch(`/portfolio/color/${user_id}`, {
       method: 'POST',
@@ -55,6 +61,12 @@ const ColorSelector = () => {
         
         <h1>Pick a color for your <span>Website</span></h1>
         <br/>
+        <AlertModal 
+          modal = {showAlertModal}
+          isOpen={showAlertModal}
+          toggle={() => setShowAlertModal(false)}
+          message="Please select a color"
+        />
       
         <div className="color-selector">
           {colors.map((color, index) => (

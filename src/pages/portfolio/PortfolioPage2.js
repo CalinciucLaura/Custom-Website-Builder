@@ -4,7 +4,6 @@ import AddExperienceModal from "./AddExperienceModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TbEdit } from "react-icons/tb";
 import AddEducationModal from "./AddEducationModal";
-import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FiPlus } from "react-icons/fi";
@@ -23,7 +22,7 @@ const PortfolioPage2 = () => {
   const [cardsExperience, setCardsExperience] = useState([]);
   const [showAddExperience, setShowAddExperience] = useState(false);
   const [showAddEducation, setShowAddEducation] = useState(false);  
-  const navigate = useNavigate();
+  
   const toggleAddExperience = (force = true) => {
     if(force) {
       setExperienceEditCard(null);

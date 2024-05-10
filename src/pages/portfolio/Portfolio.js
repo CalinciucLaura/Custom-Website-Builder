@@ -19,21 +19,22 @@ const Portfolio = () => {
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
   const [role, setRole] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
-
+  const [showAlertModal, setShowAlertModal] = useState(false);
+  
   const handleSubmit = async (event) => {
+    event.preventDefault();
+
     if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
-      setShowAlert(true); 
+      setShowAlertModal(true);
       return;
     }
 
-    event.preventDefault();
-  
     const response = await fetch(`/portfolio`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+
       },
       body: JSON.stringify({
         firstName,
@@ -68,10 +69,6 @@ const Portfolio = () => {
     });
   }
 
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
-
   return (
     <div className="portfolio-body" style={{backgroundColor:'#1f1f1f'}}>
       <Navbar />
@@ -80,6 +77,12 @@ const Portfolio = () => {
         <h1>1. Complete your <span>Resume</span></h1>
         <br/>
         <br/>
+        <AlertModal
+          modal={showAlertModal}
+          toggle={() => setShowAlertModal(false)}
+          message="Please fill in all the required fields"
+          isOpen = {showAlertModal}
+        />
         <Form onSubmit={handleSubmit}>
           <FormGroup row>
             <Label
@@ -273,7 +276,6 @@ const Portfolio = () => {
           </FormGroup>
         </Form>
       </div>
-      {showAlert && <AlertModal onClose={handleCloseAlert} />}
     </div>
     )
 };
