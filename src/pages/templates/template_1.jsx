@@ -77,32 +77,32 @@ const T1 = () => {
     return (
         <div className="T1-body">
             <Hero image={heroImage}
-                title={title} fontFamily='Playfair Display' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
-            <About title="ABOUT" text={about} textColor="white" fontFamily='Playfair Display' style={{ backgroundColor: colors[0] }} />
+                title={title} fontFamily='Poppins' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
+            <About title="ABOUT" text={about} textColor="white" textAlign="center" fontFamily='Poppins' style={{ backgroundColor: colors[0] }} />
             <Description
                 title="Services"
                 text={description1}
-                backgroundColor={colors[1]}
+                // backgroundColor={colors[1]}
                 image={image1}
                 textColor="black"
                 fontFamily='Playfair Display'
-                fontSizeTitle='40px'
-                fontSizeParagraph='13px'
-                lineHeightP='25px'
+                fontSizeTitle='80px'
+                fontSizeParagraph='30px'
+                lineHeightP='40px'
                 button='true'
                 backgroundColorButton='white'
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
-                widthImage='50%'
-                widthText='50%'
+                widthImage='40%'
+                widthText='60%'
                 swichObjects='true'
-                style={{ textAlign: 'center' }} />
+                style={{ textAlign: 'left' }} />
 
             <Description
                 title="Projects"
                 text={description2}
                 image={image2}
-                backgroundColor={colors[1]}
+                // backgroundColor={colors[1]}
                 textColor="black"
                 fontFamily='Playfair Display'
                 fontSizeTitle='40px'
@@ -118,7 +118,7 @@ const T1 = () => {
                 style={{ textAlign: 'center' }} />
 
             <Quote text={quote} backgroundColor={colors[2]} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[image3, image4, image5, image2]} text={description3} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
+            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Playfair Display' />
         </div>
     );
 }

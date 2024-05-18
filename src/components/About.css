@@ -1,19 +1,6 @@
-body {
-    margin: 0;
-    padding: 0;
-}
-
 .about {
     padding: 40px 0;
-}
-
-.about-text {
-    width: 100vh;
-    display: block;
-    margin: auto;
-    text-align: center;
-    letter-spacing: .03em;
-
+    width: 100%;
 }
 
 .about-text h2 {
@@ -23,4 +10,5 @@ body {
 .about-text p {
     line-height: 1.6em;
     font-size: 13px;
+    letter-spacing: .03em;
 }

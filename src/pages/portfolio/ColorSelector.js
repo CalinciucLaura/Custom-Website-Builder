@@ -10,7 +10,7 @@ import AlertModal from "../modals/AlertModal";
 
 AOS.init();
 const ColorSelector = () => {
-  const colors = ['#1abc9c', '#f39c12', '#f368e0', '#ff3f34', '#3498db', '#9b59b6', '#1e272e'];
+  const colors = ['#1abc9c', '#f39c12', '#f368e0', '#ff3f34', '#3498db', '#9b59b6', '#ffeaa7', '#e84393', ,'#dfe6e9','#ff7675', '#74b9ff'];
   const { user_id } = useParams();
   const [selectedColor, setSelectedColor] = useState(null);
   const [loading, setLoading] = useState(false);

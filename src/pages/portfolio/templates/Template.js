@@ -9,6 +9,7 @@ import Skills from './skills/Skills';
 import Contact from './contact/Contact';
 import PortfolioTemplate from './portfolio/PortfolioTemplate';
 import Navbar from '../../navbar/Navbar';
+import {useLocation } from 'react-router-dom';
 
 export const TemplateGenerator = () => {
   const [firstName, setFirstName] = useState(undefined);
@@ -87,7 +88,7 @@ export const TemplateGenerator = () => {
           console.log('No info received from server')
         }
       })
-  }, [user_id])
+  }, [user_id]) 
 
   return (
     <Template 
@@ -106,6 +107,7 @@ export const TemplateGenerator = () => {
       role={role} 
       color={color}
       projects={projects}
+      user_id={user_id}
     />
   );
 }
@@ -126,9 +128,14 @@ const Template = ({
   role, 
   color,
   projects,
+  user_id
 }) => {
+  const location = useLocation();
+  const showNavbar = !location.pathname.includes('preview');
+
   return (
     <>
+    {showNavbar && <Navbar editBtn={true} publishBtn={true} pathEdit={`/portfolio/template/${user_id}/preview`}/> }
     <div className="app">
       <div className="sidebar">
         <Sidebar 

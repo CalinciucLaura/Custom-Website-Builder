@@ -1,15 +1,13 @@
 import React, { useState } from "react"
 import './MainPage.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaMagic } from "react-icons/fa";
 import Section from './sections/Section';
-import { VscAccount } from "react-icons/vsc";
-import AccountModal from "./modals/AccountModal";
 import { motion } from "framer-motion";
 import Navbar from "./navbar/Navbar";
 
 const MainPage = (props) => {
-  const navigate = useNavigate();
+ 
 
   return (
     <div className="main-body">

@@ -5,8 +5,8 @@ import './website.scss'
 import Navbar from "../../navbar/Navbar";
 import { FaTrashCan } from "react-icons/fa6";
 import { FiPlus } from "react-icons/fi";
-import { CiEdit } from "react-icons/ci";
 import Section from "../../sections/Section";
+import { useNavigate } from 'react-router-dom';
 
 const Website = (props) => {
   const [firstName, setFirstName] = useState(undefined);
@@ -25,6 +25,7 @@ const Website = (props) => {
   const [role, setRole] = useState(undefined);
   const [color, setColor] = useState(undefined);
   const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
  
   useEffect(() => {
       if (user_id === undefined) return;
@@ -259,19 +260,21 @@ const handleSave =  async() => {
 
     const projectsData = await projectsResponse.json();
     console.log(projectsData);
+
+    navigate(`/portfolio/template/${user_id}`)
 }
 
 
   return (
     <div className="website"> 
-    <Navbar />  
-    <Section title={
+    {/* <Navbar />   */}
+    {/* <Section title={
          <>
          {"Edit Your Website"} 
          <CiEdit />
      </>
      }
-        /> 
+        />  */}
         <br/>
         <div className="row web">
             <div className="col-md-9 template" >
@@ -294,6 +297,7 @@ const handleSave =  async() => {
               />
             </div>
             <div className="col-md-3 edit-box" >
+            <button className="btn btn-primary" onClick={handleSave} style={{float:'right', margin: '5px'}}>Save</button>
                 <div className="form-group">
                     <h3>Personal Information</h3>
                     <label>First Name</label>
@@ -416,7 +420,7 @@ const handleSave =  async() => {
                         </>
                     )}
                 )}
-                    <button className="btn btn-primary" onClick={handleSave}>Save</button>
+                    
                 </div>
         </div>  
     </div>

@@ -1,10 +1,11 @@
 import React from "react"
 import "./buttons.scss";
+import { MdOutlineFileUpload } from "react-icons/md";
 
-const PublishBtn = (props) => {
+const PublishBtn = ({ path }) => {
     return (
         <button className="buttons">
-            Publish
+            <MdOutlineFileUpload /> Publish
         </button>
     )
 };

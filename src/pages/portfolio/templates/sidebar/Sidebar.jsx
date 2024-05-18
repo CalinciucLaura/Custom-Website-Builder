@@ -34,7 +34,7 @@ const Sidebar = ({ firstName, lastName, address, phone, image, linkedin, github,
                 to="contact"
                 spy={true}
                 smooth={true}
-                offset={-70}
+                // offset={-70}
                 duration={500}
                 className="btn">
                 <motion.div
