@@ -8,8 +8,12 @@ import { Form, FormGroup, Label, Input, Col, Button, Nav } from 'reactstrap';
 import "../pages/portfolio/Portfolio.scss";
 import { LuMousePointerClick } from "react-icons/lu";
 import AlertModal from "./modals/AlertModal";
+import { useRecoilState } from 'recoil';
+import { userState } from './user_session_state';
 
 const Profile = () => {
+    const [userState, setUserState] = useRecoilState(userState);
+
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -60,7 +64,8 @@ const Profile = () => {
             }),
         });
         const data = await response.json();
-        navigate(`/${data}`);
+        setUserState(data);
+        window.localStorage.setItem('user_id', data);
     };
 
     if (user_id !== 'undefined') {

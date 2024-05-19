@@ -10,8 +10,11 @@ import Contact from './contact/Contact';
 import PortfolioTemplate from './portfolio/PortfolioTemplate';
 import Navbar from '../../navbar/Navbar';
 import {useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../user_session_state';
 
 export const TemplateGenerator = () => {
+  const [user_id] = useRecoilValue(userState);
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -22,7 +25,7 @@ export const TemplateGenerator = () => {
   const [experience, setExperience] = useState([]);
   const [education, setEducation] = useState([]);
   const [skills, setSkills] = useState([]); 
-  const { user_id } = useParams();
+  
   const [linkedin, setLinkedin] = useState(undefined);
   const [github, setGithub] = useState(undefined);
   const [role, setRole] = useState(undefined);

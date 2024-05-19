@@ -5,13 +5,20 @@ import { FaMagic } from "react-icons/fa";
 import Section from './sections/Section';
 import { motion } from "framer-motion";
 import Navbar from "./navbar/Navbar";
+import { useRecoilState } from 'recoil';
+import { userState } from './user_session_state';
 
-const MainPage = (props) => {
-const { user_id } = useParams();
+const MainPage = (props) => {  
+  useEffect(() => {
+    setUser_id(window.localStorage.getItem('user_id'));
+  },[]);
+  const [user_id, setUser_id] = useRecoilState(userState);
+
 const navigate = useNavigate();
 const [idPortfolio, setIdPortfolio] = useState(null); 
 
 useEffect(() => {
+  if(user_id === 'undefined') return;
   fetch(`/profile/${user_id}`, {
       mode: 'no-cors'
   })
@@ -25,7 +32,8 @@ useEffect(() => {
 
 return (
     <div className="main-body">
-      <Navbar />
+      <Navbar />      
+      <h1>{user_id}</h1>
      <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
       <br/>
@@ -34,7 +42,7 @@ return (
       to={
         user_id === 'undefined' ? 
         `/profile/${user_id}` : 
-        (idPortfolio === null ? `/portfolio/${user_id}` : `/portfolio/template/${user_id}`)
+        (idPortfolio === null ? `/portfolio/` : `/portfolio/`)
       }
       
       spy={true}
@@ -57,7 +65,7 @@ return (
           <h2>Portfolio</h2>
           <p>Build a website for your portfolio</p>
         </motion.div>
-        </Link>
+        </Link> */}
 
         <Link to="/portfolio"  spy={true}
                 smooth={true}
@@ -79,7 +87,7 @@ return (
           <h2>Ecommerce</h2>
           <p>Build a website for your store</p>
         </motion.div>
-        </Link> */}
+        </Link>
 
     </div>
     <br/>

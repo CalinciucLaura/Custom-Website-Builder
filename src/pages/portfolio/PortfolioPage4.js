@@ -12,10 +12,12 @@ import Navbar from '../navbar/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import BackNext from '../buttons/BackNext';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../user_session_state';
 AOS.init();
 
 const PortfolioPage4 = () => {
-    const { user_id } = useParams();
+    const [user_id] = useRecoilValue(userState);
     const [showCardProjects, setShowCardProjects] = useState(false);
     const [cardsProjects, setCardsProjects] = useState([]);
     const [showAddProject, setShowAddProject] = useState(false);

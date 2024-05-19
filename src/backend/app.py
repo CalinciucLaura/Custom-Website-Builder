@@ -422,7 +422,7 @@ def profile():
 
 @app.route('/profile/<user_id>')
 def get_portfolio(user_id):
-    if not user_id:
+    if not user_id or user_id == "undefined":
         return "Invalid user id"
     g.db, g.cursor = create_connection()
     g.cursor.execute(

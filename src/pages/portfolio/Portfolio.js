@@ -8,9 +8,11 @@ import "./Portfolio.scss";
 import Navbar from "../navbar/Navbar";
 import AlertModal from "../modals/AlertModal";
 import ProgressBar from "../Bars/ProgressBar";
+import { useRecoilValue } from 'recoil';
+import { userState } from '../user_session_state';
 
 const Portfolio = () => {
-  const { user_id } = useParams();
+  const [user_id] = useRecoilValue(userState);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -51,7 +53,7 @@ const Portfolio = () => {
       }),
     });
 
-    navigate(`/portfolio/experience_education/${user_id}`);
+    navigate(`/portfolio/experience_education/`);
   };
 
   function toBase64(file) {
@@ -74,6 +76,7 @@ const Portfolio = () => {
     <div className="portfolio-body" style={{backgroundColor:'#1f1f1f'}}>
       <Navbar />
       <ProgressBar />
+  
       <div className="portfolio" >
         <h1>1. Complete your <span>Resume</span></h1>
         <br/>

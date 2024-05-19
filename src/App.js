@@ -13,28 +13,30 @@ import ColorSelector from './pages/portfolio/ColorSelector';
 import { TemplateGenerator } from './pages/portfolio/templates/Template';
 import Profile from './pages/Profile';
 import Website from './pages/portfolio/templates/Website';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
+    <RecoilRoot>
     <Router>
-      <Routes>
-        {/* <Route path={`/`} element={<MainPage />} /> */}
-        <Route path={`/:user_id`} element={<MainPage />} />
+      <Routes>        
+        <Route path={`/`} element={<MainPage />} />
         <Route path={`/template_1/:user_id`} element={<T1 /> }/>
         <Route path={`/template_2/:user_id`} element={<T2 /> }/>
         <Route path={`/template_3/:user_id`} element={<T3 /> }/>
         <Route path={'/generator'} element={<HomePage />} />
-        <Route path={`/portfolio/:user_id`} element={<Portfolio />} />
-        <Route path={'/portfolio/experience_education/:user_id'} element={<PortfolioPage2 />} />
-        <Route path={'/portfolio/skills/:user_id'} element={<PortfolioPage3 />} />
-        <Route path={'/portfolio/projects/:user_id'} element={<PortfolioPage4 />} />
-        <Route path={'/portfolio/color/:user_id'} element={<ColorSelector />} />
-        <Route path={`/portfolio/template/:user_id/preview`} element={<Website />} />
-        <Route path={`/profile/:user_id`} element={<Profile />} />
-        <Route path={`/portfolio/template/:user_id`} element={<TemplateGenerator />} />
+        <Route path={`/portfolio/`} element={<Portfolio />} />
+        <Route path={'/portfolio/experience_education/'} element={<PortfolioPage2 />} />
+        <Route path={'/portfolio/skills/'} element={<PortfolioPage3 />} />
+        <Route path={'/portfolio/projects/'} element={<PortfolioPage4 />} />
+        <Route path={'/portfolio/color/'} element={<ColorSelector />} />
+        <Route path={`/portfolio/template/preview`} element={<Website />} />
+        <Route path={`/profile/`} element={<Profile />} />
+        <Route path={`/portfolio/template/`} element={<TemplateGenerator />} />
       
       </Routes>
     </Router>
+    </RecoilRoot>
   );
 }
   
