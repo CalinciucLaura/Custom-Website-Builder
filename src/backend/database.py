@@ -32,9 +32,27 @@ def select_all(cursor, id):
     return cursor.fetchall()
 
 
+def create_table_users(cursor):
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS users (
+            id_user INTEGER PRIMARY KEY AUTOINCREMENT, 
+            first_name TEXT,
+            last_name TEXT,
+            email TEXT,
+            password TEXT,
+            id_portfolio INTEGER,
+            id_website INTEGER,
+            FOREIGN KEY(id_portfolio) REFERENCES portfolio_record(id_portfolio)
+            FOREIGN KEY(id_website) REFERENCES website(id)
+        )
+        """
+    )
+
+
 def create_table_portfolio(cursor):
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS portfolio_record (id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT, last_name TEXT, email TEXT, phone TEXT, address TEXT, description TEXT, image TEXT, github TEXT, linkedin TEXT, role TEXT, color TEXT)"
+        "CREATE TABLE IF NOT EXISTS portfolio_record (id_portfolio INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, first_name TEXT, last_name TEXT, email TEXT, phone TEXT, address TEXT, description TEXT, image TEXT, github TEXT, linkedin TEXT, role TEXT, color TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
     )
 
 

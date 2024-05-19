@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-const Links = () => {
+const Links = ({ user_id }) => {
     const items = [
-        { name: "Homepage", path: "/" },
-        { name: "Portfolio", path: "/portfolio" },
+        { name: "Homepage", path: `/${user_id}` },
+        { name: "Portfolio", path: `/portfolio/${user_id}` },
         { name: "Business", path: "/business" },
         { name: "Blog", path: "/blog" },
         { name: "E-commerce", path: "/ecommerce" },

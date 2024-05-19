@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import "../MainPage.scss";
+import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Input, Col, Button, Nav } from 'reactstrap';
@@ -9,6 +10,7 @@ import AlertModal from "../modals/AlertModal";
 import ProgressBar from "../Bars/ProgressBar";
 
 const Portfolio = () => {
+  const { user_id } = useParams();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,16 +27,15 @@ const Portfolio = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
-      setShowAlertModal(true);
-      return;
-    }
+    // if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
+    //   setShowAlertModal(true);
+    //   return;
+    // }
 
-    const response = await fetch(`/portfolio`, {
+    const response = await fetch(`/createPortfolio/${user_id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-
       },
       body: JSON.stringify({
         firstName,
@@ -49,7 +50,7 @@ const Portfolio = () => {
         role
       }),
     });
-    const user_id = await response.json();
+
     navigate(`/portfolio/experience_education/${user_id}`);
   };
 

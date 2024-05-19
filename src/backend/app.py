@@ -3,7 +3,7 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects
+from database import create_connection, create_table, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects, create_table_users
 from ImageGenerator import generate_multiple_images
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
@@ -13,6 +13,7 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 @app.before_request
 def before_request():
     g.db, g.cursor = create_connection()
+    create_table_users(g.cursor)
     create_table(g.cursor)
     create_table_portfolio(g.cursor)
     create_table_experience(g.cursor)
@@ -61,8 +62,8 @@ def get_text(user_id):
     return jsonify(result)
 
 
-@app.route('/portfolio', methods=['POST'])
-def portfolio():
+@app.route('/createPortfolio/<user_id>', methods=['POST'])
+def portfolio(user_id):
     data = request.get_json()
     firstName = data['firstName']
     lastName = data['lastName']
@@ -77,15 +78,15 @@ def portfolio():
 
     g.db, g.cursor = create_connection()
     g.cursor.execute("""
-        INSERT INTO portfolio_record (first_name, last_name, email, phone, address, description, image, github, linkedin, role)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (firstName, lastName, email, phone, address, description, photo, github, linkedin, role))
+        INSERT INTO portfolio_record (id_user, first_name, last_name, email, phone, address, description, image, github, linkedin, role)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (user_id, firstName, lastName, email, phone, address, description, photo, github, linkedin, role))
     g.db.commit()
-    g.cursor.execute(
-        "SELECT id FROM portfolio_record WHERE email = ?", (email,))
-    user_id = g.cursor.fetchone()[0]
-    print(user_id)
-    return jsonify(user_id)
+    # g.cursor.execute(
+    #     "SELECT id FROM portfolio_record WHERE email = ?", (email,))
+    # user_id = g.cursor.fetchone()[0]
+    # print(user_id)
+    return jsonify("Portfolio created")
 
 
 @app.route('/portfolio/<user_id>')
@@ -93,7 +94,8 @@ def get_portfolio_data(user_id):
     if not user_id:
         return "Invalid user id"
     g.db, g.cursor = create_connection()
-    g.cursor.execute("SELECT * FROM portfolio_record WHERE id = ?", (user_id,))
+    g.cursor.execute(
+        "SELECT * FROM portfolio_record WHERE id_user = ?", (user_id,))
     info = g.cursor.fetchone()
     return jsonify(info)
 
@@ -114,7 +116,7 @@ def updatePortfolio(user_id):
     color = data['color']
     g.db, g.cursor = create_connection()
     g.cursor.execute(
-        "UPDATE portfolio_record SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, description = ?, image = ?, github = ?, linkedin = ?, role = ?, color = ? WHERE id = ?", (firstName, lastName, email, phone, address, description, image, github, linkedin, role, color, user_id))
+        "UPDATE portfolio_record SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, description = ?, image = ?, github = ?, linkedin = ?, role = ?, color = ? WHERE id_user = ?", (firstName, lastName, email, phone, address, description, image, github, linkedin, role, color, user_id))
     g.db.commit()
 
     return jsonify("Portfolio updated")
@@ -300,7 +302,7 @@ def colorPortfolio(user_id):
     color = data['color']
     g.db, g.cursor = create_connection()
     g.cursor.execute(
-        "UPDATE portfolio_record SET color = ? WHERE id = ?", (color, user_id))
+        "UPDATE portfolio_record SET color = ? WHERE id_user = ?", (color, user_id))
     g.db.commit()
     return jsonify("Color added")
 
@@ -396,6 +398,37 @@ def get_projects(user_id):
         "SELECT * FROM projects_record WHERE id_user = ?", (user_id,))
     projects = g.cursor.fetchall()
     return jsonify(projects)
+
+
+@app.route('/profile', methods=['POST'])
+def profile():
+    data = request.get_json()
+    firstName = data['firstName']
+    lastName = data['lastName']
+    email = data['email']
+    password = data['password']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("""
+        INSERT INTO users (first_name, last_name, email, password)
+        VALUES (?, ?, ?, ?)
+    """, (firstName, lastName, email, password))
+    g.db.commit()
+    g.cursor.execute(
+        "SELECT * FROM users WHERE email = ?", (email,))
+    user_id = g.cursor.fetchone()[0]
+
+    return jsonify(user_id)
+
+
+@app.route('/profile/<user_id>')
+def get_portfolio(user_id):
+    if not user_id:
+        return "Invalid user id"
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT id_portfolio FROM portfolio_record WHERE id_user = ?", (user_id,))
+    user = g.cursor.fetchone()[0]
+    return jsonify(user)
 
 
 if __name__ == '__main__':

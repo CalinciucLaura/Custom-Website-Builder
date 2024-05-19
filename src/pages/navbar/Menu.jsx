@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Links from "./links/Links";
 import "./navbar.scss";
 import ToggleButton from "./toggleButton/ToggleButton";
+import { useParams } from "react-router-dom";
 
 const variants = {
     open: {
@@ -24,11 +25,12 @@ const variants = {
 };
 const Menu = () => {
     const [open, setOpen] = useState(false);
+    const { user_id } = useParams();
 
     return (
         <motion.div className="navbar" animate={open ? "open" : "closed"}>
             <motion.div className="bg" variants={variants}>
-                <Links />
+                <Links user_id={user_id} />
             </motion.div>
             <ToggleButton setOpen={setOpen} />
         </motion.div>

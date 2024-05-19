@@ -1,34 +1,54 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import './MainPage.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaMagic } from "react-icons/fa";
 import Section from './sections/Section';
 import { motion } from "framer-motion";
 import Navbar from "./navbar/Navbar";
 
 const MainPage = (props) => {
- 
+const { user_id } = useParams();
+const navigate = useNavigate();
+const [idPortfolio, setIdPortfolio] = useState(null); 
 
-  return (
+useEffect(() => {
+  fetch(`/profile/${user_id}`, {
+      mode: 'no-cors'
+  })
+      .then(res => res.json())
+      .then(data => {
+          setIdPortfolio(data);
+      })
+}
+, [user_id]);
+
+
+return (
     <div className="main-body">
       <Navbar />
-    <div className="main">
+     <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
       <br/>
-      <div className="main__content">
-
-      <Link to="/portfolio"  spy={true}
+      <div className="main__content">      
+      <Link 
+      to={
+        user_id === 'undefined' ? 
+        `/profile/${user_id}` : 
+        (idPortfolio === null ? `/portfolio/${user_id}` : `/portfolio/template/${user_id}`)
+      }
+      
+      spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 className="btn">
         <motion.div className="main__content__item" whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-          <h2>Business</h2>
-          <p>Build a website for your business</p>
+          <h2>Portfolio</h2>
+          <p>Build a website with your CV</p>
         </motion.div>
         </Link>
-
-        <Link to="/portfolio"  spy={true}
+      
+        {/* <Link to="/portfolio"  spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
@@ -59,13 +79,12 @@ const MainPage = (props) => {
           <h2>Ecommerce</h2>
           <p>Build a website for your store</p>
         </motion.div>
-        </Link>
+        </Link> */}
 
     </div>
     <br/>
-    <Link to="/generator" style={{textDecoration: 'none'}}>
-    <button className="main__button"><FaMagic /> AI Website</button>
-    </Link>
+    
+    <button className="main__button" onClick={()=> navigate("/generator")}><FaMagic /> AI Website</button>
     </div>
     <Section  title = "How to Create a Website?"  text={
     <>
@@ -96,6 +115,7 @@ const MainPage = (props) => {
       Simply choose a template, customize it to your liking, and publish your website. It's that easy!
     </>
     }/>
+
     </div>
   )
 };

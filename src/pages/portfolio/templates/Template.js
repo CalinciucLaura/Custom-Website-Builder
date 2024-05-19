@@ -37,17 +37,17 @@ export const TemplateGenerator = () => {
           .then(res => res.json())
           .then(data => {
               if (data && data.length > 0) {
-                  setFirstName(data[1])
-                  setLastName(data[2])
-                  setEmail(data[3])
-                  setPhone(data[4])
-                  setAddress(data[5])
-                  setDescription(data[6])
-                  setImage(data[7])
-                  setGithub(data[8])
-                  setLinkedin(data[9])
-                  setRole(data[10])
-                  setColor(data[11])
+                  setFirstName(data[2])
+                  setLastName(data[3])
+                  setEmail(data[4])
+                  setPhone(data[5])
+                  setAddress(data[6])
+                  setDescription(data[7])
+                  setImage(data[8])
+                  setGithub(data[9])
+                  setLinkedin(data[10])
+                  setRole(data[11])
+                  setColor(data[12])
               } else {
                   console.log('No info received from server')
               }

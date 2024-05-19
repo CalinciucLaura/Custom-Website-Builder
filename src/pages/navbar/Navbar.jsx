@@ -6,10 +6,11 @@ import EditBtn from "../buttons/EditBtn";
 import PublishBtn from "../buttons/PublishBtn";
 import Menu from "./Menu";
 import { FaRegUser } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 
 const Navbar = ({ editBtn, publishBtn, pathEdit, pathPublish }) => {
+    const { user_id } = useParams();
     const navigate = useNavigate();
-
     return (
         <div className="top">
             <Menu />
@@ -17,7 +18,7 @@ const Navbar = ({ editBtn, publishBtn, pathEdit, pathPublish }) => {
                 {editBtn == true ? <EditBtn path={pathEdit} /> : null}
                 {publishBtn == true ? <PublishBtn path={pathPublish} /> : null}
                 <a style={{ backgroundColor: 'transparent' }}>
-                    <FaRegUser style={{ fontSize: '20px', margin: '7px', color: '#cee73d', cursor: 'pointer' }} onClick={() => navigate(`/profile/`)} /></a>
+                    <FaRegUser style={{ fontSize: '20px', margin: '7px', color: '#cee73d', cursor: 'pointer' }} onClick={() => navigate(`/profile/${user_id}`)} /></a>
             </div>
         </div>
     )
