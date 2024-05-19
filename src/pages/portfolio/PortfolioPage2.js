@@ -92,7 +92,7 @@ const PortfolioPage2 = () => {
   return (
     <div className="portfolio-body">
          <Navbar/>
-      <BackNext path={`/portfolio/skills/${user_id}`} />
+      <BackNext path={`/portfolio/skills/`} />
       <div className="portfolioPage2" data-aos = "fade-left">
         <h1>2. Experience <span> & Education</span></h1>
         <br/>

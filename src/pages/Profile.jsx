@@ -12,15 +12,13 @@ import { useRecoilState } from 'recoil';
 import { userState } from './user_session_state';
 
 const Profile = () => {
-    const [userState, setUserState] = useRecoilState(userState);
-
+    const [user_id, setUserState] = useRecoilState(userState);
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const { user_id } = useParams();
+    const [confirmPassword, setConfirmPassword] = useState('');    
     const [showAlertModal, setShowAlertModal] = useState(false);
     const [showAlertModalPassword, setShowAlertModalPassword] = useState(false);
 
@@ -104,7 +102,7 @@ const Profile = () => {
                         </div> */}
                     </Form>
                     <Section title="My Portfolio" text={
-                        <button onClick={() => { navigate(`/portfolio/template/${user_id}`) }}><LuMousePointerClick /> Visit Website Portfolio</button>
+                        <button onClick={() => { navigate(`/portfolio/template/`) }}><LuMousePointerClick /> Visit Website Portfolio</button>
                     }
                     />
 

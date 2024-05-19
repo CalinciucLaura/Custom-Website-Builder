@@ -39,7 +39,7 @@ const ColorSelector = () => {
     const data = await response.json();
     setTimeout(() => {
       setLoading(false);
-      navigate(`/portfolio/template/${user_id}`);
+      navigate(`/portfolio/template/`);
     }, 5000);
 
   }

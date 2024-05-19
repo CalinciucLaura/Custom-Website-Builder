@@ -4,6 +4,8 @@ import Links from "./links/Links";
 import "./navbar.scss";
 import ToggleButton from "./toggleButton/ToggleButton";
 import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userState } from "../user_session_state";
 
 const variants = {
     open: {
@@ -25,7 +27,7 @@ const variants = {
 };
 const Menu = () => {
     const [open, setOpen] = useState(false);
-    const { user_id } = useParams();
+    const [user_id] = useRecoilValue(userState);
 
     return (
         <motion.div className="navbar" animate={open ? "open" : "closed"}>

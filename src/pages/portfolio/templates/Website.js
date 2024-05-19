@@ -7,6 +7,8 @@ import { FaTrashCan } from "react-icons/fa6";
 import { FiPlus } from "react-icons/fi";
 import Section from "../../sections/Section";
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue} from 'recoil';
+import { userState } from '../../user_session_state';
 
 const Website = (props) => {
   const [firstName, setFirstName] = useState(undefined);
@@ -19,13 +21,14 @@ const Website = (props) => {
   const [experience, setExperience] = useState([]);
   const [education, setEducation] = useState([]);
   const [skills, setSkills] = useState([]); 
-  const { user_id } = useParams();
   const [linkedin, setLinkedin] = useState(undefined);
   const [github, setGithub] = useState(undefined);
   const [role, setRole] = useState(undefined);
   const [color, setColor] = useState(undefined);
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
+
+  const [user_id] = useRecoilValue(userState);
  
   useEffect(() => {
       if (user_id === undefined) return;
@@ -261,7 +264,7 @@ const handleSave =  async() => {
     const projectsData = await projectsResponse.json();
     console.log(projectsData);
 
-    navigate(`/portfolio/template/${user_id}`)
+    navigate(`/portfolio/template/`)
 }
 
 

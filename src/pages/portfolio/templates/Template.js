@@ -138,7 +138,7 @@ const Template = ({
 
   return (
     <>
-    {showNavbar && <Navbar editBtn={true} publishBtn={true} pathEdit={`/portfolio/template/${user_id}/preview`}/> }
+    {showNavbar && <Navbar editBtn={true} publishBtn={true} pathEdit={`/portfolio/template/preview`}/> }
     <div className="app">
       <div className="sidebar">
         <Sidebar 

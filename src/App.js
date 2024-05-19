@@ -14,10 +14,25 @@ import { TemplateGenerator } from './pages/portfolio/templates/Template';
 import Profile from './pages/Profile';
 import Website from './pages/portfolio/templates/Website';
 import { RecoilRoot } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { userState } from './pages/user_session_state';
 
 function App() {
   return (
     <RecoilRoot>
+      <AppBlock />
+    </RecoilRoot>
+  );
+}
+
+const AppBlock = () => {
+  useEffect(() => {
+    setUser_id(window.localStorage.getItem('user_id'));
+  },[]);
+  const [user_id, setUser_id] = useRecoilState(userState);
+
+  return (
     <Router>
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
@@ -36,8 +51,7 @@ function App() {
       
       </Routes>
     </Router>
-    </RecoilRoot>
   );
 }
   
-  export default App;
+export default App;

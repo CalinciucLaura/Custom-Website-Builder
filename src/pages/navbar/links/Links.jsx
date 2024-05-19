@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Links = ({ user_id }) => {
     const items = [
-        { name: "Homepage", path: `/${user_id}` },
-        { name: "Portfolio", path: `/portfolio/${user_id}` },
+        { name: "Homepage", path: `/` },
+        { name: "Portfolio", path: `/portfolio/` },
         { name: "Business", path: "/business" },
         { name: "Blog", path: "/blog" },
         { name: "E-commerce", path: "/ecommerce" },
