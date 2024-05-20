@@ -409,16 +409,21 @@ def profile():
     password = data['password']
     g.db, g.cursor = create_connection()
     g.cursor.execute("""
-        INSERT INTO users (first_name, last_name, email, password)
-        VALUES (?, ?, ?, ?)
-    """, (firstName, lastName, email, password))
-    g.db.commit()
-    g.cursor.execute(
-        "SELECT * FROM users WHERE email = ?", (email,))
-    user_id = g.cursor.fetchone()[0]
-
-    return jsonify(user_id)
-
+        SELECT * FROM users WHERE email = ?
+    """, (email,))
+    user = g.cursor.fetchone()
+    if user is not None:
+        return jsonify("User already exists"), 400
+    else:
+        g.cursor.execute("""
+            INSERT INTO users (first_name, last_name, email, password)
+            VALUES (?, ?, ?, ?)
+        """, (firstName, lastName, email, password))
+        g.db.commit()
+        g.cursor.execute(
+            "SELECT * FROM users WHERE email = ?", (email,))
+        user_id = g.cursor.fetchone()[0]
+        return jsonify(user_id)
 
 @app.route('/profile/<user_id>')
 def get_portfolio(user_id):
@@ -429,6 +434,19 @@ def get_portfolio(user_id):
         "SELECT id_portfolio FROM portfolio_record WHERE id_user = ?", (user_id,))
     user = g.cursor.fetchone()[0]
     return jsonify(user)
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+    user = g.cursor.fetchone()
+    if user is None:
+        return jsonify("Invalid credentials")
+    return jsonify(user[0])
 
 
 if __name__ == '__main__':

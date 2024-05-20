@@ -21,7 +21,9 @@ useEffect(() => {
   })
       .then(res => res.json())
       .then(data => {
+          if (data && data.length > 0) {
           setIdPortfolio(data);
+          }
       })
 }
 , [user_id]);
@@ -29,7 +31,7 @@ useEffect(() => {
 
 return (
     <div className="main-body">
-      <Navbar />      
+      <Navbar loginBtn={true}/>      
      <div className="main">
       <h1>Generate a <span>Website</span> for ..</h1>
       <br/>
@@ -40,9 +42,6 @@ return (
         `/profile/${user_id}` : 
         (idPortfolio === null ? `/portfolio/` : `/portfolio/template`)
       }
-      
-      spy={true}
-                smooth={true}
                 offset={-70}
                 duration={500}
                 className="btn">
@@ -63,7 +62,7 @@ return (
         </motion.div>
         </Link> */}
 
-        <Link to="/portfolio"  spy={true}
+        {/* <Link to="/portfolio"  spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
@@ -83,7 +82,7 @@ return (
           <h2>Ecommerce</h2>
           <p>Build a website for your store</p>
         </motion.div>
-        </Link>
+        </Link> */}
 
     </div>
     <br/>

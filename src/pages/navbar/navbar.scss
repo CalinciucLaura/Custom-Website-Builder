@@ -61,6 +61,13 @@
     .right-side {
         display: flex;
         gap: 20px;
+
+        .login-btn{
+            background-color: transparent;
+            color: #cee73d;
+            font-weight: 500 ;
+            border: none;        
+        }
     }
 }
 

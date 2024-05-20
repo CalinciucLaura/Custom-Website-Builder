@@ -40,11 +40,7 @@ def create_table_users(cursor):
             first_name TEXT,
             last_name TEXT,
             email TEXT,
-            password TEXT,
-            id_portfolio INTEGER,
-            id_website INTEGER,
-            FOREIGN KEY(id_portfolio) REFERENCES portfolio_record(id_portfolio)
-            FOREIGN KEY(id_website) REFERENCES website(id)
+            password TEXT
         )
         """
     )
