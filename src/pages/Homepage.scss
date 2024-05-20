@@ -1,56 +1,33 @@
 .homepage {
-    position: relative;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     text-align: center;
-    overflow: hidden;
     background-color: #1f1f1f;
     font-family: 'Inter', sans-serif;
 
-    h1 {
-        color: #f7f6f6ee;
-        font-size: 70px;
-        text-align: center;
-        margin-bottom: 0;
-        font-weight: 600;
-
-        span {
-            color: #cee73d;
-        }
-    }
-
-    p {
-        font-size: 20px;
-        font-weight: 500;
-        color: gray;
-        margin-top: 20px;
-        margin-bottom: 50px;
-        line-height: 1.5;
-    }
-
-    h5 {
-        color: rgba(241, 0, 0, 0.87);
-        font-family: 'Inter', sans-serif;
-        background-color: rgba(241, 0, 0, 0.363);
-        width: 20%;
-        text-align: center;
-        display: block;
-        padding: 5px;
-        margin: 20px auto;
-        border-radius: 5px;
-        height: 20px;
-    }
-
-
     .block {
+        transform: translate(0, 25%);
+        h1 {
+            color: #f7f6f6ee;
+            font-size: 70px;
+            font-weight: 600;
+    
+            span {
+                color: #cee73d;
+            }
+        }
+    
+        p {
+            font-size: 20px;
+            font-weight: 500;
+            color: gray;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            line-height: 1.5;
+        }
+
         .inputBox {
-            width: 100%;
+            width: 60%;
+            margin: auto;
             border-radius: 30px;
             border: 1px solid #cee73d;
             box-shadow: 0px 0px 20px 0px #cee73d;
@@ -73,7 +50,8 @@
             height: 50px;
             border-radius: 30px;
             border: none;
-            font-size: 20px;
+            font-size: 15px;
+            font-weight: 600;
             text-align: center;
             background-color: #cee73d;
             color: #1f1f1f;

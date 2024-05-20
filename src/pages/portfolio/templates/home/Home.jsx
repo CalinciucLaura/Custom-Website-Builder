@@ -35,9 +35,9 @@ const Home = ({ firstName, lastName, role, color }) => {
         <div className="home">
             <h3> <GoHome style={{ marginRight: '10px' }} />INTRODUCE</h3>
             <h1>Hi! <br /> I'm <span style={{ color: color }}>{firstName} {lastName}</span> <br />{role}</h1>
-            <a href="cv.pdf" download="Resume">
+            {/* <a href="cv.pdf" download="Resume">
                 <button style={{ backgroundColor: color }}><FaDownload style={{ marginRight: '5px', fontSize: '15px' }} />Download Resume</button></a>
-            <motion.img variants={textVariants} animate="scrollButton" alt="" />
+            <motion.img variants={textVariants} animate="scrollButton" alt="" /> */}
         </div>
     )
 };

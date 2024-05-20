@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Homepage.scss';
 import { Link } from 'react-router-dom';
 import { FaMagic } from "react-icons/fa";
+import Navbar from './navbar/Navbar';
 
 async function readData(event){
   event.preventDefault();
@@ -26,6 +27,7 @@ async function readData(event){
 const HomePage = () => {
  return(
     <div className='homepage'>
+      <Navbar loginBtn={true}/>
       <div className='block'>
         <h1>Generate Your Website <br/><span>Now with AI.</span></h1>
         <p> Build, edit and publish a beautiful website <br/> without any design or code experience.</p>

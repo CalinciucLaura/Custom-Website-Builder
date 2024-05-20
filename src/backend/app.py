@@ -421,7 +421,12 @@ def profile():
             VALUES (?, ?, ?, ?)
         """, (firstName, lastName, email, password))
         g.db.commit()
-        return jsonify("User created")
+        g.cursor.execute(
+            """SELECT first_name, last_name, email FROM users WHERE email = ?""", (email,))
+        user = g.cursor.fetchone()
+
+        return jsonify(user)
+       
 
 # @app.route('/profile/<user_id>')
 # def get_portfolio(user_id):

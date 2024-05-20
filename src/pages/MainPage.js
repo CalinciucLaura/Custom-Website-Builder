@@ -87,7 +87,7 @@ const MainPage = (props) => {
         </div>
         <br />
 
-        <button className="main__button" onClick={() => navigate("/generator")}><FaMagic /> AI Website</button>
+        <button onClick={() => navigate("/generator")}><FaMagic /> AI Website</button>
       </div>
       <Section title="How to Create a Website?" text={
         <>
