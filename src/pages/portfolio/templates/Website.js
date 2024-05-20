@@ -11,6 +11,7 @@ import { useRecoilValue} from 'recoil';
 import { userState } from '../../user_session_state';
 
 const Website = (props) => {
+  const [user_id] = useRecoilValue(userState);
   const [firstName, setFirstName] = useState(undefined);
   const [lastName, setLastName] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -28,7 +29,7 @@ const Website = (props) => {
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
 
-  const [user_id] = useRecoilValue(userState);
+ 
  
   useEffect(() => {
       if (user_id === undefined) return;
@@ -170,6 +171,13 @@ const handleProjectChange = (index, field, event) => {
     setProjects(newProjects);
 }
 const handleSave =  async() => {
+    if (!firstName || !lastName || !email || !phone || !address || !description || !image || !role) {
+        alert('Please fill all the fields');
+        return;
+    }
+    
+    console.log(user_id);
+
     const response = await  fetch(`/portfolio/${user_id}`, {
         method: 'POST',
         headers: {
@@ -270,14 +278,6 @@ const handleSave =  async() => {
 
   return (
     <div className="website"> 
-    {/* <Navbar />   */}
-    {/* <Section title={
-         <>
-         {"Edit Your Website"} 
-         <CiEdit />
-     </>
-     }
-        />  */}
         <br/>
         <div className="row web">
             <div className="col-md-9 template" >

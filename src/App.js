@@ -28,7 +28,7 @@ function App() {
 
 const AppBlock = () => {
   useEffect(() => {
-    setUser_id(window.localStorage.getItem('user_id'));
+    setUser_id(window.localStorage.getItem('user_id') ?? '');
   },[]);
   const [user_id, setUser_id] = useRecoilState(userState);
 

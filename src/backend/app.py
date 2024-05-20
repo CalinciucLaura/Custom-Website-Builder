@@ -114,6 +114,7 @@ def updatePortfolio(user_id):
     linkedin = data['linkedin']
     role = data['role']
     color = data['color']
+
     g.db, g.cursor = create_connection()
     g.cursor.execute(
         "UPDATE portfolio_record SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, description = ?, image = ?, github = ?, linkedin = ?, role = ?, color = ? WHERE id_user = ?", (firstName, lastName, email, phone, address, description, image, github, linkedin, role, color, user_id))
@@ -400,7 +401,7 @@ def get_projects(user_id):
     return jsonify(projects)
 
 
-@app.route('/profile', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def profile():
     data = request.get_json()
     firstName = data['firstName']
@@ -420,20 +421,17 @@ def profile():
             VALUES (?, ?, ?, ?)
         """, (firstName, lastName, email, password))
         g.db.commit()
-        g.cursor.execute(
-            "SELECT * FROM users WHERE email = ?", (email,))
-        user_id = g.cursor.fetchone()[0]
-        return jsonify(user_id)
+        return jsonify("User created")
 
-@app.route('/profile/<user_id>')
-def get_portfolio(user_id):
-    if not user_id or user_id == "null":
-        return "Invalid user id"
-    g.db, g.cursor = create_connection()
-    g.cursor.execute(
-        "SELECT id_portfolio FROM portfolio_record WHERE id_user = ?", (user_id,))
-    user = g.cursor.fetchone()[0]
-    return jsonify(user)
+# @app.route('/profile/<user_id>')
+# def get_portfolio(user_id):
+#     if not user_id or user_id == "null":
+#         return "Invalid user id"
+#     g.db, g.cursor = create_connection()
+#     g.cursor.execute(
+#         "SELECT id_portfolio FROM portfolio_record WHERE id_user = ?", (user_id,))
+#     user = g.cursor.fetchone()[0]
+#     return jsonify(user)
 
 @app.route('/login', methods=['POST'])
 def login():

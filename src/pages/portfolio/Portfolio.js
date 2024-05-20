@@ -23,6 +23,7 @@ const Portfolio = () => {
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
   const [role, setRole] = useState('');
+  const [resume, setResume] = useState('');
   const navigate = useNavigate();
   const [showAlertModal, setShowAlertModal] = useState(false);
   
@@ -49,7 +50,8 @@ const Portfolio = () => {
         photo,
         linkedin, 
         github, 
-        role
+        role,
+        resume
       }),
     });
 
@@ -259,6 +261,24 @@ const Portfolio = () => {
                 type="text"
                 value={role}
                 onChange={e => setRole(e.target.value)}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label
+              for="exampleText"
+              sm={2}
+            >
+              Upload Resume
+            </Label>
+            <Col sm={10}>
+              <Input
+                id="role"
+                name="text"
+                type="file"
+                accept="application/pdf"
+                value={resume}
+                onChange={e => setResume(e.target.value)}
               />
             </Col>
           </FormGroup>

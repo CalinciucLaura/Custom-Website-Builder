@@ -7,11 +7,13 @@ import Navbar from '../navbar/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import AlertModal from "../modals/AlertModal";
+import { useRecoilValue } from 'recoil';
+import { userState } from '../user_session_state';
 
 AOS.init();
 const ColorSelector = () => {
   const colors = ['#1abc9c', '#f39c12', '#f368e0', '#ff3f34', '#3498db', '#9b59b6', '#ffeaa7', '#e84393', ,'#dfe6e9','#ff7675', '#74b9ff'];
-  const { user_id } = useParams();
+  const [user_id] = useRecoilValue(userState);
   const [selectedColor, setSelectedColor] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -41,7 +43,6 @@ const ColorSelector = () => {
       setLoading(false);
       navigate(`/portfolio/template/`);
     }, 5000);
-
   }
 
   return (

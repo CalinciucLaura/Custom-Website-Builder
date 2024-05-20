@@ -48,7 +48,7 @@ def create_table_users(cursor):
 
 def create_table_portfolio(cursor):
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS portfolio_record (id_portfolio INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, first_name TEXT, last_name TEXT, email TEXT, phone TEXT, address TEXT, description TEXT, image TEXT, github TEXT, linkedin TEXT, role TEXT, color TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
+        "CREATE TABLE IF NOT EXISTS portfolio_record (id_portfolio INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, first_name TEXT, last_name TEXT, email TEXT, phone TEXT, address TEXT, description TEXT, image TEXT, github TEXT, linkedin TEXT, role TEXT, color TEXT, resume TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
     )
 
 

@@ -23,20 +23,6 @@ const Profile = () => {
     const [showAlertModalPassword, setShowAlertModalPassword] = useState(false);
     const [showAlertUserExists, setShowAlertUserExists] = useState(false);  
 
-    useEffect(() => {
-        fetch(`/profile/${user_id}`, {
-            mode: 'no-cors'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    setFirstName(data[2])
-                    setLastName(data[3])
-                    setEmail(data[4])
-                }
-            })
-    }, [user_id]);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -50,7 +36,7 @@ const Profile = () => {
             return;
         }
 
-        const response = await fetch(`/profile`, {
+        const response = await fetch(`/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

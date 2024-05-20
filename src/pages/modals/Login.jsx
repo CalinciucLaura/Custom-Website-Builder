@@ -28,14 +28,15 @@ const Login = (props) => {
                 password
             }),
         });
-
+        
         const data = await response.json();
-        console.log(data);
-        setUserState(data);
-        window.localStorage.setItem('user_id', data);
-
-        if (data.success) {
-            window.location.href = '/';
+        
+        if (data !== 'Invalid credentials') {
+            console.log(data);
+            setUserState(data);
+            window.localStorage.setItem('user_id', data);
+            
+            window.location.href = '/';            
         } else {
             alert('Invalid credentials');
         }
