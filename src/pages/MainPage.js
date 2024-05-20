@@ -7,11 +7,13 @@ import { motion } from "framer-motion";
 import Navbar from "./navbar/Navbar";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState } from './user_session_state';
+import Login from "./modals/Login";
 
 const MainPage = (props) => {
   const [user_id] = useRecoilValue(userState);
   const navigate = useNavigate();
   const [idPortfolio, setIdPortfolio] = useState(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   useEffect(() => {
     if (!user_id) return;
@@ -26,10 +28,12 @@ const MainPage = (props) => {
       })
   }
     , [user_id]);
-    
+
+
   return (
     <div className="main-body">
-      <Navbar loginBtn={true} />
+      {!user_id ? <Navbar loginBtn={true} logoutBtn={false} /> : <Navbar loginBtn={false} logoutBtn={true} />}
+
       <div className="main">
         <h1>Generate a <span>Website</span> for ..</h1>
         <br />
@@ -37,13 +41,19 @@ const MainPage = (props) => {
 
           <Link
             to={
-              user_id === 'undefined' ?
-                `/profile/${user_id}` :
+              !user_id ?
+                `/`:
                 (idPortfolio === null ? `/portfolio/` : `/portfolio/template`)
             }
             offset={-70}
             duration={500}
-            className="btn">
+            className="btn"
+            onClick={() => {
+              if (!user_id) {
+                setShowLoginModal(true);
+              }
+            }}>            
+            <Login modal={showLoginModal} toggle={() => setShowLoginModal(!showLoginModal)} />
 
             <motion.div className="main__content__item" whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
               <h2>Portfolio</h2>

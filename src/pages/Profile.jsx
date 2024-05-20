@@ -10,7 +10,7 @@ import AlertModal from "./modals/AlertModal";
 import { useRecoilState } from 'recoil';
 import { userState } from './user_session_state';
 import "./MainPage.scss";
-
+import { FaTrashCan } from "react-icons/fa6";
 
 const Profile = () => {
     const [user_id, setUserState] = useRecoilState(userState);
@@ -23,7 +23,8 @@ const Profile = () => {
     const [showAlertModal, setShowAlertModal] = useState(false);
     const [showAlertModalPassword, setShowAlertModalPassword] = useState(false);
     const [showAlertUserExists, setShowAlertUserExists] = useState(false);
-
+    const [showAlertDeletePortfolio, setShowAlertDeletePortfolio] = useState(false);    
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -54,16 +55,40 @@ const Profile = () => {
             setShowAlertUserExists(true);
             return;
         }
-        console.log("okokok", data);
+
         setUserState(data);
         window.localStorage.setItem('user_id', data);
     };
 
+    // useEffect(() => {
+    //     if (user_id) {
+    //         fetch(`/user/${user_id}`)
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 setFirstName(data[0].first_name);
+    //                 setLastName(data[0].last_name);
+    //                 setEmail(data[0].email);
+    //             });
+    //     }
+    // }, [user_id]);
 
-    if (user_id && user_id !== 'undefined') {
+    const handleDeletePortfolio = async () => {
+        setShowAlertDeletePortfolio(true);
+        const response = await fetch(`/portfolio/${user_id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+    };
+    
+    if (user_id) {
         return (
             <div className="portfolio-body">
-                <Navbar />
+                <Navbar logoutBtn={true}/>
+                <AlertModal message="Portfolio Deleted" modal={showAlertDeletePortfolio} toggle={() => setShowAlertDeletePortfolio(false)} />
                 <Section title="My Profile" />
                 <div className="portfolio">
                     <Form>
@@ -94,8 +119,11 @@ const Profile = () => {
                             <Button >Save Changes</Button>
                     </Form>
                 </div>
-                <Section title="My Portfolio" text={
-                    <Button onClick={() => { navigate(`/portfolio/template/`) }}><LuMousePointerClick /> Visit Website Portfolio</Button>
+                <Section title="My Portfolio" 
+                text={[
+                    <Button className="btn btn-success" onClick={() => { navigate(`/portfolio/template/`) }} style={{marginRight:'20px'}}><LuMousePointerClick /> Visit Website Portfolio</Button>,
+                    <Button className="btn btn-danger" onClick={handleDeletePortfolio}><FaTrashCan /> Delete Website Portfolio</Button>
+                ]
                 }
                 />
 
@@ -106,7 +134,7 @@ const Profile = () => {
     } else {
         return (
             <div className="portfolio-body">
-                <Navbar />
+                <Navbar loginBtn={true}/>
                 <Section title="Create an Account" />
                 <br />
                 <div className="portfolio">

@@ -13,7 +13,7 @@ const AlertModal = (props) => {
         <div>
             <Modal isOpen={modal} toggle={toggle} >
                 <ModalBody className='d-flex flex-column align-items-center'>
-                    <CiCircleAlert style={{ fontSize: '100px', color: 'red' }} />
+                    <CiCircleAlert style={{ fontSize: '50px', color: 'white' }} />
                     {message}
                 </ModalBody>
             </Modal>

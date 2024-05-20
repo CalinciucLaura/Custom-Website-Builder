@@ -9,7 +9,7 @@ def create_connection():
 
 def create_table(cursor):
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS website (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, about TEXT, description1 TEXT, description2 TEXT, description3 TEXT, quote TEXT, heroImage TEXT, image1 TEXT, image2 TEXT, image3 TEXT, image4 TEXT, image5 TEXT)"
+        "CREATE TABLE IF NOT EXISTS website (id INTEGER PRIMARY KEY AUTOINCREMENT, id_user TEXT, title TEXT, about TEXT, description1 TEXT, description2 TEXT, description3 TEXT, quote TEXT, heroImage TEXT, image1 TEXT, image2 TEXT, image3 TEXT, image4 TEXT, image5 TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
     )
 
 

@@ -27,7 +27,7 @@ async function readData(event){
 const HomePage = () => {
  return(
     <div className='homepage'>
-      <Navbar loginBtn={true}/>
+      <Navbar loginBtn={true} logoutBtn={true}/>
       <div className='block'>
         <h1>Generate Your Website <br/><span>Now with AI.</span></h1>
         <p> Build, edit and publish a beautiful website <br/> without any design or code experience.</p>

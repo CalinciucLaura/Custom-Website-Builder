@@ -428,16 +428,6 @@ def profile():
         return jsonify(user)
        
 
-# @app.route('/profile/<user_id>')
-# def get_portfolio(user_id):
-#     if not user_id or user_id == "null":
-#         return "Invalid user id"
-#     g.db, g.cursor = create_connection()
-#     g.cursor.execute(
-#         "SELECT id_portfolio FROM portfolio_record WHERE id_user = ?", (user_id,))
-#     user = g.cursor.fetchone()[0]
-#     return jsonify(user)
-
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -451,6 +441,12 @@ def login():
         return jsonify("Invalid credentials")
     return jsonify(user[0])
 
+@app.route('/portfolio/<user_id>' , methods=['DELETE'])
+def delete_portfolio(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("DELETE FROM portfolio_record WHERE id_user = ?", (user_id,))
+    g.db.commit()
+    return jsonify("Portfolio deleted")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
