@@ -5,95 +5,22 @@ import Description from "../../components/Description";
 import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
-import { useEffect, useState } from "react";
-import { useRecoilValue } from 'recoil';
-import { userState } from '../user_session_state';
 
-const T1 = () => {
-    const [user_id] = useRecoilValue(userState);
-    const [colors, setColors] = useState(undefined);
-    const [title, setTitle] = useState(undefined);
-    const [about, setAbout] = useState(undefined);
-    const [description1, setDescription1] = useState(undefined);
-    const [description2, setDescription2] = useState(undefined);
-    const [description3, setDescription3] = useState(undefined);
-    const [quote, setQuote] = useState(undefined);
-    const [heroImage, setHeroImage] = useState(undefined);
-    const [image1, setImage1] = useState(undefined);
-    const [image2, setImage2] = useState(undefined);
-    const [image3, setImage3] = useState(undefined);
-    const [image4, setImage4] = useState(undefined);
-    const [image5, setImage5] = useState(undefined);
-
-    console.log('user_id:', user_id)
-
-    useEffect(() => {
-        if (!user_id) return;
-
-
-
-        fetch(`/colors/${user_id}`, {
-            mode: 'no-cors'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    setColors(data)
-                } else {
-                    console.log('No colors received from server')
-                }
-            })
-
-
-        fetch(`/prompt/${user_id}`, {
-            mode: 'no-cors'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    data.forEach(element => {
-                        setTitle(element[0])
-                        setAbout(element[1])
-                        setDescription1(element[2])
-                        setDescription2(element[3])
-                        setDescription3(element[4])
-                        setQuote(element[5])
-                        setHeroImage(element[6])
-                        setImage1(element[7])
-                        setImage2(element[8])
-                        setImage3(element[9])
-                        setImage4(element[10])
-                        setImage5(element[11])
-                    });
-                } else {
-                    console.log('No text received from server')
-                }
-            })
-            .catch(error => console.log('Error fetching text:', error))
-
-    }, [user_id])
-
-
-    if (!colors) {
-        console.log('Loading colors...')
-        return null
-    }
-
+const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5, colors }) => {
     return (
         <div className="T1-body">
             <Hero image={heroImage}
                 title={title} fontFamily='Poppins' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
-            <About title="ABOUT" text={about} textColor="white" textAlign="center" fontFamily='Poppins' style={{ backgroundColor: colors[0] }} />
+            <About title="ABOUT" text={about} textColor="white" textAlign="center" fontFamily='Poppins' />
             <Description
                 title="Services"
                 text={description1}
-                // backgroundColor={colors[1]}
+                backgroundColor={colors[1]}
                 image={image1}
-                textColor="black"
-                fontFamily='Playfair Display'
-                fontSizeTitle='80px'
-                fontSizeParagraph='30px'
-                lineHeightP='40px'
+                textColor="white"
+                fontSizeTitle='40px'
+                fontSizeParagraph='15px'
+                lineHeightP='25px'
                 button='true'
                 backgroundColorButton='white'
                 textButtonColor='black'
@@ -101,15 +28,16 @@ const T1 = () => {
                 widthImage='40%'
                 widthText='60%'
                 swichObjects='true'
+                fontFamily='Poppins'
                 style={{ textAlign: 'left' }} />
 
             <Description
                 title="Projects"
                 text={description2}
                 image={image2}
-                // backgroundColor={colors[1]}
-                textColor="black"
-                fontFamily='Playfair Display'
+                backgroundColor={colors[1]}
+                textColor="white"
+                fontFamily='Poppins'
                 fontSizeTitle='40px'
                 fontSizeParagraph='13px'
                 lineHeightP='25px'
@@ -122,8 +50,8 @@ const T1 = () => {
                 swichObjects='false'
                 style={{ textAlign: 'center' }} />
 
-            <Quote text={quote} backgroundColor={colors[2]} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Playfair Display' />
+            <Quote text={quote} textColor="white" fontFamily='Playfair Display' />
+            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins' backgroundColor={colors[0]} />
         </div>
     );
 }

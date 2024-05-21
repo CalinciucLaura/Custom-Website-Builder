@@ -1,0 +1,51 @@
+.outer-cercle {
+    width: 200px;
+    aspect-ratio: 1;
+    -webkit-box-shadow: 7px 7px 10px hsl(223, 17%, 19%),
+        -7px -7px 10px hsl(223, 17%, 29%);
+    box-shadow: 7px 7px 10px hsl(223, 17%, 19%), -7px -7px 10px hsl(223, 17%, 29%);
+    border-radius: 50%;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+}
+
+.inner-cercle {
+    width: 140px;
+    aspect-ratio: 1;
+    -webkit-box-shadow: inset 7px 7px 10px hsl(223, 17%, 19%),
+        inset -7px -7px 10px hsl(223, 17%, 29%);
+    box-shadow: inset 7px 7px 10px hsl(223, 17%, 19%),
+        inset -7px -7px 10px hsl(223, 17%, 29%);
+    border-radius: 50%;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+
+.svg-circle {
+    fill: none;
+    stroke: url(#svgColor);
+    stroke-width: 30px;
+    stroke-dasharray: 535;
+    stroke-dashoffset: 535;
+    stroke-linecap: round;
+    -webkit-animation: anime 2s linear forwards;
+    animation: anime 2s linear forwards;
+}
+
+@-webkit-keyframes anime {
+    100% {
+        stroke-dashoffset: 107;
+    }
+}
+
+@keyframes anime {
+    100% {
+        stroke-dashoffset: 107;
+    }
+}

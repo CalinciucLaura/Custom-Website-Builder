@@ -25,13 +25,6 @@ def insert_into_database(cursor, result_text, result_image, id_user):
     )
 
 
-def select_all(cursor, id):
-    query = f"SELECT * FROM website where id={id}"
-    print(query)
-    cursor.execute(query)
-    return cursor.fetchall()
-
-
 def create_table_users(cursor):
     cursor.execute(
         """

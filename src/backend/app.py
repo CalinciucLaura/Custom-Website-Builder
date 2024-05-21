@@ -3,7 +3,7 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table_website, close_connection, insert_into_database, select_all, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects, create_table_users
+from database import create_connection, create_table_website, close_connection, insert_into_database, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects, create_table_users
 from ImageGenerator import generate_multiple_images
 
 app = Flask(__name__, static_folder='images', static_url_path='/')
@@ -42,10 +42,15 @@ def chatgpt(user_id):
     g.db, g.cursor = create_connection()
     insert_into_database(g.cursor, result_text, result_image, user_id)
     g.db.commit()
-    g.cursor.execute(
-        "SELECT id FROM website WHERE id_user = ?", (user_id,))
-    user_id = g.cursor.fetchone()
-    return jsonify(user_id)
+    return jsonify("Success")
+
+
+@app.route('/get_id_web/<user_id>')
+def get_id_web(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("SELECT id FROM website WHERE id_user = ?", (user_id,))
+    id = g.cursor.fetchone()
+    return jsonify(id)
 
 
 @app.route('/colors/<user_id>')
@@ -55,12 +60,12 @@ def color(user_id):
     return color_pallete("images/cat.png")
 
 
-@app.route('/prompt/<user_id>')
-def get_text(user_id):
+@app.route('/prompt/<web_id>')
+def get_text(web_id):
     g.db, g.cursor = create_connection()
-    result = select_all(g.cursor, user_id.replace(" ", ""))
-    print(result)
-    return jsonify(result)
+    g.cursor.execute("SELECT * FROM website WHERE id = ?", (web_id,))
+    text = g.cursor.fetchone()
+    return jsonify(text)
 
 
 @app.route('/createPortfolio/<user_id>', methods=['POST'])
