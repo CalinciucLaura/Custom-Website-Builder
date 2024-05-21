@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Navbar from "./navbar/Navbar"
 import Section from "./sections/Section"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -19,12 +19,13 @@ const Profile = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [idPortfolio, setIdPortfolio] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showAlertModal, setShowAlertModal] = useState(false);
     const [showAlertModalPassword, setShowAlertModalPassword] = useState(false);
     const [showAlertUserExists, setShowAlertUserExists] = useState(false);
-    const [showAlertDeletePortfolio, setShowAlertDeletePortfolio] = useState(false);    
-    
+    const [showAlertDeletePortfolio, setShowAlertDeletePortfolio] = useState(false);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -60,17 +61,76 @@ const Profile = () => {
         window.localStorage.setItem('user_id', data);
     };
 
-    // useEffect(() => {
-    //     if (user_id) {
-    //         fetch(`/user/${user_id}`)
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 setFirstName(data[0].first_name);
-    //                 setLastName(data[0].last_name);
-    //                 setEmail(data[0].email);
-    //             });
-    //     }
-    // }, [user_id]);
+    useEffect(() => {
+        if (user_id) {
+            fetch(`/user/${user_id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data) {
+                        setFirstName(data[1]);
+                        setLastName(data[2]);
+                        setEmail(data[3]);
+                    }
+                    else {
+                        console.log("No user found")
+                    }
+                }
+                );
+        }
+    }, [user_id]);
+
+    const handleSaveChanges = async () => {
+        const response = await fetch(`/user/${user_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                firstName,
+                lastName,
+                email
+            }),
+        });
+        const data = await response.json();
+        if (data === "User updated") {
+            setShowAlertModal(true);
+        }
+    }
+
+    const handleDeleteAccount = async () => {
+        const response = await fetch(`/user/${user_id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        if (data === "User deleted") {
+            setShowAlertModal(true);
+
+        }
+        console.log(data);
+        setUserState('');
+        window.localStorage.removeItem('user_id');
+        navigate('/');
+    };
+
+    const handleChangePassword = {}
+
+
+    useEffect(() => {
+        fetch(`/portfolio/${user_id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    setIdPortfolio(data[0]);
+                }
+                else {
+                    console.log("No portfolio found")
+                }
+            });
+    }, []);
+
 
     const handleDeletePortfolio = async () => {
         setShowAlertDeletePortfolio(true);
@@ -83,12 +143,14 @@ const Profile = () => {
         const data = await response.json();
         console.log(data);
     };
-    
+
     if (user_id) {
         return (
             <div className="portfolio-body">
-                <Navbar logoutBtn={true}/>
+                <Navbar logoutBtn={true} />
                 <AlertModal message="Portfolio Deleted" modal={showAlertDeletePortfolio} toggle={() => setShowAlertDeletePortfolio(false)} />
+                <AlertModal message="Profile Updated" modal={showAlertModal} toggle={() => setShowAlertModal(false)} />
+
                 <Section title="My Profile" />
                 <div className="portfolio">
                     <Form>
@@ -114,19 +176,27 @@ const Profile = () => {
                                 />
                             </Col>
                         </FormGroup>
-                            <Button >Delete Account</Button>
-                            <Button>Change Password</Button>
-                            <Button >Save Changes</Button>
+                        <Button onClick={handleDeleteAccount}>Delete Account</Button>
+                        <Button onClick={handleChangePassword}>Change Password</Button>
+                        <Button onClick={handleSaveChanges}>Save Changes</Button>
                     </Form>
                 </div>
-                <Section title="My Portfolio" 
-                text={[
-                    <Button className="btn btn-success" onClick={() => { navigate(`/portfolio/template/`) }} style={{marginRight:'20px'}}><LuMousePointerClick /> Visit Website Portfolio</Button>,
-                    <Button className="btn btn-danger" onClick={handleDeletePortfolio}><FaTrashCan /> Delete Website Portfolio</Button>
-                ]
-                }
-                />
 
+                {idPortfolio ?
+                    <Section title="My Portfolio"
+                        text={[
+                            <Button key="visitPortfolio" className="btn btn-success" onClick={() => { navigate(`/portfolio/template/`) }} style={{ marginRight: '20px' }}><LuMousePointerClick /> Visit Website Portfolio</Button>,
+                            <Button key="deletePortfolio" className="btn btn-danger" onClick={handleDeletePortfolio}><FaTrashCan /> Delete Website Portfolio</Button>
+                        ]
+                        }
+                    />
+                    :
+                    <Section title="My Portfolio"
+                        text="You do not have a portfolio yet. Click the button below to create one."
+                        sectionBtn={<Button className="btn btn-success" onClick={() => { navigate(`/portfolio`) }}><LuMousePointerClick /> Create Website Portfolio</Button>}
+                    />
+                }
+                <br />
                 <Section title="My Websites" />
 
             </div >
@@ -134,7 +204,7 @@ const Profile = () => {
     } else {
         return (
             <div className="portfolio-body">
-                <Navbar loginBtn={true}/>
+                <Navbar loginBtn={true} />
                 <Section title="Create an Account" />
                 <br />
                 <div className="portfolio">

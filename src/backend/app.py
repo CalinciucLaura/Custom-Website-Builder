@@ -422,11 +422,10 @@ def profile():
         """, (firstName, lastName, email, password))
         g.db.commit()
         g.cursor.execute(
-            """SELECT first_name, last_name, email FROM users WHERE email = ?""", (email,))
+            "SELECT id_user FROM users WHERE email = ?", (email,))
         user = g.cursor.fetchone()
-
         return jsonify(user)
-       
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -441,12 +440,46 @@ def login():
         return jsonify("Invalid credentials")
     return jsonify(user[0])
 
-@app.route('/portfolio/<user_id>' , methods=['DELETE'])
+
+@app.route('/portfolio/<user_id>', methods=['DELETE'])
 def delete_portfolio(user_id):
     g.db, g.cursor = create_connection()
-    g.cursor.execute("DELETE FROM portfolio_record WHERE id_user = ?", (user_id,))
+    g.cursor.execute(
+        "DELETE FROM portfolio_record WHERE id_user = ?", (user_id,))
     g.db.commit()
     return jsonify("Portfolio deleted")
+
+
+@app.route('/user/<user_id>', methods=['GET'])
+def get_user(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT * FROM users WHERE id_user = ?", (user_id,))
+    user = g.cursor.fetchone()
+    return jsonify(user)
+
+
+@app.route('/user/<user_id>', methods=['PUT'])
+def update_user(user_id):
+    data = request.get_json()
+    firstName = data['firstName']
+    lastName = data['lastName']
+    email = data['email']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE users SET first_name = ?, last_name = ?, email = ? WHERE id_user = ?", (firstName, lastName, email, user_id))
+    g.db.commit()
+    return jsonify("User updated")
+
+
+@app.route('/user/<user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "DELETE FROM users WHERE id_user = ?", (user_id,))
+    g.db.commit()
+    return jsonify("User deleted")
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
