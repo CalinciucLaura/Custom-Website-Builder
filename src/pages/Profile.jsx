@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import { userState } from './user_session_state';
 import "./MainPage.scss";
 import { FaTrashCan } from "react-icons/fa6";
+import ChangePassword from "./modals/ChangePassword"
 
 const Profile = () => {
     const [user_id, setUserState] = useRecoilState(userState);
@@ -25,6 +26,9 @@ const Profile = () => {
     const [showAlertModalPassword, setShowAlertModalPassword] = useState(false);
     const [showAlertUserExists, setShowAlertUserExists] = useState(false);
     const [showAlertDeletePortfolio, setShowAlertDeletePortfolio] = useState(false);
+    const [showAlertEmptyInputs, setShowAlertEmptyInputs] = useState(false);
+    const [showAlertDeleteAccount, setShowAlertDeleteAccount] = useState(false);
+    const [showResetPasswordModal, setShowResetPasswordModal] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -80,6 +84,12 @@ const Profile = () => {
     }, [user_id]);
 
     const handleSaveChanges = async () => {
+
+        if (!firstName || !lastName || !email) {
+            setShowAlertEmptyInputs(true);
+            return;
+        }
+
         const response = await fetch(`/user/${user_id}`, {
             method: 'PUT',
             headers: {
@@ -110,13 +120,11 @@ const Profile = () => {
 
         }
         console.log(data);
+        setShowAlertDeleteAccount(true);
         setUserState('');
         window.localStorage.removeItem('user_id');
         navigate('/');
     };
-
-    const handleChangePassword = {}
-
 
     useEffect(() => {
         fetch(`/portfolio/${user_id}`)
@@ -144,12 +152,20 @@ const Profile = () => {
         console.log(data);
     };
 
+    const handleResetPassword = () => {
+        setShowResetPasswordModal(!showResetPasswordModal);
+
+    }
+
     if (user_id) {
         return (
             <div className="portfolio-body">
                 <Navbar logoutBtn={true} />
                 <AlertModal message="Portfolio Deleted" modal={showAlertDeletePortfolio} toggle={() => setShowAlertDeletePortfolio(false)} />
+                <AlertModal message="Please fill all the fields" modal={showAlertEmptyInputs} toggle={() => setShowAlertEmptyInputs(false)} />
+                <AlertModal message="Account Deleted" modal={showAlertDeleteAccount} toggle={() => setShowAlertDeleteAccount(false)} />
                 <AlertModal message="Profile Updated" modal={showAlertModal} toggle={() => setShowAlertModal(false)} />
+                <ChangePassword modal={showResetPasswordModal} toggle={() => setShowResetPasswordModal(!showResetPasswordModal)} />
 
                 <Section title="My Profile" />
                 <div className="portfolio">
@@ -157,7 +173,7 @@ const Profile = () => {
                         <FormGroup row>
                             <Label for="firstName" sm={2}>First Name</Label>
                             <Col sm={10}>
-                                <Input type="text" name="firstName" id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
+                                <Input type="text" name="firstName" id="firstName" value={firstName} placeholder="First Name" onChange={e => setFirstName(e.target.value)} />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -177,7 +193,7 @@ const Profile = () => {
                             </Col>
                         </FormGroup>
                         <Button onClick={handleDeleteAccount}>Delete Account</Button>
-                        <Button onClick={handleChangePassword}>Change Password</Button>
+                        <Button onClick={handleResetPassword}>Change Password</Button>
                         <Button onClick={handleSaveChanges}>Save Changes</Button>
                     </Form>
                 </div>

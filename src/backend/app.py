@@ -481,5 +481,16 @@ def delete_user(user_id):
     return jsonify("User deleted")
 
 
+@app.route('/reset_password/<user_id>', methods=['POST'])
+def reset_password(user_id):
+    data = request.get_json()
+    password = data['password']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE users SET password = ? WHERE id_user = ?", (password, user_id))
+    g.db.commit()
+    return jsonify("Password updated")
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
