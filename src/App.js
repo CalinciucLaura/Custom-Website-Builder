@@ -36,9 +36,9 @@ const AppBlock = () => {
     <Router>
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
-        <Route path={`/template_1/:user_id`} element={<T1 /> }/>
-        <Route path={`/template_2/:user_id`} element={<T2 /> }/>
-        <Route path={`/template_3/:user_id`} element={<T3 /> }/>
+        <Route path={`/template_1/`} element={<T1 /> }/>
+        <Route path={`/template_2/`} element={<T2 /> }/>
+        <Route path={`/template_3/`} element={<T3 /> }/>
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/'} element={<PortfolioPage2 />} />
@@ -48,7 +48,6 @@ const AppBlock = () => {
         <Route path={`/portfolio/template/preview`} element={<Website />} />
         <Route path={`/profile/`} element={<Profile />} />
         <Route path={`/portfolio/template/`} element={<TemplateGenerator />} />
-      
       </Routes>
     </Router>
   );

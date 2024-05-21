@@ -40,8 +40,7 @@ const MainPage = (props) => {
       
       <Section title="Create Stunning Websites in Minutes" text={
         <>
-          Our website builder is designed to be user-friendly, flexible, and powerful.
-          <br />
+         
           You don't need any coding skills to use our website builder.
         </>
       } />
@@ -98,12 +97,20 @@ const MainPage = (props) => {
         </div>
         <br />
 
-        <button onClick={() => navigate("/generator")}><FaMagic /> AI Website</button>
+        <button onClick={() =>
+        {
+          if (!user_id) {
+            setShowLoginModal(true);
+            }
+            else{
+              navigate("/generator")}
+            }
+        }
+          ><FaMagic /> AI Website</button>
       </div>
       {/* <Section title="Create Stunning Websites in Minutes" text={
         <>
-          Our website builder is designed to be user-friendly, flexible, and powerful.
-          <br />
+         
           You don't need any coding skills to use our website builder.
         </>
       } /> */}

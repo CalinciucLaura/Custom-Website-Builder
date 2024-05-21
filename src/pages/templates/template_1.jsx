@@ -5,13 +5,13 @@ import Description from "../../components/Description";
 import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { useRecoilValue } from 'recoil';
+import { userState } from '../user_session_state';
 
 const T1 = () => {
+    const [user_id] = useRecoilValue(userState);
     const [colors, setColors] = useState(undefined);
-    const { user_id } = useParams();
     const [title, setTitle] = useState(undefined);
     const [about, setAbout] = useState(undefined);
     const [description1, setDescription1] = useState(undefined);
@@ -25,8 +25,13 @@ const T1 = () => {
     const [image4, setImage4] = useState(undefined);
     const [image5, setImage5] = useState(undefined);
 
+    console.log('user_id:', user_id)
+
     useEffect(() => {
-        if (user_id === undefined) return;
+        if (!user_id) return;
+
+
+
         fetch(`/colors/${user_id}`, {
             mode: 'no-cors'
         })
@@ -59,7 +64,6 @@ const T1 = () => {
                         setImage3(element[9])
                         setImage4(element[10])
                         setImage5(element[11])
-
                     });
                 } else {
                     console.log('No text received from server')
@@ -74,6 +78,7 @@ const T1 = () => {
         console.log('Loading colors...')
         return null
     }
+
     return (
         <div className="T1-body">
             <Hero image={heroImage}

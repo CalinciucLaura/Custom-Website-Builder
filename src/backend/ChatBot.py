@@ -8,13 +8,13 @@ def chatBot(text):
 
     result = []
     title = "Write a title for a website about " + \
-        text + "in 5 words or less. Don't use "" or '' or any other punctuation."
+        text + "in 5 words or less. Don't use "" or '' or any other punctuation. Don't use `website` as a word."
     about = "Write a short description about " + text
-    description1 = "Write a short information about " + text + \
+    description1 = "Write a short random information about " + text + \
         " in one paragraph and no more than 2-3 sentences"
-    description2 = "Write a short information about " + text + \
+    description2 = "Write a fact about " + text + \
         " in one paragraph and no more than 2-3 sentences"
-    description3 = "Write a short information about " + text + \
+    description3 = "Write something about " + text + \
         " in one paragraph and no more than 2-3 sentences"
     quote = "Write a quote about " + text + "and mention the author's name"
 

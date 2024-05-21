@@ -7,7 +7,7 @@ def create_connection():
     return connection, cursor
 
 
-def create_table(cursor):
+def create_table_website(cursor):
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS website (id INTEGER PRIMARY KEY AUTOINCREMENT, id_user TEXT, title TEXT, about TEXT, description1 TEXT, description2 TEXT, description3 TEXT, quote TEXT, heroImage TEXT, image1 TEXT, image2 TEXT, image3 TEXT, image4 TEXT, image5 TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
     )
@@ -18,15 +18,15 @@ def close_connection(connection, cursor):
     connection.close()
 
 
-def insert_into_database(cursor, result_text, result_image):
+def insert_into_database(cursor, result_text, result_image, id_user):
     cursor.execute(
-        f"INSERT INTO website (title, about, description1, description2, description3, quote, heroImage, image1, image2, image3, image4, image5) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (
-            result_text[0], result_text[1], result_text[2], result_text[3], result_text[4], result_text[5], result_image[0], result_image[1], result_image[2], result_image[3], result_image[4], result_image[5])
+        f"INSERT INTO website (id_user, title, about, description1, description2, description3, quote, heroImage, image1, image2, image3, image4, image5) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (
+            id_user, result_text[0], result_text[1], result_text[2], result_text[3], result_text[4], result_text[5], result_image[0], result_image[1], result_image[2], result_image[3], result_image[4], result_image[5])
     )
 
 
 def select_all(cursor, id):
-    query = f"SELECT title, about, description1, description2, description3, quote, heroImage, image1, image2, image3, image4, image5 FROM website where id={id}"
+    query = f"SELECT * FROM website where id={id}"
     print(query)
     cursor.execute(query)
     return cursor.fetchall()
