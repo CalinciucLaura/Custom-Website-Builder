@@ -8,6 +8,7 @@ import Navbar from "./navbar/Navbar";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState } from './user_session_state';
 import Login from "./modals/Login";
+import portfolioImage from "../pages/portfolio/templates/PortfolioExample.png";
 
 const MainPage = (props) => {
   const [user_id] = useRecoilValue(userState);
@@ -33,12 +34,23 @@ const MainPage = (props) => {
   return (
     <div className="main-body">
       {!user_id ? <Navbar loginBtn={true} logoutBtn={false} /> : <Navbar loginBtn={false} logoutBtn={true} />}
+      <br />
+      <br/>
+      <br/>
+      
+      <Section title="Create Stunning Websites in Minutes" text={
+        <>
+          Our website builder is designed to be user-friendly, flexible, and powerful.
+          <br />
+          You don't need any coding skills to use our website builder.
+        </>
+      } />
 
       <div className="main">
-        <h1>Generate a <span>Website</span> for ..</h1>
-        <br />
-        <div className="main__content">
+         {/* <h1>Generate a <span>Website</span> for ..</h1>
 
+        <br />  */}
+        <div className="main__content">
           <Link
             to={
               !user_id ?
@@ -61,25 +73,14 @@ const MainPage = (props) => {
             </motion.div>
           </Link>
 
-          {/* <Link to="/portfolio"  spy={true}
+          <Link to="/portfolio"  spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
                 className="btn">
         <motion.div className="main__content__item" whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-          <h2>Portfolio</h2>
-          <p>Build a website for your portfolio</p>
-        </motion.div>
-        </Link> */}
-
-          {/* <Link to="/portfolio"  spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="btn">
-        <motion.div className="main__content__item" whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-          <h2>Blog</h2>
-          <p>Build a website for your blog</p>
+          <h2>Bussines</h2>
+          <p>Build a website for your Bussines</p>
         </motion.div>
         </Link>
 
@@ -92,23 +93,24 @@ const MainPage = (props) => {
           <h2>Ecommerce</h2>
           <p>Build a website for your store</p>
         </motion.div>
-        </Link> */}
+        </Link> 
 
         </div>
         <br />
 
         <button onClick={() => navigate("/generator")}><FaMagic /> AI Website</button>
       </div>
-      <Section title="How to Create a Website?" text={
+      {/* <Section title="Create Stunning Websites in Minutes" text={
         <>
           Our website builder is designed to be user-friendly, flexible, and powerful.
           <br />
           You don't need any coding skills to use our website builder.
-          <br />
-          Simply choose a template, customize it to your liking, and publish your website. It's that easy!
         </>
-      } />
-      <br />
+      } /> */}
+      <img src={portfolioImage} alt="Portfolio Example" />
+   
+   
+      {/* <br />
       <Section title="About Us" text={
         <>
           Our website builder is designed to be user-friendly, flexible, and powerful.
@@ -127,7 +129,7 @@ const MainPage = (props) => {
           <br />
           Simply choose a template, customize it to your liking, and publish your website. It's that easy!
         </>
-      } />
+      } /> */}
 
     </div>
   )

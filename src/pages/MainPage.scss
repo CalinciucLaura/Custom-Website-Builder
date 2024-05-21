@@ -3,10 +3,16 @@
     font-family: 'Inter', sans-serif;
     color: #f7f6f6ee;
 
+    img {
+        width: 90%;
+        display: block;
+        margin: auto;
+    }
+
     .main {
         display: block;
         margin: auto;
-        padding: 80px;
+
 
         h1 {
             font-size: 70px;
