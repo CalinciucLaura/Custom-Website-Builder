@@ -1,13 +1,11 @@
 import React, { useState } from "react"
 import "../MainPage.scss";
-import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, FormGroup, Label, Input, Col, Button, Nav } from 'reactstrap';
 import "./Portfolio.scss";
 import Navbar from "../navbar/Navbar";
 import AlertModal from "../modals/AlertModal";
-import ProgressBar from "../Bars/ProgressBar";
 import { useRecoilValue } from 'recoil';
 import { userState } from '../user_session_state';
 
@@ -30,10 +28,10 @@ const Portfolio = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
-    //   setShowAlertModal(true);
-    //   return;
-    // }
+    if(!firstName || !lastName || !email || !phone || !address || !description || !role) {
+      setShowAlertModal(true);
+      return;
+    }
 
     const response = await fetch(`/createPortfolio/${user_id}`, {
       method: 'POST',
@@ -181,6 +179,7 @@ const Portfolio = () => {
           <FormGroup row>
             <Label
               for="exampleText"
+             
               sm={2}
             >
               Short Description about yourself <span style={{color:'red'}}>*</span>
@@ -189,6 +188,7 @@ const Portfolio = () => {
               <Input
                 id="exampleText"
                 name="text"
+                placeholder="Short Description about yourself"
                 type="textarea"
                 value={description}
                 onChange={e => setDescription(e.target.value)}
@@ -205,6 +205,7 @@ const Portfolio = () => {
             <Col sm={10}>
               <Input
                 id="photo"
+                placeholder="Upload a profile photo"
                 name="photo"
                 type="file"
                 accept="image/*"
@@ -223,6 +224,7 @@ const Portfolio = () => {
               <Input
                 id="linkedin"
                 name="text"
+                placeholder="LinkedIn"
                 type="text"
                 value={linkedin}
                 onChange={e => setLinkedin(e.target.value)}
@@ -240,6 +242,7 @@ const Portfolio = () => {
               <Input
                 id="github"
                 name="text"
+                placeholder="Github"
                 type="text"
                 value={github}
                 onChange={e => setGithub(e.target.value)}
@@ -256,6 +259,7 @@ const Portfolio = () => {
             <Col sm={10}>
               <Input
                 id="role"
+                placeholder="role"
                 name="text"
                 type="text"
                 value={role}
@@ -263,7 +267,7 @@ const Portfolio = () => {
               />
             </Col>
           </FormGroup>
-          <FormGroup row>
+          {/* <FormGroup row>
             <Label
               for="exampleText"
               sm={2}
@@ -280,7 +284,7 @@ const Portfolio = () => {
                 onChange={e => setResume(e.target.value)}
               />
             </Col>
-          </FormGroup>
+          </FormGroup> */}
           <FormGroup
             check
             row
