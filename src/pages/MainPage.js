@@ -37,13 +37,9 @@ const MainPage = (props) => {
       {!user_id ? <Navbar loginBtn={true} logoutBtn={false} /> : <Navbar loginBtn={false} logoutBtn={true} />}
       <br />
       <br/>
-      <br/>
-
-      <ProgressBar />
-      
+      <br/>      
       <Section title="Create Stunning Websites in Minutes" text={
         <>
-         
           You don't need any coding skills to use our website builder.
         </>
       } />
@@ -68,7 +64,6 @@ const MainPage = (props) => {
               }
             }}>            
             <Login modal={showLoginModal} toggle={() => setShowLoginModal(!showLoginModal)} />
-
             <motion.div className="main__content__item" whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
               <h2>Portfolio</h2>
               <p>Build a website with your CV</p>

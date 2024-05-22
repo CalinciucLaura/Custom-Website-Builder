@@ -1,4 +1,9 @@
+.wrapper {
+    position: relative;
+}
+
 .outer-cercle {
+    position: absolute;
     width: 200px;
     aspect-ratio: 1;
     -webkit-box-shadow: 7px 7px 10px hsl(223, 17%, 19%),
@@ -34,8 +39,8 @@
     stroke-dasharray: 535;
     stroke-dashoffset: 535;
     stroke-linecap: round;
-    -webkit-animation: anime 2s linear forwards;
-    animation: anime 2s linear forwards;
+    -webkit-animation: anime 120s linear forwards;
+    animation: anime 120s linear forwards;
 }
 
 @-webkit-keyframes anime {

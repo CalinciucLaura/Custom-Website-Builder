@@ -5,6 +5,7 @@ import Navbar from './navbar/Navbar';
 import { userState } from './user_session_state';
 import { useRecoilValue } from 'recoil';
 import T1 from './templates/template_1';
+import ProgressBar from './Bars/ProgressBar';
 
 const HomePage = () => {
  const [user_id] = useRecoilValue(userState);
@@ -24,11 +25,13 @@ const HomePage = () => {
   const [colors, setColors] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isGenerated, setIsGenerated] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
  const handleSubmit = (event) =>{
   event.preventDefault();
   const text = document.getElementById('searchQueryInput').value;
   console.log(text);
+  setIsSubmitted(true);
   setIsGenerated(false);
 
   fetch(`/prompt/${user_id}`, {
@@ -100,26 +103,31 @@ useEffect(() => {
       setIsGenerated(true);
     }
 
- return(
-    <div className='homepage'>
-      <Navbar loginBtn={true} logoutBtn={true}/>
-      {!isGenerated ? 
-      <>  
-      <div className='block'>
-        <h1>Generate Your Website <br/><span>Now with AI.</span></h1>
-        <p> Build, edit and publish a beautiful website <br/> without any design or code experience.</p>
-      <form onSubmit={handleSubmit}>  
-      <div className='inputBox'>
-          <input type="text" id="searchQueryInput" placeholder="Search"/>
-    </div>
-    <button id="searchQuerySubmit" onClick={handleSubmit}><FaMagic /> Generate</button>
-      </form>     
-      </div> 
-      </>:
-      <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors}/>
-}
+    return (
+      <div className='homepage'>
+        {user_id ? <Navbar loginBtn={false} logoutBtn={true} /> : <Navbar loginBtn={true} logoutBtn={false} />}
+
+        {!isGenerated ? 
+        <>  
+        <div className='block'>
+          <h1>Generate Your Website <br/><span>Now with AI.</span></h1>
+          <p> Build, edit and publish a beautiful website <br/> without any design or code experience.</p>
+        <form onSubmit={handleSubmit}>  
+        <div className='inputBox'>
+            <input type="text" id="searchQueryInput" placeholder="Search"/>
       </div>
- )
+      <button id="searchQuerySubmit" onClick={handleSubmit}><FaMagic /> Generate</button>
+        </form>     
+  
+        {/* Show progress bar when form is submitted */}
+        {isSubmitted && !isGenerated && <ProgressBar />}
+  
+        </div> 
+        </>:
+        <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors}/>
+  }
+        </div>
+   )
 }
 
 
