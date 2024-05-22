@@ -12,7 +12,7 @@ const ProgressBar = () => {
                 }
                 return Math.min(oldProgress + 1, 100);
             });
-        }, 800); // Increase by 1% every 600ms to reach 100% in 60 seconds
+        }, 1800); // Increase by 1% every 600ms to reach 100% in 60 seconds
 
         return () => {
             clearInterval(interval);
@@ -35,6 +35,8 @@ const ProgressBar = () => {
                 </defs>
                 <circle className="svg-circle" cx="100" cy="100" r="85"></circle>
             </svg>
+            <br/>
+            <p>Please wait 3 minutes</p>
         </div>
     );
 };

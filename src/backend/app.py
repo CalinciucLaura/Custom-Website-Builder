@@ -57,7 +57,7 @@ def get_id_web(user_id):
 def color(heroImage):
     if not heroImage:
         return "Invalid  hero image"
-    return color_pallete(heroImage)
+    color_pallete(heroImage)
 
 
 @app.route('/prompt/<web_id>')

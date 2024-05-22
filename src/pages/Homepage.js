@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import T1 from './templates/template_1';
 import ProgressBar from './Bars/ProgressBar';
 
+
 const HomePage = () => {
   const [user_id] = useRecoilValue(userState);
   const [web_id, setWebId] = useState('');
@@ -84,7 +85,7 @@ const HomePage = () => {
   }, [web_id]);
 
   useEffect(() => {
-    if (heroImage && web_id) {
+    if (heroImage) {
       fetch(`/colors/${heroImage}`, {
           mode: 'no-cors'
       })
@@ -99,9 +100,6 @@ const HomePage = () => {
         }
   },[])
 
-
-  console.log('isGenerated', isGenerated);
-
   return (
     <>
       <div className='homepage'>
@@ -112,13 +110,13 @@ const HomePage = () => {
         {isSubmitted === true && (
           <>
             {!isGenerated && (
-              <>
+              <div className='progressBar'>
                 <ProgressBar />
-              </>
+              </div>
             )}
             {isGenerated && (
               <>
-                <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
+                <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors}/>
               </>
             )}
           </>
@@ -136,7 +134,7 @@ const Block = ({ handleSubmit }) => {
       <p> Build, edit and publish a beautiful website <br /> without any design or code experience.</p>
       <div>
         <div className='inputBox'>
-          <input type="text" placeholder="Search" value={input} onChange={(e) => setInput(e.target.value)} />
+          <input type="text" placeholder="Generate a website about .." value={input} onChange={(e) => setInput(e.target.value)} />
         </div>
         <button id="searchQuerySubmit" onClick={(e) => {
           e.preventDefault();

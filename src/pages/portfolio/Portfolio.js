@@ -77,7 +77,6 @@ const Portfolio = () => {
   return (
     <div className="portfolio-body" style={{backgroundColor:'#1f1f1f'}}>
       <Navbar />
-      <ProgressBar />
       <div className="portfolio" >
         <h1>1. Complete your <span>Resume</span></h1>
         <br/>
