@@ -42,22 +42,22 @@ def chatgpt(user_id):
     g.db, g.cursor = create_connection()
     insert_into_database(g.cursor, result_text, result_image, user_id)
     g.db.commit()
-    return jsonify("Success")
+    return get_id_web(user_id)
 
 
 @app.route('/get_id_web/<user_id>')
 def get_id_web(user_id):
     g.db, g.cursor = create_connection()
-    g.cursor.execute("SELECT id FROM website WHERE id_user = ?", (user_id,))
+    g.cursor.execute("SELECT id FROM website WHERE id_user = ? order by id desc", (user_id,))
     id = g.cursor.fetchone()
     return jsonify(id)
 
 
-@app.route('/colors/<user_id>')
-def color(user_id):
-    if not user_id:
-        return "Invalid user id"
-    return color_pallete("images/cat.png")
+@app.route('/colors/<heroImage>')
+def color(heroImage):
+    if not heroImage:
+        return "Invalid  hero image"
+    return color_pallete(heroImage)
 
 
 @app.route('/prompt/<web_id>')

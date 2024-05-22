@@ -12,7 +12,7 @@ const ProgressBar = () => {
                 }
                 return Math.min(oldProgress + 1, 100);
             });
-        }, 600); // Increase by 1% every 600ms to reach 100% in 60 seconds
+        }, 800); // Increase by 1% every 600ms to reach 100% in 60 seconds
 
         return () => {
             clearInterval(interval);

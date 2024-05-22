@@ -6,16 +6,16 @@ import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
 
-const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5, colors }) => {
+const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5}) => {
     return (
         <div className="T1-body">
             <Hero image={heroImage}
                 title={title} fontFamily='Poppins' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
             <About title="ABOUT" text={about} textColor="white" textAlign="center" fontFamily='Poppins' />
             <Description
-                title="Services"
+                title="Did you know?"
                 text={description1}
-                backgroundColor={colors[1]}
+                // backgroundColor={colors[1]}
                 image={image1}
                 textColor="white"
                 fontSizeTitle='40px'
@@ -26,32 +26,32 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
                 widthImage='40%'
-                widthText='60%'
+                widthText='30%'
                 swichObjects='true'
                 fontFamily='Poppins'
-                style={{ textAlign: 'left' }} />
+                style={{ textAlign: 'center' }} />
 
             <Description
-                title="Projects"
+                title="Fun Fact"
                 text={description2}
                 image={image2}
-                backgroundColor={colors[1]}
+                // backgroundColor={colors[1]}
                 textColor="white"
                 fontFamily='Poppins'
                 fontSizeTitle='40px'
-                fontSizeParagraph='13px'
+                fontSizeParagraph='15px'
                 lineHeightP='25px'
                 button='true'
                 backgroundColorButton='white'
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
-                widthImage='50%'
-                widthText='50%'
+                widthImage='40%'
+                widthText='30%'
                 swichObjects='false'
                 style={{ textAlign: 'center' }} />
 
             <Quote text={quote} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins' backgroundColor={colors[0]} />
+            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins'  />
         </div>
     );
 }
