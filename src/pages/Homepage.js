@@ -35,18 +35,18 @@ const HomePage = () => {
     setIsGenerated(false);
     setIsSubmitted(true);
 
-    // fetch(`/prompt/${user_id}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ text })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setWebId(data);
-    //   })
-    //   .catch(error => console.error('Error:', error));
+    fetch(`/prompt/${user_id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ text })
+    })
+      .then(response => response.json())
+      .then(data => {
+        setWebId(data);
+      })
+      .catch(error => console.error('Error:', error));
   }
 
   useEffect(() => {
@@ -79,26 +79,23 @@ const HomePage = () => {
           setImage3(data[11]);
           setImage4(data[12]);
           setImage5(data[13]);
-          setIsGenerated(true);          
-        })
-    }
-  }, [web_id]);
+          setIsGenerated(true);
+        });
 
-  useEffect(() => {
-    if (heroImage) {
-      fetch(`/colors/${heroImage}`, {
-          mode: 'no-cors'
-      })
-          .then(res => res.json())
-          .then(data => {
-              if (data && data.length > 0) {
-                  setColors(data)
-              } else {
-                  console.log('No colors received from server')
-              }
-          })
-        }
-  },[])
+    //   fetch(`/colors/${web_id}`, {
+    //     mode: 'no-cors'
+    //   })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       if (data && data.length > 0) {
+    //         setColors(data)
+    //       } else {
+    //         console.log('No colors received from server')
+    //       }
+    //     });
+    // }
+      }
+  }, [web_id]);
 
   return (
     <>
@@ -116,7 +113,7 @@ const HomePage = () => {
             )}
             {isGenerated && (
               <>
-                <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors}/>
+                <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
               </>
             )}
           </>

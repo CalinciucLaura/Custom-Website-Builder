@@ -12,9 +12,9 @@ const Gallery = (props) => {
             <img src={props.images[3]} />
             </div>
             <div className="gallery-right">
-                <h2 >Discover our Locations</h2>
+                <h2 >Read more</h2>
                 <p>{props.text}</p>
-                <Button text="READ ME" backgroundColor="transparent" textColor="black" fontFamily="Poppins" style={{border:  '1px solid black'}}/>
+                <Button text="READ ME" backgroundColor="transparent" textColor="white" fontFamily="Poppins" style={{border:  '1px solid white'}}/>
             </div>
             
         </div>

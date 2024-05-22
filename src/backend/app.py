@@ -53,7 +53,7 @@ def get_id_web(user_id):
     return jsonify(id)
 
 
-@app.route('/colors/<heroImage>')
+@app.route('/colors/<web_id>')
 def color(heroImage):
     if not heroImage:
         return "Invalid  hero image"

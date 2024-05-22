@@ -6,7 +6,7 @@ import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
 
-const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5, colors}) => {
+const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5}) => {
     return (
         <div className="T1-body">
             <Hero image={heroImage}
@@ -15,7 +15,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
             <Description
                 title="Did you know?"
                 text={description1}
-                backgroundColor={colors[1]}
+                // backgroundColor={colors[1]}
                 image={image1}
                 textColor="white"
                 fontSizeTitle='40px'
@@ -51,7 +51,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 style={{ textAlign: 'center' }} />
 
             <Quote text={quote} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins'  />
+            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins' color='white' />
         </div>
     );
 }

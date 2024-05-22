@@ -213,7 +213,12 @@ const Profile = () => {
                     />
                 }
                 <br />
-                <Section title="My Websites" />
+                <Section title="My Websites"
+                    text={[
+                        <Button key="visitPortfolio" className="btn btn-success" onClick={() => { navigate(`/portfolio/template/`) }} style={{ marginRight: '20px' }}><LuMousePointerClick /> Visit Website Portfolio</Button>,
+                        <Button key="deletePortfolio" className="btn btn-danger" onClick={handleDeletePortfolio}><FaTrashCan /></Button>
+                    ]
+                    } />
 
             </div >
         );
