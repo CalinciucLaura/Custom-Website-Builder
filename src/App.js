@@ -17,6 +17,7 @@ import { RecoilRoot } from 'recoil';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from './pages/user_session_state';
+import AIWebsite from './pages/AIWebsite';
 
 function App() {
   return (
@@ -36,9 +37,7 @@ const AppBlock = () => {
     <Router>
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
-        <Route path={`/template_1/`} element={<T1 /> }/>
-        <Route path={`/template_2/`} element={<T2 /> }/>
-        <Route path={`/template_3/`} element={<T3 /> }/>
+        <Route path={'/generator/preview'} element={<AIWebsite />} />
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/'} element={<PortfolioPage2 />} />

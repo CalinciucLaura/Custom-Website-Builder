@@ -6,7 +6,8 @@ import { userState } from './user_session_state';
 import { useRecoilValue } from 'recoil';
 import T1 from './templates/template_1';
 import ProgressBar from './Bars/ProgressBar';
-
+import T2 from './templates/template_2';
+import T3 from './templates/template_3';
 
 const HomePage = () => {
   const [user_id] = useRecoilValue(userState);
@@ -23,9 +24,10 @@ const HomePage = () => {
   const [image3, setImage3] = useState('');
   const [image4, setImage4] = useState('');
   const [image5, setImage5] = useState('');
-  const [colors, setColors] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [idTemplate, setIdTemplate] = useState(1);  
+
 
   // isSubmitted means the user has submitted the form
   // isGenerated means the website has been generated
@@ -97,12 +99,41 @@ const HomePage = () => {
       }
   }, [web_id]);
 
+  const changeTemplate = () => {
+    if (idTemplate === 1) {
+      setIdTemplate(2);
+    } else if (idTemplate === 2) {
+      setIdTemplate(3);
+    } else {
+      setIdTemplate(1);
+    }
+  }
+
+  const saveTemplate = () => {
+    fetch(`/save/${web_id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({idTemplate})
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.error('Error:', error));
+      //TO DO in the backend to save the template
+
+  }
+
+  console.log (title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5); 
   return (
     <>
       <div className='homepage'>
 
         {isSubmitted === false && (
-          <><Navbar loginBtn={false} logoutBtn={true} /><Block handleSubmit={handleSubmit} /></>
+          <><Navbar loginBtn={false} logoutBtn={true} /><Block handleSubmit={handleSubmit} />
+          </>
         )}
         {isSubmitted === true && (
           <>
@@ -113,11 +144,25 @@ const HomePage = () => {
             )}
             {isGenerated && (
               <>
+                <Navbar />
+                <button className='btn btn-primary' style={{marginRight: '10px'}} onClick={saveTemplate}>Save Template</button>
+                <button className= 'btn btn-secondary' onClick={changeTemplate}>Change Template</button>
+                <br/>
+                <br/>
+                {idTemplate === 1 && (
                 <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
-              </>
+                )}
+                {idTemplate === 2 && (
+                <T2 title={title} about={about} heroImage = {heroImage} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
+                )}
+                {idTemplate === 3 && (
+                <T3 title={title} about={about} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
+                )}
+                </>
             )}
           </>
         )}
+
       </div>
     </>
   )
