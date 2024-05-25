@@ -36,7 +36,7 @@ const ProgressBar = () => {
                 <circle className="svg-circle" cx="100" cy="100" r="85"></circle>
             </svg>
             <br />
-            <p>Please wait 3 minutes</p>
+            <p>Please wait</p>
         </div>
     );
 };

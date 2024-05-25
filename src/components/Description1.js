@@ -6,7 +6,7 @@ const Description1 = ({ title, text, image, backgroundColor, textColor, fontFami
     return (
         <div className='description' style={{color: textColor, fontFamily: fontFamily , ...style}}>
             <div className='description-image' style={{width: widthImage}}>
-            <img src={image} />
+            src={`/images/${image}`}
             </div>
             <div className='description-text' style={{backgroundColor: backgroundColor, width: widthText}}>
             <div className="description-text-box" >

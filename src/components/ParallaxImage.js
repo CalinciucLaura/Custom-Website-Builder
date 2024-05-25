@@ -1,9 +1,11 @@
 import React from 'react';
 import './ParallaxImage.css';
 
-const ParallaxImage = ({ imageUrl}) => {
+const ParallaxImage = ({ image1}) => {
     return (
-        <div className='parallax-image' style={{ backgroundImage: `url(${imageUrl})` }}></div>
+        <div className='parallax-image'>
+             <img src={`/images/${image1}`} />
+        </div>
     );
 }
 

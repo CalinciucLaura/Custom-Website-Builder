@@ -6,11 +6,12 @@ const Gallery = (props) => {
     return (
         <div className="gallery" style={{backgroundColor: props.backgroundColor, fontFamily: props.fontFamily, color:props.color}}>
             <div className="gallery-left">
-            <img src={props.images[0]} />
-            <img src={props.images[1]} />
-            <img src={props.images[2]} /> 
-            <img src={props.images[3]} />
+            <img src={`/images/${props.images[0]}`} />
+            <img src={`/images/${props.images[1]}`} />
+            <img src={`/images/${props.images[2]}`} />
+            <img src={`/images/${props.images[3]}`} />
             </div>
+           
             <div className="gallery-right">
                 <h2 >Read more</h2>
                 <p>{props.text}</p>

@@ -16,7 +16,7 @@ fontFamilyButton, swichObjects, style }) => {
                 </div>
             </div>
             <div className='description-image' style={{width: widthImage}}>
-                <img src={image} alt="" />
+                <img src={`/images/${image}`} />
             </div>            
         </div>
     )
@@ -24,7 +24,7 @@ fontFamilyButton, swichObjects, style }) => {
     (
         <div className='description' style={{color: textColor, fontFamily: fontFamily, ...style}}>
             <div className='description-image' style={{width: widthImage}}>
-                    <img src={image} alt="" />
+                    <img  src={`/images/${image}`} alt="" />
                 </div>  
             <div className='description-text' style={{backgroundColor: backgroundColor, width: widthText, padding:'0 30px' }}>
                 <div className="description-text-box">

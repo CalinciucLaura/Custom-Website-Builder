@@ -25,14 +25,12 @@ const AIWebsite = (props) => {
     const [image5, setImage5] = useState('');
     const [idTemplate, setIdTemplate] = useState('');
     const web_id  = useParams().id;
-    console.log("WEB id",web_id);
-
+   
     useEffect(() => {
         if (!web_id) return;
         fetch(`/prompt/${web_id}`)
             .then(response => response.json())
             .then(data => {
-
                 setTitle(data[2]);
                 setAbout(data[3]);
                 setAbout(data[3]);

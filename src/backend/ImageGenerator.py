@@ -43,6 +43,6 @@ def generate_image(text, i):
     image.show()
 
     os.makedirs('images', exist_ok=True)
-    image_path = image.save(f'images/{text}{i+1}.png')
+    image_path = image.save(f'../../public/images/{text}{i+1}.png')
     image = f'{text}{i+1}.png'
     return image

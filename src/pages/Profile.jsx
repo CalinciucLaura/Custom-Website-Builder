@@ -154,16 +154,13 @@ const Profile = () => {
             },
         });
         const data = await response.json();
-        console.log(data);
+
     };
 
     const handleResetPassword = () => {
         setShowResetPasswordModal(!showResetPasswordModal);
 
     }
-
-    console.log("ID USER", user_id);
-
     useEffect(() => {
         if (user_id) {
             fetch(`/get_all_id_web/${user_id}`)
@@ -181,7 +178,6 @@ const Profile = () => {
     }, [user_id]);
 
     const buttons = idWebsites.map((id) => {
-        console.log("ID", id);
         return (
             <Button key={id} className="btn btn-success" onClick={() => { navigate(`/generator/preview/${id}`) }} style={{ marginRight: '20px' }}><LuMousePointerClick /> Visit Website {id}</Button>
         )
