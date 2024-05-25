@@ -5,9 +5,7 @@ import { userState } from './user_session_state';
 import T2 from "./templates/template_2"
 import T3 from "./templates/template_3"
 import { useParams } from "react-router-dom";
-import { Nav } from "reactstrap";
 import Navbar from "./navbar/Navbar";
-import EditBtn from "./buttons/EditBtn";
 
 const AIWebsite = (props) => {
     const [user_id, setUserState] = useRecoilState(userState);
@@ -65,7 +63,6 @@ const AIWebsite = (props) => {
   return (
     <div>
         <Navbar  />
-        <button> Edit</button>
         {template}
     </div>
   )

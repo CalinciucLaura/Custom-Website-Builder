@@ -9,7 +9,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userState } from './user_session_state';
 import Login from "./modals/Login";
 import portfolioImage from "../pages/portfolio/templates/PortfolioExample.png";
-import ProgressBar from "./Bars/ProgressBar";
 
 const MainPage = (props) => {
   const [user_id] = useRecoilValue(userState);

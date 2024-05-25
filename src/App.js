@@ -1,9 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/Homepage';
-import T1 from './pages/templates/template_1';
-import T2 from './pages/templates/template_2';
-import T3 from './pages/templates/template_3';
 import MainPage from './pages/MainPage';
 import Portfolio from './pages/portfolio/Portfolio';
 import PortfolioPage2 from './pages/portfolio/PortfolioPage2';
@@ -18,7 +15,6 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from './pages/user_session_state';
 import AIWebsite from './pages/AIWebsite';
-import EditAIWebsite from './pages/EditAIWebsite';
 
 function App() {
   return (
@@ -39,7 +35,6 @@ const AppBlock = () => {
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
         <Route path={'/generator/preview/:id'} element={<AIWebsite />} />
-        <Route path={'/generator/preview/edit/:id'} element={<EditAIWebsite />} />
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/'} element={<PortfolioPage2 />} />

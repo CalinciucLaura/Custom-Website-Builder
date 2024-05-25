@@ -63,13 +63,6 @@ def get_all_id_web(user_id):
     return jsonify(id)
 
 
-@app.route('/colors/<web_id>')
-def color(heroImage):
-    if not heroImage:
-        return "Invalid  hero image"
-    color_pallete(heroImage)
-
-
 @app.route('/prompt/<web_id>')
 def get_text(web_id):
     g.db, g.cursor = create_connection()
