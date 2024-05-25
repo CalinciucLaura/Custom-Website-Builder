@@ -16,6 +16,12 @@
     width: 100%;
 }
 
+.icon{
+    color: yellow;
+    cursor: pointer;
+    font-size: 25px;   
+}
+
 /* .template-2-hero .hero-image::after {
     content: "";
     position: absolute;
