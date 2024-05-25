@@ -29,6 +29,7 @@ const Profile = () => {
     const [showAlertEmptyInputs, setShowAlertEmptyInputs] = useState(false);
     const [showAlertDeleteAccount, setShowAlertDeleteAccount] = useState(false);
     const [showResetPasswordModal, setShowResetPasswordModal] = useState(false);
+    const [idWebsites, setIdWebsites] = useState([]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -83,6 +84,8 @@ const Profile = () => {
         }
     }, [user_id]);
 
+
+
     const handleSaveChanges = async () => {
 
         if (!firstName || !lastName || !email) {
@@ -108,6 +111,7 @@ const Profile = () => {
     }
 
     const handleDeleteAccount = async () => {
+        if (!user_id) return;
         const response = await fetch(`/user/${user_id}`, {
             method: 'DELETE',
             headers: {
@@ -127,6 +131,7 @@ const Profile = () => {
     };
 
     useEffect(() => {
+        if (!user_id) return;
         fetch(`/portfolio/${user_id}`)
             .then(res => res.json())
             .then(data => {
@@ -137,7 +142,7 @@ const Profile = () => {
                     console.log("No portfolio found")
                 }
             });
-    }, []);
+    }, [user_id]);
 
 
     const handleDeletePortfolio = async () => {
@@ -156,6 +161,30 @@ const Profile = () => {
         setShowResetPasswordModal(!showResetPasswordModal);
 
     }
+
+    console.log("ID USER", user_id);
+
+    useEffect(() => {
+        if (user_id) {
+            fetch(`/get_all_id_web/${user_id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data) {
+                        setIdWebsites(data.map((item) => item[0]));
+                    }
+                    else {
+                        console.log("No websites found")
+                    }
+                }
+                );
+        }
+    }, [user_id]);
+
+    const buttons = idWebsites.map((id) => {
+        return (
+            <Button key={id} className="btn btn-success" onClick={() => { navigate(`/generator/preview/${id}`) }} style={{ marginRight: '20px' }}><LuMousePointerClick /> Visit Website {id}</Button>
+        )
+    });
 
     if (user_id) {
         return (
@@ -214,10 +243,9 @@ const Profile = () => {
                 }
                 <br />
                 <Section title="My Websites"
-                    text={[
-                        <Button key="visitWebsite" className="btn btn-success" onClick={() => { navigate(`/generator/preview`) }} style={{ marginRight: '20px' }}><LuMousePointerClick /> Visit Website 1</Button>
-                    ]
-                    } />
+                    text="You can access your websites by clicking the buttons below."
+                    sectionBtn={buttons}
+                />
 
             </div >
         );

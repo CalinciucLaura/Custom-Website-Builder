@@ -8,81 +8,80 @@
   }
    */
 
-  .wrapper {
-    position: relative;
+.wrapper {
+  position: relative;
+}
+
+/* label {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.5em;
+  color: transparent;
+  background: -o-linear-gradient(335deg, #ffc371, #ff5f6d);
+  background: linear-gradient(115deg, #ffc371, #ff5f6d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-weight: 900;
+  letter-spacing: 2px;
+} */
+
+.outer-circle {
+  width: 200px;
+  aspect-ratio: 1;
+  -webkit-box-shadow: 7px 7px 10px hsl(223, 17%, 19%),
+    -7px -7px 10px hsl(223, 17%, 29%);
+  box-shadow: 7px 7px 10px hsl(223, 17%, 19%), -7px -7px 10px hsl(223, 17%, 29%);
+  border-radius: 50%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.inner-circle {
+  width: 140px;
+  aspect-ratio: 1;
+  -webkit-box-shadow: inset 7px 7px 10px hsl(223, 17%, 19%),
+    inset -7px -7px 10px hsl(223, 17%, 29%);
+  box-shadow: inset 7px 7px 10px hsl(223, 17%, 19%),
+    inset -7px -7px 10px hsl(223, 17%, 29%);
+  border-radius: 50%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.svg-circle {
+  fill: none;
+  stroke: url(#svgColor);
+  stroke-width: 30px;
+  stroke-dasharray: 535;
+  stroke-dashoffset: 535;
+  stroke-linecap: round;
+  animation: anime 180s linear forwards;
+}
+
+@-webkit-keyframes anime {
+  100% {
+    stroke-dashoffset: 0;
   }
-  
-  label {
-    position: absolute;
-    top: -30%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 1.5em;
-    color: transparent;
-    background: -o-linear-gradient(335deg, #ffc371, #ff5f6d);
-    background: linear-gradient(115deg, #ffc371, #ff5f6d);
-    background-clip: text;
-    -webkit-background-clip: text;
-    font-weight: 900;
-    letter-spacing: 2px;
+}
+
+@keyframes anime {
+  100% {
+    stroke-dashoffset: 0;
   }
-  
-  .outer-cercle {
-    width: 200px;
-    aspect-ratio: 1;
-    -webkit-box-shadow: 7px 7px 10px hsl(223, 17%, 19%),
-      -7px -7px 10px hsl(223, 17%, 29%);
-    box-shadow: 7px 7px 10px hsl(223, 17%, 19%), -7px -7px 10px hsl(223, 17%, 29%);
-    border-radius: 50%;
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
-  }
-  
-  .inner-cercle {
-    width: 140px;
-    aspect-ratio: 1;
-    -webkit-box-shadow: inset 7px 7px 10px hsl(223, 17%, 19%),
-      inset -7px -7px 10px hsl(223, 17%, 29%);
-    box-shadow: inset 7px 7px 10px hsl(223, 17%, 19%),
-      inset -7px -7px 10px hsl(223, 17%, 29%);
-    border-radius: 50%;
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
-    color: white;
-    font-weight: bold;
-    font-size: 2em;
-  }
-  
-  .svg {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-  
-  .svg-circle {
-    fill: none;
-    stroke: url(#svgColor);
-    stroke-width: 30px;
-    stroke-dasharray: 535;
-    stroke-dashoffset: 535;
-    stroke-linecap: round;
-    animation: anime 180s linear forwards;
-  }
-  
-  @-webkit-keyframes anime {
-    100% {
-      stroke-dashoffset: 0;
-    }
-  }
-  
-  @keyframes anime {
-    100% {
-      stroke-dashoffset: 0;
-    }
-  }
-  
+}

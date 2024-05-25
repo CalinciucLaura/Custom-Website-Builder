@@ -37,7 +37,7 @@ const AppBlock = () => {
     <Router>
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
-        <Route path={'/generator/preview'} element={<AIWebsite />} />
+        <Route path={'/generator/preview/:id'} element={<AIWebsite />} />
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/'} element={<PortfolioPage2 />} />

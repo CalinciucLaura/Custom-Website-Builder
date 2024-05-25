@@ -8,6 +8,7 @@ import T1 from './templates/template_1';
 import ProgressBar from './Bars/ProgressBar';
 import T2 from './templates/template_2';
 import T3 from './templates/template_3';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [user_id] = useRecoilValue(userState);
@@ -27,6 +28,7 @@ const HomePage = () => {
   const [isGenerated, setIsGenerated] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [idTemplate, setIdTemplate] = useState(1);  
+  const navigate = useNavigate();
 
 
   // isSubmitted means the user has submitted the form
@@ -120,9 +122,10 @@ const HomePage = () => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        navigate('/')
       })
       .catch(error => console.error('Error:', error));
-      //TO DO in the backend to save the template
+     
 
   }
 

@@ -48,8 +48,18 @@ def chatgpt(user_id):
 @app.route('/get_id_web/<user_id>')
 def get_id_web(user_id):
     g.db, g.cursor = create_connection()
-    g.cursor.execute("SELECT id FROM website WHERE id_user = ? order by id desc", (user_id,))
+    g.cursor.execute(
+        "SELECT id FROM website WHERE id_user = ? order by id desc", (user_id,))
     id = g.cursor.fetchone()
+    return jsonify(id)
+
+
+@app.route('/get_all_id_web/<user_id>')
+def get_all_id_web(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT id FROM website WHERE id_user = ? order by id desc", (user_id,))
+    id = g.cursor.fetchall()
     return jsonify(id)
 
 
@@ -66,6 +76,17 @@ def get_text(web_id):
     g.cursor.execute("SELECT * FROM website WHERE id = ?", (web_id,))
     text = g.cursor.fetchone()
     return jsonify(text)
+
+
+@app.route('/save/<web_id>', methods=['POST'])
+def save_templateid(web_id):
+    data = request.get_json()
+    idTemplate = data['idTemplate']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE website SET idTemplate = ? WHERE id = ?", (idTemplate, web_id))
+    g.db.commit()
+    return jsonify("Template saved")
 
 
 @app.route('/createPortfolio/<user_id>', methods=['POST'])

@@ -21,8 +21,8 @@ const ProgressBar = () => {
 
     return (
         <div className="wrapper">
-            <div className="outer-cercle">
-                <div className="inner-cercle">
+            <div className="outer-circle">
+                <div className="inner-circle">
                     <span id="number">{progress}%</span>
                 </div>
             </div>
@@ -35,7 +35,7 @@ const ProgressBar = () => {
                 </defs>
                 <circle className="svg-circle" cx="100" cy="100" r="85"></circle>
             </svg>
-            <br/>
+            <br />
             <p>Please wait 3 minutes</p>
         </div>
     );

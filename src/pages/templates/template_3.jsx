@@ -18,18 +18,6 @@ const T3 = ({ title, description1, description2, description3, image1, image2, i
                 backgroundColorButton='white'
                 style={{ textAlign: 'left', color: 'white' }}
             />
-            {/* To add 3 dominant colors
-            <div className="colorsBar">
-                <div />
-                <div />
-                <div />
-            </div>
-
-            <div className="imagesContainer" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${images[0]})` }}>
-                <img src={images[2]} />
-                <img src={images[3]} />
-                <img src={images[4]} />
-            </div> */}
 
             <About title="ABOUT" text={about} textColor="black" fontFamily='Poppins' />
             <Gallery images={[image1, image2, image3, image4]} text={description1} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
