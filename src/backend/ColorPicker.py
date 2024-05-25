@@ -19,7 +19,8 @@ import math
 
 
 def color_pallete(image_path):
-    ct = ColorThief(image_path)
+    new_path = f'../../public/images/{image_path}'
+    ct = ColorThief(new_path)
     palette = ct.get_palette(color_count=2)
     colors = []
     for color in palette:

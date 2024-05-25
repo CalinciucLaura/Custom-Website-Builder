@@ -13,9 +13,9 @@ const Gallery = (props) => {
             </div>
            
             <div className="gallery-right">
-                <h2 >Read more</h2>
+                <h2>Read more</h2>
                 <p>{props.text}</p>
-                <Button text="READ ME" backgroundColor="transparent" textColor="white" fontFamily="Poppins" style={{border:  '1px solid white'}}/>
+                <Button text="READ ME" backgroundColor="transparent" textButtonColor="white" fontFamily="Poppins" style={{border:  '1px solid white'}}/>
             </div>
             
         </div>

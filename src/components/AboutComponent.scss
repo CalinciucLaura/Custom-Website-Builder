@@ -1,0 +1,23 @@
+.about_component {
+    padding: 40px 0;
+    width: 100%;
+
+
+    .about-text {
+        width: 50%;
+        margin: auto;
+        max-width: 100%;
+
+
+        h2 {
+            font-size: 30px;
+        }
+
+        p {
+            line-height: 1.6em;
+            font-size: 13px;
+            letter-spacing: .03em;
+        }
+
+    }
+}

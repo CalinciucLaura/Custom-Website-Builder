@@ -34,13 +34,13 @@ def chatgpt(user_id):
     data = request.get_json()
     text = data['text']
     result_text = chatBot(text)
-    result_image = generate_multiple_images(text, 6)
+    result_image, colors = generate_multiple_images(text, 6)
     if result_text is None:
         result_text = "No result from chatBot"
     if result_image is None:
         result_image = "No result from imageGenerator"
     g.db, g.cursor = create_connection()
-    insert_into_database(g.cursor, result_text, result_image, user_id)
+    insert_into_database(g.cursor, result_text, result_image, user_id, colors)
     g.db.commit()
     return get_id_web(user_id)
 

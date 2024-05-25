@@ -3,6 +3,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 import os
+from ColorPicker import color_pallete
 
 images_array = []
 
@@ -11,8 +12,11 @@ def generate_multiple_images(text, num_images):
     images = []
     for i in range(num_images):
         image = generate_image(text, i)
+        if i == 0:
+            colors = color_pallete(image)
+            print(image, colors)
         images.append(image)
-    return images
+    return images, colors
 
 
 def generate_image(text, i):

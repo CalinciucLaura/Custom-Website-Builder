@@ -28,6 +28,7 @@ const HomePage = () => {
   const [isGenerated, setIsGenerated] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [idTemplate, setIdTemplate] = useState(1);  
+  const [colors, setColors] = useState([])
   const navigate = useNavigate();
 
 
@@ -71,6 +72,7 @@ const HomePage = () => {
       fetch(`/prompt/${web_id}`)
         .then(res => res.json())
         .then(data => {
+          console.log(JSON.stringify(data[15]));
           setTitle(data[2]);
           setAbout(data[3]);
           setQuote(data[4]);
@@ -83,8 +85,10 @@ const HomePage = () => {
           setImage3(data[11]);
           setImage4(data[12]);
           setImage5(data[13]);
+          setColors(JSON.parse(data[15]));
           setIsGenerated(true);
         });
+
 
     //   fetch(`/colors/${web_id}`, {
     //     mode: 'no-cors'
@@ -125,11 +129,8 @@ const HomePage = () => {
         navigate('/')
       })
       .catch(error => console.error('Error:', error));
-     
-
   }
 
-  console.log (title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5); 
   return (
     <>
       <div className='homepage'>
@@ -153,13 +154,13 @@ const HomePage = () => {
                 <br/>
                 <br/>
                 {idTemplate === 1 && (
-                <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
+                <T1 title={title} about={about} quote={quote} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors}/>
                 )}
                 {idTemplate === 2 && (
-                <T2 title={title} about={about} heroImage = {heroImage} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
+                <T2 title={title} about={about} heroImage = {heroImage} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors} />
                 )}
                 {idTemplate === 3 && (
-                <T3 title={title} about={about} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} />
+                <T3 title={title} about={about} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors} />
                 )}
                 </>
             )}

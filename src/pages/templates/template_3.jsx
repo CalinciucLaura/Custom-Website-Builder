@@ -6,7 +6,7 @@ import Description from "../../components/Description";
 import About from "../../components/About";
 import ParallaxImage from "../../components/ParallaxImage";
 
-const T3 = ({ title, description1, description2, description3, image1, image2, image3, image4, heroImage, about }) => {
+const T3 = ({ title, description1, description2, description3, image1, image2, image3, image4, heroImage, about, colors }) => {
     return (
         <div className="T3-body">
             <Hero
@@ -19,44 +19,44 @@ const T3 = ({ title, description1, description2, description3, image1, image2, i
                 style={{ textAlign: 'left', color: 'white' }}
             />
 
-            <About title="ABOUT" text={about} textColor="black" fontFamily='Poppins' />
-            <Gallery images={[image1, image2, image3, image4]} text={description1} backgroundColor="#f1f1f1" fontFamily='Playfair Display' />
+            <About title="ABOUT" text={about} textColor="black" fontFamily='Poppins' backgroundColor={colors[2]} textAlign={"center"} />
+            <Gallery images={[image1, image2, image3, image4]} text={description1} backgroundColor={colors[0]} fontFamily='Poppins' color='white' />
 
             <Description
                 text={description2}
                 image={image2}
                 textColor="white"
                 fontFamily='Poppins'
-                // backgroundColor={colors[1]}
+                backgroundColor={colors[1]}
                 widthImage='50%'
                 widthText='50%'
                 fontSizeTitle='48px'
                 fontSizeParagraph='16px'
                 lineHeightP='32px'
                 button='true'
-                backgroundButton='transparent'
+                backgroundColorButton='transparent'
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
                 swichObjects='false'
-                style={{ height: '550px', color: 'white', fontWeight: '800' }} />
-            <ParallaxImage imageUrl={heroImage} />
+                style={{ height: '40%', color: 'black', fontWeight: '800' }} />
+            <ParallaxImage image={heroImage} />
             <Description
                 text={description3}
                 image={image3}
                 textColor="white"
                 fontFamily='Poppins'
-                // backgroundColor={colors[0]}
-                widthImage='50%'
+                backgroundColor={colors[2]}
+                widthImage='40%'
                 widthText='50%'
                 fontSizeTitle='48px'
                 fontSizeParagraph='16px'
                 lineHeightP='32px'
                 button='true'
-                backgroundButton='transparent'
-                textButtonColor='black'
+                backgroundColorButton='transparent'
+                textButtonColor='white'
                 fontFamilyButton='Poppins'
                 swichObjects='true'
-                style={{ height: '550px', color: 'white', fontWeight: '800' }} />
+                style={{ height: '20%', color: 'white', fontWeight: '800' }} />
         </div>
 
     )

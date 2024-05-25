@@ -24,6 +24,7 @@ const AIWebsite = (props) => {
     const [image4, setImage4] = useState('');
     const [image5, setImage5] = useState('');
     const [idTemplate, setIdTemplate] = useState('');
+    const [colors, setColors] = useState('');
     const web_id  = useParams().id;
    
     useEffect(() => {
@@ -44,6 +45,7 @@ const AIWebsite = (props) => {
                 setImage3(data[11]);
                 setImage4(data[12]);
                 setImage5(data[13]);
+                setColors(JSON.parse(data[15]));
                 setIdTemplate(data[14]);             
             })
             .catch(error => console.error('Error:', error));
@@ -52,13 +54,13 @@ const AIWebsite = (props) => {
     var template;
 
     if (idTemplate == 1) {
-         template = <T1 title={title} description1={description1} quote={quote} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} heroImage={heroImage} about={about} />
+         template = <T1 title={title} description1={description1} quote={quote} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} heroImage={heroImage} about={about} colors={colors} />
     }
     else if (idTemplate == 2) {
-        template = <T2 title={title} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} heroImage={heroImage} about={about} />
+        template = <T2 title={title} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} heroImage={heroImage} about={about} colors={colors}/>
     }
     else
-        template = <T3 title={title} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} heroImage={heroImage} about={about} />
+        template = <T3 title={title} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} heroImage={heroImage} about={about} colors={colors} />
     
   return (
     <div>

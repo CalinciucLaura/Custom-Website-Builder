@@ -1,11 +1,14 @@
 import React from 'react';
-import './ParallaxImage.css';
+import './ParallaxImage.scss';
 
-const ParallaxImage = ({ image1}) => {
+const ParallaxImage = ({ image}) => {
     return (
         <div className='parallax-image'>
-             <img src={`/images/${image1}`} />
+            <img src={`/images/${image}`} />
         </div>
+         
+            // <div className='parallax-image' style={{backgroundImage: image}}></div>
+        //  </div>
     );
 }
 

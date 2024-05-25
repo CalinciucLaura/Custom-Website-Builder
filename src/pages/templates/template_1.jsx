@@ -6,8 +6,8 @@ import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
 
-const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5 }) => {
-    console.log(image1, image2, image3, image4, image5, heroImage)
+const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5, colors }) => {
+    console.log(image1, image2, image3, image4, image5, heroImage, colors)
     return (
         <div className="T1-body">
             <Hero image={heroImage}
@@ -16,7 +16,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
             <Description
                 title="Did you know?"
                 text={description1}
-                // backgroundColor={colors[1]}
+                backgroundColor={colors[0]}
                 image={image1}
                 textColor="white"
                 fontSizeTitle='40px'
@@ -36,7 +36,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 title="Fun Fact"
                 text={description2}
                 image={image2}
-                // backgroundColor={colors[1]}
+                backgroundColor={colors[1]}
                 textColor="white"
                 fontFamily='Poppins'
                 fontSizeTitle='40px'
