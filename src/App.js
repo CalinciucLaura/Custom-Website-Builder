@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from './pages/user_session_state';
 import AIWebsite from './pages/AIWebsite';
+import EditAIWebsite from './pages/EditAIWebsite';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ const AppBlock = () => {
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
         <Route path={'/generator/preview/:id'} element={<AIWebsite />} />
+        <Route path={'/generator/preview/edit/:id'} element={<EditAIWebsite />} />
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />
         <Route path={'/portfolio/experience_education/'} element={<PortfolioPage2 />} />

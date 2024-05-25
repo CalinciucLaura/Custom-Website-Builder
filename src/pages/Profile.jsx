@@ -181,6 +181,7 @@ const Profile = () => {
     }, [user_id]);
 
     const buttons = idWebsites.map((id) => {
+        console.log("ID", id);
         return (
             <Button key={id} className="btn btn-success" onClick={() => { navigate(`/generator/preview/${id}`) }} style={{ marginRight: '20px' }}><LuMousePointerClick /> Visit Website {id}</Button>
         )

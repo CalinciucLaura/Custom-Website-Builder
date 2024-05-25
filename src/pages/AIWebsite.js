@@ -5,6 +5,9 @@ import { userState } from './user_session_state';
 import T2 from "./templates/template_2"
 import T3 from "./templates/template_3"
 import { useParams } from "react-router-dom";
+import { Nav } from "reactstrap";
+import Navbar from "./navbar/Navbar";
+import EditBtn from "./buttons/EditBtn";
 
 const AIWebsite = (props) => {
     const [user_id, setUserState] = useRecoilState(userState);
@@ -22,14 +25,16 @@ const AIWebsite = (props) => {
     const [image5, setImage5] = useState('');
     const [idTemplate, setIdTemplate] = useState('');
     const web_id  = useParams().id;
-    console.log("WEB id", web_id);
+    console.log("WEB id",web_id);
 
     useEffect(() => {
         if (!web_id) return;
         fetch(`/prompt/${web_id}`)
             .then(response => response.json())
             .then(data => {
+
                 setTitle(data[2]);
+                setAbout(data[3]);
                 setAbout(data[3]);
                 setDescription1(data[4]);
                 setDescription2(data[5]);
@@ -45,9 +50,7 @@ const AIWebsite = (props) => {
             })
             .catch(error => console.error('Error:', error));
     }, [web_id]);
-
      
-
     var template;
 
     if (idTemplate == 1) {
@@ -61,6 +64,8 @@ const AIWebsite = (props) => {
     
   return (
     <div>
+        <Navbar  />
+        <button> Edit</button>
         {template}
     </div>
   )

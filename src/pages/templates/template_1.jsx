@@ -6,7 +6,8 @@ import Quote from "../../components/Quote";
 import Gallery from "../../components/Gallery";
 import "./template.scss"
 
-const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5}) => {
+const T1 = ({ title, about, quote, description1, description2, description3, heroImage, image1, image2, image3, image4, image5 }) => {
+    console.log(image1, image2, image3, image4, image5, heroImage)
     return (
         <div className="T1-body">
             <Hero image={heroImage}

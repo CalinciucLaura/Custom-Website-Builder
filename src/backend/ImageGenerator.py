@@ -4,13 +4,15 @@ from PIL import Image
 from io import BytesIO
 import os
 
+images_array = []
+
 
 def generate_multiple_images(text, num_images):
-    image_urls = []
+    images = []
     for i in range(num_images):
-        image_url = generate_image(text, i)
-        image_urls.append(image_url)
-    return image_urls
+        image = generate_image(text, i)
+        images.append(image)
+    return images
 
 
 def generate_image(text, i):
@@ -29,7 +31,7 @@ def generate_image(text, i):
     else:
         response = client.images.generate(
             model="dall-e-3",
-            prompt="Generate a realistic image with " + text,
+            prompt="Generate a simple image with only one " + text,
             size="1792x1024",
             quality="standard",
             n=1,
@@ -41,7 +43,6 @@ def generate_image(text, i):
     image.show()
 
     os.makedirs('images', exist_ok=True)
-    image.save(f'images/{text}{i+1}.png')
-
-    print(image_url)
-    return image_url
+    image_path = image.save(f'images/{text}{i+1}.png')
+    image = f'{text}{i+1}.png'
+    return image
