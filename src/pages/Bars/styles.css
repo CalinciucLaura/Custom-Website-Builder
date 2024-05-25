@@ -12,7 +12,7 @@
   position: relative;
 }
 
-/* label {
+label {
   position: absolute;
   top: -30%;
   left: 50%;
@@ -28,7 +28,7 @@
   -webkit-background-clip: text;
   font-weight: 900;
   letter-spacing: 2px;
-} */
+}
 
 .outer-circle {
   width: 200px;
@@ -71,7 +71,7 @@
   stroke-dasharray: 535;
   stroke-dashoffset: 535;
   stroke-linecap: round;
-  animation: anime 180s linear forwards;
+  animation: anime 3000s linear forwards;
 }
 
 @-webkit-keyframes anime {
