@@ -154,6 +154,7 @@ const Profile = () => {
             },
         });
         const data = await response.json();
+        navigate('/');
 
     };
 

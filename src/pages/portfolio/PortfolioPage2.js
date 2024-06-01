@@ -142,6 +142,7 @@ const PortfolioPage2 = () => {
         <Button color="success" onClick={toggleAddEducation}>
           <FiPlus /> Add Education
         </Button>
+        <br/>
         <AddEducationModal 
           onAddEducation={handleAddEducation}
           toggle={toggleAddEducation}
@@ -154,6 +155,7 @@ const PortfolioPage2 = () => {
             setCardsEducation(newCards);
           }}
         />
+        <div className="cards">
         {cardsEducation.map((card, index) => 
             <div className="card" style={{ width: "18rem" }} key={index}>
               <div className="card-header">
@@ -176,7 +178,8 @@ const PortfolioPage2 = () => {
                 }} className="btn btn-primary" style={{ float: 'right' }}><TbEdit /> Edit</button>
               </div>
             </div>
-          )}        
+          )}      
+          </div>  
       </div>
     </div>
   )

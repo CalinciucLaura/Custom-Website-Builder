@@ -47,13 +47,13 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
                     Starting Date
                   </Label>
                   <Input
+                    className='date-input'
                     id="startingDate"
                     value={startingDate}
                     name="date"
                     placeholder="date placeholder"
                     onChange={e => setStartingDate(e.target.value)}
                     type="date"
-                    
                   />
                 </FormGroup>
               </Col>
@@ -80,10 +80,10 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
               <Input
                 id="companyName"
                 value={company}
+                placeholder='Company Name'
                 onChange={e => setCompany(e.target.value)}
                 name="name"
-                placeholder="Company Name"
-                style={{color:'black'}}
+             
               />
             </FormGroup>
             <FormGroup>
@@ -93,10 +93,11 @@ const AddExperienceModal = ({onAddExperience, toggle, isOpen, editCard, editCard
               <Input
                 type="role" required
                 name="text"
+                placeholder='Position'
                 id="role"
                 value={role}
                 onChange={e => setRole(e.target.value)}
-                style={{color:'black'}}
+       
               />
             </FormGroup>
           </Form>

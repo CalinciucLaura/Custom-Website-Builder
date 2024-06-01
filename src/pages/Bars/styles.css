@@ -8,11 +8,11 @@
   }
    */
 
-.wrapper {
+/* .wrapper {
   position: relative;
-}
+} */
 
-label {
+/* label {
   position: absolute;
   top: -30%;
   left: 50%;
@@ -28,9 +28,9 @@ label {
   -webkit-background-clip: text;
   font-weight: 900;
   letter-spacing: 2px;
-}
+} */
 
-.outer-circle {
+/* .outer-circle {
   width: 200px;
   aspect-ratio: 1;
   -webkit-box-shadow: 7px 7px 10px hsl(223, 17%, 19%),
@@ -84,4 +84,4 @@ label {
   100% {
     stroke-dashoffset: 0;
   }
-}
+} */
