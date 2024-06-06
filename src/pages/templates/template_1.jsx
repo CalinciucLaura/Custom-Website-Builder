@@ -13,7 +13,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
         <div className="T1-body">
             <Hero image={heroImage}
                 title={title} fontFamily='Poppins' button='true' textButtonColor='black' backgroundColorButton='white' style={{ textAlign: 'center', color: 'white' }} />
-            <About title="ABOUT" text={about} textColor="white" textAlign="center" fontFamily='Poppins' />
+            <About title="ABOUT" text={about} textColor="white" textAlign="center" fontFamily='Poppins' backgroundColor={colors[2]} />
             <Description
                 title="Did you know?"
                 text={description1}
@@ -28,7 +28,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
                 widthImage='40%'
-                widthText='30%'
+                widthText='60%'
                 swichObjects='true'
                 fontFamily='Poppins'
                 style={{ textAlign: 'center' }} />
@@ -48,12 +48,12 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
                 widthImage='40%'
-                widthText='30%'
+                widthText='60%'
                 swichObjects='false'
                 style={{ textAlign: 'center' }} />
 
-            <Quote text={quote} textColor="white" fontFamily='Playfair Display' />
-            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins' color='white' />
+            <Quote text={quote} textColor="white" backgroundColor={colors[2]} fontFamily='Playfair Display' />
+            <Gallery images={[image3, image4, image5, image2]} text={description3} fontFamily='Poppins' color='white' backgroundColor={colors[0]} />
         </div>
     );
 }
