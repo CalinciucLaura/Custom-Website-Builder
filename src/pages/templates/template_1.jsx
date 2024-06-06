@@ -31,6 +31,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 widthText='60%'
                 swichObjects='true'
                 fontFamily='Poppins'
+                section="description1"
                 style={{ textAlign: 'center' }} />
 
             <Description
@@ -50,6 +51,7 @@ const T1 = ({ title, about, quote, description1, description2, description3, her
                 widthImage='40%'
                 widthText='60%'
                 swichObjects='false'
+                section="description2"
                 style={{ textAlign: 'center' }} />
 
             <Quote text={quote} textColor="white" backgroundColor={colors[2]} fontFamily='Playfair Display' />

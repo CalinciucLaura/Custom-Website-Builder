@@ -6,7 +6,8 @@ const ChatGPTModal = (props) => {
     const {
         modal,
         toggle,
-        message
+        text,
+        section
     } = props;
 
     const [prompt, setPrompt] = useState('');
@@ -14,33 +15,99 @@ const ChatGPTModal = (props) => {
     console.log(web_id);
 
     const handlePrompt = async () => {
-        console.log(prompt);
-        console.log(message);
-        const response = await fetch(`/chatGPT/title/${web_id}`, {
-            method: 'POST',        
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                prompt,
-                message
-            }),
-        });
 
-        const data = await response.json();
-        console.log(data);
-        window.location.reload();
+        if (section === 'title') {
+            console.log('title')
+            const response = await fetch(`/chatGPT/title/${web_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
+                    text,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            window.location.reload();
+        }
+        else if (section === 'description1') {
+            const response = await fetch(`/chatGPT/description1/${web_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
+                    text,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            window.location.reload();
+        }
+        else if (section === 'description2') {
+            console.log('description2')
+            const response = await fetch(`/chatGPT/description2/${web_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
+                    text,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            window.location.reload();
+        }
+        else if (section === 'quote') {
+            console.log('quote')
+            const response = await fetch(`/chatGPT/quote/${web_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
+                    text,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            window.location.reload();
+        }
+        else if (section === 'description3') {
+            console.log('description3')
+            const response = await fetch(`/chatGPT/description3/${web_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt,
+                    text,
+                }),
+            });
+            const data = await response.json();
+            console.log(data);
+            window.location.reload();
+        }
+
     }
 
     return (
         <div>
-          <Modal isOpen={modal} toggle={toggle} >
+            <Modal isOpen={modal} toggle={toggle} >
                 <ModalHeader toggle={toggle}>ChatGPT</ModalHeader>
                 <ModalBody>
                     <input type="text" placeholder="Regenerate" value={prompt} onChange={e => setPrompt(e.target.value)} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={handlePrompt}>
+                    <Button onClick={
+                        handlePrompt}>
                         Regenerate
                     </Button>{' '}
 

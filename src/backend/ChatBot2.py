@@ -1,13 +1,20 @@
 from openai import OpenAI
 
-def chatBot2(prompt, message, section):
-    print(prompt + " " + message)
+
+def chatBot2(prompt, text, section):
+
     client = OpenAI(
         api_key="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"
     )
 
     if section == "title":
-        text = "Based on the following text: " + f"{message}"+ " "  + "regenerate but make the following improvements: " + prompt + "Use no more than 5 words."
+        text = "Based on the following text: " + \
+            f"{text}" + " " + "regenerate but make the following improvements: " + \
+            prompt + "Use no more than 5 words."
+    elif section == "description":
+        text = "Based on the following text: " + \
+            f"{text}" + " " + "regenerate but make the following improvements: " + \
+            prompt + "Write a showt paragraph."
 
     result = client.chat.completions.create(
         messages=[

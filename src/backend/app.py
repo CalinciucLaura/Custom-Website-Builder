@@ -517,15 +517,49 @@ def reset_password(user_id):
 def regenerate(web_id):
     data = request.get_json()
     prompt = data['prompt']
-    message = data['message']
+    text = data['text']
     print(prompt)
-    result_text = chatBot2(prompt, message, "title")
+    result_text = chatBot2(prompt, text, "title")
     if result_text is None:
         result_text = "No result from chatBot"
     print(result_text)
     g.db, g.cursor = create_connection()
     g.cursor.execute(
         "UPDATE website SET title = ? WHERE id = ?", (result_text, web_id))
+    g.db.commit()
+    return jsonify("Text updated")
+
+
+@app.route('/chatGPT/description1/<web_id>', methods=['POST'])
+def regenerate_description(web_id):
+    data = request.get_json()
+    prompt = data['prompt']
+    text = data['text']
+    print(prompt)
+    result_text = chatBot2(prompt, text, "description")
+    if result_text is None:
+        result_text = "No result from chatBot"
+    print(result_text)
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE website SET description1 = ? WHERE id = ?", (result_text, web_id))
+    g.db.commit()
+    return jsonify("Text updated")
+
+
+@app.route('/chatGPT/description2/<web_id>', methods=['POST'])
+def regenerate_description2(web_id):
+    data = request.get_json()
+    prompt = data['prompt']
+    text = data['text']
+    print(prompt)
+    result_text = chatBot2(prompt, text, "description")
+    if result_text is None:
+        result_text = "No result from chatBot"
+    print(result_text)
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "UPDATE website SET description2 = ? WHERE id = ?", (result_text, web_id))
     g.db.commit()
     return jsonify("Text updated")
 
