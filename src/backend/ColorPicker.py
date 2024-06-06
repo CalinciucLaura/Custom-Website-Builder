@@ -5,19 +5,6 @@ import colorsys
 import math
 
 
-# def hex_to_rgb(hex_color):
-#     return tuple(int(hex_color[i:i+2], 16) for i in (1, 3, 5))
-
-
-# def isLightOrDark(rgbColor):
-#     [r, g, b] = rgbColor
-#     hsp = math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
-#     if (hsp > 127.5):
-#         return 'light'
-#     else:
-#         return 'dark'
-
-
 def color_pallete(image_path):
     new_path = f'../../public/images/{image_path}'
     ct = ColorThief(new_path)
@@ -28,5 +15,4 @@ def color_pallete(image_path):
         colors += clr
 
     print(colors)
-    # print(isLightOrDark(hex_to_rgb(colors[0])))
     return colors

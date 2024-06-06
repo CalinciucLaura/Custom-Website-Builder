@@ -14,7 +14,6 @@ def generate_multiple_images(text, num_images):
         image = generate_image(text, i)
         if i == 0:
             colors = color_pallete(image)
-            print(image, colors)
         images.append(image)
     return images, colors
 

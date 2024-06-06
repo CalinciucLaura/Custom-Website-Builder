@@ -31,14 +31,13 @@ const HomePage = () => {
   const [colors, setColors] = useState([])
   const navigate = useNavigate();
 
-
   // isSubmitted means the user has submitted the form
   // isGenerated means the website has been generated
 
   const handleSubmit = (text) => {
-    console.log(text);
-    setIsGenerated(false);
-    setIsSubmitted(true);
+    // console.log(text);
+    // setIsGenerated(false);
+    // setIsSubmitted(true);
 
     fetch(`/prompt/${user_id}`, {
       method: 'POST',
@@ -50,60 +49,48 @@ const HomePage = () => {
       .then(response => response.json())
       .then(data => {
         setWebId(data);
+        navigate(`/generator/preview/${data}`);
       })
       .catch(error => console.error('Error:', error));
   }
 
-  useEffect(() => {
-    if (user_id) {
-      fetch(`/get_id_web/${user_id}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data) {
-            setWebId(data[0]);
-          }
+  // useEffect(() => {
+  //   if (user_id) {
+  //     fetch(`/get_id_web/${user_id}`)
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         if (data) {
+  //           setWebId(data[0]);
+  //         }
 
-        })
-    }
-  }, []);
+  //       })
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (web_id) {
-      fetch(`/prompt/${web_id}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log(JSON.stringify(data[15]));
-          setTitle(data[2]);
-          setAbout(data[3]);
-          setQuote(data[4]);
-          setDescription1(data[5]);
-          setDescription2(data[6]);
-          setDescription3(data[7]);
-          setHeroImage(data[8]);
-          setImage1(data[9]);
-          setImage2(data[10]);
-          setImage3(data[11]);
-          setImage4(data[12]);
-          setImage5(data[13]);
-          setColors(JSON.parse(data[15]));
-          setIsGenerated(true);
-        });
-
-
-    //   fetch(`/colors/${web_id}`, {
-    //     mode: 'no-cors'
-    //   })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       if (data && data.length > 0) {
-    //         setColors(data)
-    //       } else {
-    //         console.log('No colors received from server')
-    //       }
-    //     });
-    // }
-      }
-  }, [web_id]);
+  // useEffect(() => {
+  //   if (web_id) {
+  //     fetch(`/prompt/${web_id}`)
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         console.log(JSON.stringify(data[15]));
+  //         setTitle(data[2]);
+  //         setAbout(data[3]);
+  //         setQuote(data[4]);
+  //         setDescription1(data[5]);
+  //         setDescription2(data[6]);
+  //         setDescription3(data[7]);
+  //         setHeroImage(data[8]);
+  //         setImage1(data[9]);
+  //         setImage2(data[10]);
+  //         setImage3(data[11]);
+  //         setImage4(data[12]);
+  //         setImage5(data[13]);
+  //         setColors(JSON.parse(data[15]));
+  //         setIsGenerated(true);
+          
+  //       });
+  //     }
+  // }, [web_id]);
 
   const changeTemplate = () => {
     if (idTemplate === 1) {
@@ -134,19 +121,20 @@ const HomePage = () => {
   return (
     <>
       <div className='homepage'>
-
-        {isSubmitted === false && (
-          <><Navbar loginBtn={false} logoutBtn={true} /><Block handleSubmit={handleSubmit} />
-          </>
+      <Navbar loginBtn={false} logoutBtn={true} /><Block handleSubmit={handleSubmit} />
+{/* 
+        {isSubmitted === false && isGenerated === false &&
+        (
+         
         )}
         {isSubmitted === true && (
           <>
-            {!isGenerated && (
+            {isGenerated == false && (
               <div className='progressBar'>
                 <ProgressBar />
               </div>
             )}
-            {isGenerated && (
+            {isGenerated == true && (
               <>
                 <Navbar />
                 <button className='btn btn-primary' style={{marginRight: '10px'}} onClick={saveTemplate}>Save Template</button>
@@ -163,9 +151,9 @@ const HomePage = () => {
                 <T3 title={title} about={about} description1={description1} description2={description2} description3={description3} heroImage={heroImage} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} colors={colors} />
                 )}
                 </>
-            )}
+             )}
           </>
-        )}
+        )} */}
 
       </div>
     </>

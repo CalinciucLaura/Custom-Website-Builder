@@ -22,7 +22,6 @@ const Hero = ({ className, image, title, text, fontFamily, button, buttonBackgro
             </div>
             <div className='hero-image'>
             <img src={`/images/${image}`} />
-            
             </div>
         </div>
 

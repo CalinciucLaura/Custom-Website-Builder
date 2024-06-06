@@ -512,24 +512,23 @@ def reset_password(user_id):
     g.db.commit()
     return jsonify("Password updated")
 
+
 @app.route('/chatGPT/title/<web_id>', methods=['POST'])
 def regenerate(web_id):
     data = request.get_json()
-    prompt= data['prompt']
+    prompt = data['prompt']
     message = data['message']
     print(prompt)
     result_text = chatBot2(prompt, message, "title")
     if result_text is None:
         result_text = "No result from chatBot"
-    print (result_text)
+    print(result_text)
     g.db, g.cursor = create_connection()
     g.cursor.execute(
         "UPDATE website SET title = ? WHERE id = ?", (result_text, web_id))
     g.db.commit()
     return jsonify("Text updated")
 
-
-   
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

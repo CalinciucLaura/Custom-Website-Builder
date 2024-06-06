@@ -3,7 +3,7 @@ import Hero from "../../components/Hero";
 import "./template.scss"
 import Description from "../../components/Description";
 
-const T2 = ({ title, description1, description2, description3, image1, image2, image3, image4, heroImage }) => {
+const T2 = ({ title, description1, description2, description3, image1, image2, image3, image4, heroImage, colors }) => {
     return (
         <>
             <div className="T2-body" >
@@ -13,66 +13,69 @@ const T2 = ({ title, description1, description2, description3, image1, image2, i
                     title={title}
                     fontFamily='Tiro Devanagari Sanskrit'
                     fontWeight='100'
-                // style={{ color: 'white', '--hero-bg-color':  }}
+                    style={{ color: 'white' }}
                 />
-                <div className="empty-div"></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
                 <Description
                     number='01'
                     text={description1}
                     image={image2}
                     textColor="white"
-                    fontFamily='Tiro Devanagari Sanskrit'
-                    widthImage='40%'
-                    widthText='40%'
-                    fontSizeTitle='48px'
-                    fontSizeParagraph='16px'
-                    lineHeightP='32px'
+                    fontFamily='Times New Roman'
+                    widthImage='50%'
+                    widthText='50%'
+                    fontSizeTitle='60px'
+                    fontSizeParagraph='25px'
+                    lineHeightP='40px'
                     button='true'
                     backgroundButton='transparent'
                     textButtonColor='black'
                     fontFamilyButton='Poppins'
                     swichObjects='false'
+                    backgroundColor={colors[1]}
                     style={{ height: '550px' }} />
-                <div className="empty-div"></div>
-                <div className="empty-div"></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
                 <Description
                     number='02'
                     text={description2}
                     image={image3}
                     textColor="white"
-                    fontFamily='Tiro Devanagari Sanskrit'
-                    widthImage='40%'
-                    widthText='40%'
-                    fontSizeTitle='48px'
-                    fontSizeParagraph='16px'
-                    lineHeightP='32px'
+                    fontFamily='Times New Roman'
+                    widthImage='50%'
+                    widthText='50%'
+                    fontSizeTitle='60px'
+                    fontSizeParagraph='25px'
+                    lineHeightP='40px'
                     button='true'
                     backgroundButton='transparent'
                     textButtonColor='black'
                     fontFamilyButton='Poppins'
+                    backgroundColor={colors[1]}
                     swichObjects='true'
                     style={{ height: '550px' }} />
-                <div className="empty-div"></div>
-                <div className="empty-div"></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
                 <Description
                     number='03'
                     text={description3}
                     image={image4}
                     textColor="white"
-                    fontFamily='Tiro Devanagari Sanskrit'
-                    widthImage='40%'
-                    widthText='40%'
-                    fontSizeTitle='48px'
-                    fontSizeParagraph='16px'
-                    lineHeightP='32px'
+                    fontFamily='Times New Roman'
+                    widthImage='50%'
+                    widthText='50%'
+                    fontSizeTitle='60px'
+                    fontSizeParagraph='25px'
+                    lineHeightP='40px'
                     button='true'
                     backgroundButton='transparent'
                     textButtonColor='black'
                     fontFamilyButton='Poppins'
+                    backgroundColor={colors[1]}
                     swichObjects='false'
                     style={{ height: '550px' }} />
-                <div className="empty-div"></div>
-                <div className="empty-div"></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
+                <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
             </div >
         </>
 

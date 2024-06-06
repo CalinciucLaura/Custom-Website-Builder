@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+import './styles.scss';
 
 const ProgressBar = () => {
     const [progress, setProgress] = useState(0);
@@ -12,7 +12,7 @@ const ProgressBar = () => {
                 }
                 return Math.min(oldProgress + 1, 100);
             });
-        }, 3000); // Increase by 1% every 600ms to reach 100% in 60 seconds
+        }, 4000); // Increase by 1% every 600ms to reach 100% in 60 seconds
 
         return () => {
             clearInterval(interval);

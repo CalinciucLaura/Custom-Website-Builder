@@ -6,6 +6,17 @@ def chatBot(text):
         api_key="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"
     )
 
+    if (text.find("Generate a website about")):
+        text = text.replace("Generate a website about", "")
+    elif (text.find("Generate a website for")):
+        text = text.replace("Generate a website for", "")
+    elif (text.find("Create a website about")):
+        text = text.replace("Create a website about", "")
+
+    print(text)
+    # if the text contains spaces, replace them with underscores
+    text = text.replace(" ", "_")
+
     result = []
     title = "Write a title for a website about " + \
         text + "in 5 words or less. Don't use "" or '' or any other punctuation. Don't use `website` as a word."

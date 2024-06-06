@@ -44,12 +44,23 @@ const AIWebsite = (props) => {
                 setImage4(data[12]);
                 setImage5(data[13]);
                 setColors(JSON.parse(data[15]));
-                setIdTemplate(data[14]);             
+                setIdTemplate(data[14]);            
             })
             .catch(error => console.error('Error:', error));
     }, [web_id]);
      
     var template;
+
+    const changeTemplate = () => {
+        if (idTemplate === 1) {
+          setIdTemplate(2);
+        } else if (idTemplate === 2) {
+          setIdTemplate(3);
+        } else {
+          setIdTemplate(1);
+        }
+      }
+
 
     if (idTemplate == 1) {
          template = <T1 title={title} description1={description1} quote={quote} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} heroImage={heroImage} about={about} colors={colors} />
@@ -61,8 +72,12 @@ const AIWebsite = (props) => {
         template = <T3 title={title} description1={description1} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} heroImage={heroImage} about={about} colors={colors} />
     
   return (
-    <div>
-        <Navbar  />
+    <div style={{alignItems:'center', textAlign:'center'}}>
+         <Navbar />
+        <button className='btn btn-primary' style={{marginRight: '10px'}}>Save Template</button>
+        <button className= 'btn btn-secondary' onClick={changeTemplate}>Change Template</button>
+        <br/>
+        <br/>
         {template}
     </div>
   )
