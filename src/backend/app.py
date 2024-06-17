@@ -3,7 +3,7 @@ from ColorPicker import color_pallete
 from ChatBot import chatBot
 from flask_cors import CORS
 from flask import request, jsonify, g
-from database import create_connection, create_table_website, close_connection, insert_into_database, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects, create_table_users
+from database import create_connection, create_table_website, close_connection, insert_into_database, create_table_portfolio, create_table_experience, create_table_education, create_table_skills, create_table_projects, create_table_users, create_table_shop, create_table_products
 from ImageGenerator import generate_multiple_images
 from ChatBot2 import chatBot2
 
@@ -21,6 +21,8 @@ def before_request():
     create_table_education(g.cursor)
     create_table_skills(g.cursor)
     create_table_projects(g.cursor)
+    create_table_shop(g.cursor)
+    create_table_products(g.cursor)
 
 
 @app.teardown_appcontext
@@ -562,6 +564,41 @@ def regenerate_description2(web_id):
         "UPDATE website SET description2 = ? WHERE id = ?", (result_text, web_id))
     g.db.commit()
     return jsonify("Text updated")
+
+
+@app.route('/createShop/<user_id>', methods=['POST'])
+def shop(user_id):
+    data = request.get_json()
+    name = data['name']
+    email = data['email']
+    phone = data['phone']
+    description = data['description']
+    category = data['category']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("""
+        INSERT INTO shop (id_user, name, email, phone, description, category)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (user_id, name, email, phone, description, category))
+    g.db.commit()
+    return jsonify("Shop created")
+
+
+@app.route('/products/<user_id>', methods=['POST'])
+def products(user_id):
+    data = request.get_json()
+    name = data['name']
+    category = data['category']
+    description = data['description']
+    price = data['price']
+    quantity = data['quantity']
+    image = data['photo']
+    g.db, g.cursor = create_connection()
+    g.cursor.execute("""
+        INSERT INTO products (id_user, name, category, description, price, quantity, image)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (user_id, name, category, description, price, quantity, image))
+    g.db.commit()
+    return jsonify("Product added")
 
 
 if __name__ == '__main__':

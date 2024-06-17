@@ -14,6 +14,18 @@ def create_table_website(cursor):
     )
 
 
+def create_table_shop(cursor):
+    cursor.execute(
+        "CREATE TABLE IF NOT EXISTS shop (id INTEGER PRIMARY KEY AUTOINCREMENT, id_user TEXT, name TEXT, email TEXT, phone TEXT, description TEXT, category TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
+    )
+
+
+def create_table_products(cursor):
+    cursor.execute(
+        "CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, id_user TEXT, name TEXT, category TEXT, description TEXT, price TEXT, quantity TEXT, image TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
+    )
+
+
 def close_connection(connection, cursor):
     cursor.close()
     connection.close()

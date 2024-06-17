@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 const AddProductModal = ({ onAddProduct, toggle, isOpen, editCard, editCardIndex, editExisting }) => {
-    const [product, setProduct] = useState("");
+    const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -12,7 +12,7 @@ const AddProductModal = ({ onAddProduct, toggle, isOpen, editCard, editCardIndex
 
     useEffect(() => {
         if (editCard) {
-            setProduct(editCard.product);
+            setName(editCard.name);
             setCategory(editCard.category);
             setDescription(editCard.description);
             setPrice(editCard.price);
@@ -23,12 +23,12 @@ const AddProductModal = ({ onAddProduct, toggle, isOpen, editCard, editCardIndex
 
     const save = () => {
         if (editCardIndex != null) {
-            editExisting(editCardIndex, { product });
+            editExisting(editCardIndex, { name });
         } else {
-            onAddProduct({ product, category, description, price, quantity, photo });
+            onAddProduct({ name, category, description, price, quantity, photo });
         }
         toggle();
-        setProduct("");
+        setName("");
     }
 
 
@@ -59,8 +59,8 @@ const AddProductModal = ({ onAddProduct, toggle, isOpen, editCard, editCardIndex
                             </Label>
                             <Input
                                 id="product"
-                                value={product}
-                                onChange={e => setProduct(e.target.value)}
+                                value={name}
+                                onChange={e => setName(e.target.value)}
                                 name="product"
                                 placeholder="Product Name"
                                 required={true}

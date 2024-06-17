@@ -80,7 +80,7 @@ const MainPage = (props) => {
         </motion.div>
         </Link>
 
-        <Link to="/portfolio" 
+        <Link to="/shop" 
                 smooth={true}
                 offset={-70}
                 duration={500}

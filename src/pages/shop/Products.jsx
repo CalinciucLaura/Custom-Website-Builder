@@ -18,7 +18,7 @@ import BackNext from '../buttons/BackNext';
 AOS.init();
 
 
-const Shop = (props) => {
+const Products = (props) => {
     const [user_id] = useRecoilValue(userState);
     const [showCardProducts, setShowCardProducts] = useState(false);
     const [cardsProducts, setCardsProducts] = useState([]);
@@ -85,10 +85,11 @@ const Shop = (props) => {
                     {cardsProducts.map((card, index) =>
                         <div className="card" style={{ width: "18rem" }} key={index}>
                             <div className="card-header">
-                                <h5 className="card-title"></h5>
+                                <h5 className="card-title">{card.name}</h5>
                             </div>
                             <div className="card-body">
-                                <p className="card-text" style={{ fontWeight: 700 }}></p>
+                                <p className="card-text" style={{ fontWeight: 700 }}>{card.category}</p>
+                                <p className="card-text">{card.price}</p>
                                 <button onClick={() => {
                                     let newCards = [...cardsProducts];
                                     newCards.splice(index, 1);
@@ -110,4 +111,4 @@ const Shop = (props) => {
     )
 };
 
-export default Shop;
+export default Products;

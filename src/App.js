@@ -15,6 +15,8 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from './pages/user_session_state';
 import AIWebsite from './pages/AIWebsite';
+import Shop from './pages/shop/Shop';
+import Products from './pages/shop/Products';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ const AppBlock = () => {
     <Router>
       <Routes>        
         <Route path={`/`} element={<MainPage />} />
+        <Route path={`/shop/`} element={<Shop />} />
+        <Route path={`/shop/products/`} element={<Products />} />
         <Route path={'/generator/preview/:id'} element={<AIWebsite />} />
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />
