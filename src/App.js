@@ -17,6 +17,8 @@ import { userState } from './pages/user_session_state';
 import AIWebsite from './pages/AIWebsite';
 import Shop from './pages/shop/Shop';
 import Products from './pages/shop/Products';
+import Page from './pages/shop/Page';
+import AddImages from './pages/shop/AddImages';
 
 function App() {
   return (
@@ -38,6 +40,8 @@ const AppBlock = () => {
         <Route path={`/`} element={<MainPage />} />
         <Route path={`/shop/`} element={<Shop />} />
         <Route path={`/shop/products/`} element={<Products />} />
+        <Route path={`/shop/images/`} element={<AddImages />} />
+        <Route path={`/shop/website`} element={<Page />} />
         <Route path={'/generator/preview/:id'} element={<AIWebsite />} />
         <Route path={'/generator'} element={<HomePage />} />
         <Route path={`/portfolio/`} element={<Portfolio />} />

@@ -16,7 +16,7 @@ def create_table_website(cursor):
 
 def create_table_shop(cursor):
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS shop (id INTEGER PRIMARY KEY AUTOINCREMENT, id_user TEXT, name TEXT, email TEXT, phone TEXT, description TEXT, category TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
+        "CREATE TABLE IF NOT EXISTS shop (id INTEGER PRIMARY KEY AUTOINCREMENT, id_user TEXT, name TEXT, email TEXT, phone TEXT, description TEXT, category TEXT, image1 TEXT, image2 TEXT, image3 TEXT,image4 TEXT,image5 TEXT,image6 TEXT,image7 TEXT,image8 TEXT,image9 TEXT,image10 TEXT, FOREIGN KEY(id_user) REFERENCES users(id_user))"
     )
 
 

@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from 'react-router-dom';
 
-const BackNext = ({ path }) => {
+const BackNext = ({ path, local }) => {
     const navigate = useNavigate();
 
     return (
@@ -9,10 +9,12 @@ const BackNext = ({ path }) => {
             <button onClick={() => navigate(-1)}>
                 Back
             </button>
-            <button onClick={() => navigate(path)}>
+            <button onClick={() =>
+                (path) ? navigate(path) : window.location.href = local
+            }>
                 Next
             </button>
-        </div>
+        </div >
     )
 };
 

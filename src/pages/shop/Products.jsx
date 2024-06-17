@@ -26,7 +26,6 @@ const Products = (props) => {
     const [productEditCard, setProductEditCard] = useState(null);
     const [productEditCardIndex, setProductEditCardIndex] = useState(null);
 
-
     const toggleAddProduct = (force = true) => {
         if (force) {
             setProductEditCard(null);
@@ -61,7 +60,7 @@ const Products = (props) => {
     return (
         <div className="portfolio-body">
             <Navbar />
-            <BackNext path={`/shop/`} />
+            <BackNext path={'/shop/images/'} />
             <div className="portfolioPage2" data-aos="fade-left">
                 <h1>3. Add <span>products</span></h1>
                 <br />
@@ -104,6 +103,7 @@ const Products = (props) => {
                         </div>
                     )}
                 </div>
+
             </div>
 
         </div >

@@ -601,5 +601,37 @@ def products(user_id):
     return jsonify("Product added")
 
 
+@app.route('/products/<user_id>', methods=['GET'])
+def get_products(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT * FROM products WHERE id_user = ?", (user_id,))
+    products = g.cursor.fetchall()
+    return jsonify(products)
+
+
+@app.route('/shop/<user_id>', methods=['GET'])
+def get_shop(user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "SELECT * FROM shop WHERE id_user = ?", (user_id,))
+    shop = g.cursor.fetchone()
+    return jsonify(shop)
+
+
+@app.route('/shop/images/<user_id>', methods=['POST'])
+def shop_images(user_id):
+    data = request.get_json()
+    images = data['images']
+    print(images)
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "INSERT INTO shop (id_user, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (
+            user_id, images[0], images[1], images[2], images[3], images[4], images[5], images[6], images[7], images[8], images[9])
+    )
+    g.db.commit()
+    return jsonify("Images added")
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
