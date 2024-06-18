@@ -7,31 +7,21 @@ import { FormGroup, Form, Label, Input } from "reactstrap";
 
 const AddImages = () => {
     const [user_id] = useRecoilValue(userState);
-    const [image1, setImage1] = useState(null);
-    const [image2, setImage2] = useState(null);
-    const [image3, setImage3] = useState(null);
-    const [image4, setImage4] = useState(null);
-    const [image5, setImage5] = useState(null);
-    const [image6, setImage6] = useState(null);
-    const [image7, setImage7] = useState(null);
-    const [image8, setImage8] = useState(null);
-    const [image9, setImage9] = useState(null);
-    const [image10, setImage10] = useState(null);
+    const [images, setImages] = useState(Array(10).fill("")); // Initialize an array of 10 empty strings
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10].forEach((image, index) => {
-            if (image) formData.append(`image${index + 1}`, image);
-        });
 
-        const response = await fetch(`http://localhost:3030/${user_id}/images`, {
+        const response = await fetch(`/shop/images/${user_id}`, {
             method: 'POST',
-            body: JSON.stringify(formData),
+            body: JSON.stringify({ images }),
         });
 
         if (response.ok) {
             console.log("Images added successfully");
+        }
+        else {
+            console.error("Failed to add images");
         }
     };
 
@@ -44,14 +34,15 @@ const AddImages = () => {
         });
     }
 
-    function handleFileChange(event, image_state) {
+    function handleFileChange(event, index) {
         const file = event.target.files[0];
+        console.log("File", file)
         toBase64(file).then((base64) => {
-            const setImage = window[`setImage${image_state.charAt(5).toUpperCase()}${image_state.slice(6)}`];
-            if (setImage) {
-                setImage(base64);
-            }
+            const newImages = [...images];
+            newImages[index] = base64;
+            setImages(newImages);
         });
+        console.log("Images", images);
     }
 
     return (
@@ -63,10 +54,10 @@ const AddImages = () => {
                 <br />
                 <br />
                 <Form onSubmit={handleSubmit}>
-                    {[...Array(10)].map((_, index) => (
+                    {images.map((_, index) => (
                         <FormGroup key={index}>
                             <Label for={`image${index + 1}`}>Image {index + 1}</Label>
-                            <Input type="file" name={`image${index + 1}`} id={`image${index + 1}`} onChange={(event) => handleFileChange(event, `image${index + 1}`)} />
+                            <Input type="file" name={`image${index + 1}`} id={`image${index + 1}`} onChange={(event) => handleFileChange(event, index)} />
                         </FormGroup>
                     ))}
                 </Form>

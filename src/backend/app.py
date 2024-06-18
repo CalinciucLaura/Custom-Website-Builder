@@ -621,16 +621,20 @@ def get_shop(user_id):
 
 @app.route('/shop/images/<user_id>', methods=['POST'])
 def shop_images(user_id):
-    data = request.get_json()
-    images = data['images']
-    print(images)
-    g.db, g.cursor = create_connection()
-    g.cursor.execute(
-        "INSERT INTO shop (id_user, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (
-            user_id, images[0], images[1], images[2], images[3], images[4], images[5], images[6], images[7], images[8], images[9])
-    )
-    g.db.commit()
-    return jsonify("Images added")
+    try:
+        data = request.get_json()
+        images = data.get('images')
+        if not images or len(images) != 10:
+            return jsonify("Invalid image data"), 400
+
+        g.db, g.cursor = create_connection()
+        for i, image in enumerate(images, start=1):
+            g.cursor.execute(
+                f"UPDATE shop SET image{i} = ? WHERE id_user = ?", (image, user_id))
+        g.db.commit()
+        return jsonify("Images added")
+    except Exception as e:
+        return jsonify(str(e)), 500
 
 
 if __name__ == '__main__':

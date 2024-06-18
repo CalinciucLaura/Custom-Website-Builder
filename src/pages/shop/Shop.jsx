@@ -31,9 +31,15 @@ const Shop = (props) => {
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const navigate = useNavigate();
+    const [showAlertModal, setShowAlertModal] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!name || !email || !phone || !description || !category) {
+            setShowAlertModal(true);
+            return;
+        }
 
         const response = await fetch(`/createShop/${user_id}`, {
             method: 'POST',
@@ -59,12 +65,12 @@ const Shop = (props) => {
                     <h1>1. Describe Your <span>Business</span></h1>
                     <br />
                     <br />
-                    {/* <AlertModal
+                    <AlertModal
                         modal={showAlertModal}
                         toggle={() => setShowAlertModal(false)}
                         message="Please fill in all the required fields"
                         isOpen={showAlertModal}
-                    /> */}
+                    />
 
                     <Form onSubmit={handleSubmit}>
                         <FormGroup row>
