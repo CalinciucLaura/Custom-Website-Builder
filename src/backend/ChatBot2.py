@@ -14,7 +14,7 @@ def chatBot2(prompt, text, section):
     elif section == "description":
         text = "Based on the following text: " + \
             f"{text}" + " " + "regenerate but make the following improvements: " + \
-            prompt + "Write a showt paragraph."
+            prompt + "Write a short paragraph."
 
     result = client.chat.completions.create(
         messages=[

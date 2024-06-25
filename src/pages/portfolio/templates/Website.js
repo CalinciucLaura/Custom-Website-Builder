@@ -176,7 +176,7 @@ const handleSave =  async() => {
         return;
     }
     
-    console.log(user_id);
+
 
     const response = await  fetch(`/portfolio/${user_id}`, {
         method: 'POST',
@@ -202,7 +202,7 @@ const handleSave =  async() => {
     }
 
     const data = await response.json();
-    console.log(data);
+   
 
     const educationResponse = await fetch(`/portfolio/${user_id}/education`, {
         method: 'POST',
@@ -236,7 +236,7 @@ const handleSave =  async() => {
     }
 
     const experienceData = await experienceResponse.json();
-    console.log(experienceData);
+   
 
     const skillsResponse = await fetch(`/portfolio/${user_id}/skills`, {
         method: 'POST',
@@ -253,7 +253,7 @@ const handleSave =  async() => {
     }
 
     const skillsData = await skillsResponse.json();
-    console.log(skillsData);
+
 
     const projectsResponse = await fetch(`/portfolio/${user_id}/projects`, {
         method: 'POST',
@@ -270,7 +270,7 @@ const handleSave =  async() => {
     }
 
     const projectsData = await projectsResponse.json();
-    console.log(projectsData);
+  
 
     navigate(`/portfolio/template/`)
 }

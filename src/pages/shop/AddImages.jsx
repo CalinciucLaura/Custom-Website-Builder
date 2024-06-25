@@ -36,13 +36,12 @@ const AddImages = () => {
 
     function handleFileChange(event, index) {
         const file = event.target.files[0];
-        console.log("File", file)
+
         toBase64(file).then((base64) => {
             const newImages = [...images];
             newImages[index] = base64;
             setImages(newImages);
         });
-        console.log("Images", images);
     }
 
     return (

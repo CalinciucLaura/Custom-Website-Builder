@@ -7,7 +7,7 @@ import About from "../../components/About";
 import ParallaxImage from "../../components/ParallaxImage";
 
 const T3 = ({ title, description1, description2, description3, image1, image2, image3, image4, heroImage, about, colors }) => {
-    console.log("IMAGE3", image1, image2, image3, image4, heroImage)
+
     return (
         <div className="T3-body">
             <Hero
@@ -38,6 +38,7 @@ const T3 = ({ title, description1, description2, description3, image1, image2, i
                 backgroundColorButton='transparent'
                 textButtonColor='black'
                 fontFamilyButton='Poppins'
+                section="description1"
                 swichObjects='false'
                 style={{ height: '40%', color: 'black', fontWeight: '800' }} />
             <ParallaxImage image={heroImage} />
@@ -57,6 +58,7 @@ const T3 = ({ title, description1, description2, description3, image1, image2, i
                 textButtonColor='white'
                 fontFamilyButton='Poppins'
                 swichObjects='true'
+                section="description2"
                 style={{ height: '20%', color: 'white', fontWeight: '800' }} />
         </div>
 

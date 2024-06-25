@@ -123,7 +123,7 @@ const Profile = () => {
             setShowAlertModal(true);
 
         }
-        console.log(data);
+
         setShowAlertDeleteAccount(true);
         setUserState('');
         window.localStorage.removeItem('user_id');

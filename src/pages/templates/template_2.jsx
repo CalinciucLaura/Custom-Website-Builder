@@ -32,6 +32,7 @@ const T2 = ({ title, description1, description2, description3, image1, image2, i
                     textButtonColor='black'
                     fontFamilyButton='Poppins'
                     swichObjects='false'
+                    section="description1"
                     backgroundColor={colors[1]}
                     style={{ height: '550px' }} />
                 <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
@@ -40,6 +41,7 @@ const T2 = ({ title, description1, description2, description3, image1, image2, i
                     number='02'
                     text={description2}
                     image={image3}
+                    section="description2"
                     textColor="white"
                     fontFamily='Times New Roman'
                     widthImage='50%'
@@ -73,6 +75,7 @@ const T2 = ({ title, description1, description2, description3, image1, image2, i
                     fontFamilyButton='Poppins'
                     backgroundColor={colors[1]}
                     swichObjects='false'
+                    section="description3"
                     style={{ height: '550px' }} />
                 <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>
                 <div className="empty-div" style={{ backgroundColor: colors[1] }}></div>

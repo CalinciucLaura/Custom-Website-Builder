@@ -14,7 +14,7 @@ const Hero = ({ className, image, title, text, fontFamily, button, buttonBackgro
     return (
         <div className={`hero ${className}`} style={{ fontFamily: fontFamily, ...style }}>
             <div className='hero-text'>
-            <ChatGPTModal modal={showModal} toggle={handleIcon} message={title} />    
+            <ChatGPTModal modal={showModal} toggle={handleIcon} text={title} section='title'/>    
             <BsStars className='icon' onClick={handleIcon}/>
                 <h1 style={{ fontWeight: fontWeight }}>{title}</h1>
                 <p>{text}</p>
