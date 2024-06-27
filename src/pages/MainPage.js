@@ -69,14 +69,14 @@ const MainPage = (props) => {
             </motion.div>
           </Link>
 
-          <Link to="/portfolio" 
+          <Link to="" 
                 smooth={true}
                 offset={-70}
                 duration={500}
                 className="btn">
         <motion.div className="main__content__item" whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-          <h2>Bussines</h2>
-          <p>Build a website for your Bussines</p>
+          <h2>Blog</h2>
+          <p>Build a website for your Blog</p>
         </motion.div>
         </Link>
 

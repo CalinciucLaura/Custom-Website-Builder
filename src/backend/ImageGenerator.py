@@ -5,11 +5,26 @@ from io import BytesIO
 import os
 from ColorPicker import color_pallete
 
+
 images_array = []
 
 
 def generate_multiple_images(text, num_images):
     images = []
+
+    if "Generate a website about" in text:
+        text = text.replace("Generate a website about", "")
+    elif "Create a website for" in text:
+        text = text.replace("Create a website for", "")
+    elif "generate a website about" in text:
+        text = text.replace("generate a website about", "")
+    elif "i want a website about " in text:
+        text = text.replace("i want a website about ", "")
+    elif "website about " in text:
+        text = text.replace("website about ", "")
+
+    text = text.strip()
+
     for i in range(num_images):
         image = generate_image(text, i)
         if i == 0:
@@ -20,7 +35,7 @@ def generate_multiple_images(text, num_images):
 
 def generate_image(text, i):
     client = OpenAI(
-        api_key="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"
+        api_key="sk-proj-EVnHgSlU0irW8wTLoooBT3BlbkFJ61eb3PEJzVwftWERjZ9p"
     )
 
     if i > 0:

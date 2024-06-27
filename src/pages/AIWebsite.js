@@ -61,6 +61,23 @@ const AIWebsite = (props) => {
         }
       }
 
+    const deleteTemplate = () => {
+        fetch(`/website/${web_id}/${user_id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            window.location.href = '/profile';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
 
     if (idTemplate == 1) {
          template = <T1 title={title} description1={description1} quote={quote} description2={description2} description3={description3} image1={image1} image2={image2} image3={image3} image4={image4} image5={image5} heroImage={heroImage} about={about} colors={colors} />
@@ -76,6 +93,7 @@ const AIWebsite = (props) => {
          <Navbar />
         <button className='btn btn-primary' style={{marginRight: '10px'}}>Save Template</button>
         <button className= 'btn btn-secondary' onClick={changeTemplate}>Change Template</button>
+        <button className = 'btn btn-danger' onClick={deleteTemplate} style={{marginLeft: '10px'}}>Delete</button>
         <br/>
         <br/>
         {template}

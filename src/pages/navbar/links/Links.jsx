@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 
 const Links = ({ user_id }) => {
+
     const items = [
         { name: "Homepage", path: `/` },
         { name: "Portfolio", path: `/portfolio/` },
-        { name: "Business", path: "/business" },
-        { name: "Blog", path: "/blog" },
-        { name: "E-commerce", path: "/ecommerce" },
-        { name: "About Us", path: "/aboutus" },
+        { name: "Blog", path: "" },
+        { name: "E-commerce", path: "/shop" },
         { name: "AI Generator", path: "/generator" }
     ]
+
+    console.log(user_id);
 
     return (
         <div className="links">

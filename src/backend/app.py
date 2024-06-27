@@ -637,5 +637,14 @@ def shop_images(user_id):
         return jsonify(str(e)), 500
 
 
+@app.route('/website/<web_id>/<user_id>', methods=['DELETE'])
+def delete_website(web_id, user_id):
+    g.db, g.cursor = create_connection()
+    g.cursor.execute(
+        "DELETE FROM website WHERE id = ? AND id_user = ?", (web_id, user_id))
+    g.db.commit()
+    return jsonify("Website deleted")
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

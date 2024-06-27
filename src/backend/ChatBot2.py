@@ -4,7 +4,7 @@ from openai import OpenAI
 def chatBot2(prompt, text, section):
 
     client = OpenAI(
-        api_key="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"
+        api_key="sk-proj-EVnHgSlU0irW8wTLoooBT3BlbkFJ61eb3PEJzVwftWERjZ9p"
     )
 
     if section == "title":

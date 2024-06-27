@@ -3,15 +3,19 @@ from openai import OpenAI
 
 def chatBot(text):
     client = OpenAI(
-        api_key="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"
+        api_key="sk-proj-EVnHgSlU0irW8wTLoooBT3BlbkFJ61eb3PEJzVwftWERjZ9p"
     )
 
-    if (text.find("Generate a website about")):
+    if "Generate a website about" in text:
         text = text.replace("Generate a website about", "")
-    elif (text.find("Generate a website for")):
-        text = text.replace("Generate a website for", "")
-    elif (text.find("Create a website about")):
-        text = text.replace("Create a website about", "")
+    elif "Create a website for" in text:
+        text = text.replace("Create a website for", "")
+    elif "generate a website about" in text:
+        text = text.replace("generate a website about", "")
+    elif "i want a website about " in text:
+        text = text.replace("i want a website about ", "")
+    elif "website about " in text:
+        text = text.replace("website about ", "")
 
     print(text)
     # if the text contains spaces, replace them with underscores
